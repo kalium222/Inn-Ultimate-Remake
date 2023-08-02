@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\GameUIManager.cs" />
+     <Compile Include="Assets\Scripts\PortalBookshelfUI.cs" />
      <Compile Include="Assets\Scripts\Damagable.cs" />
      <Compile Include="Assets\Scripts\UIHealthBar.cs" />
      <Compile Include="Assets\Scripts\NonPlayerCharacter.cs" />
@@ -58,11 +59,11 @@
      <Compile Include="Assets\Scripts\Door.cs" />
      <Compile Include="Assets\Scripts\Collectable.cs" />
      <Compile Include="Assets\Scripts\HoldingRenderer.cs" />
-     <Compile Include="Assets\Scripts\PortalBookshelfUI.cs" />
      <Compile Include="Assets\Scripts\PortalBookshelf.cs" />
+     <Compile Include="Assets\Scripts\BookUI.cs" />
+     <Compile Include="Assets\Scripts\PortalController.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
-     <None Include="Assets\2DBeginner_Third-PartyNotice.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />

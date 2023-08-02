@@ -99,6 +99,7 @@ public class GameManager : MonoBehaviour
     private void Update() {
         if (Input.GetKeyDown(KeyCode.T)) {
             TestGameStage();
+            Debug.Log("Current stage: " + stageManager.currentStage);
         }
         if (Input.GetKeyDown(KeyCode.Y)) {
             TestRoomExchange();
