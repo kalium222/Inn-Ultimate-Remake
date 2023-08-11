@@ -5,18 +5,18 @@ using UnityEngine;
 public class PortalBookshelf : Talkable
 {
     private const string portalController = "PortalControllerUI";
-    GameObject portalBookshelfUI;
+    GameObject portalBookshelfController;
 
     protected override void Start() {
         base.Start();
-        portalBookshelfUI = GameObject.Find(portalController);
-        if (portalBookshelfUI == null) {
+        portalBookshelfController = GameObject.Find(portalController);
+        if (portalBookshelfController == null) {
             Debug.LogError("PortalBookshelfUI not found");
         }
-        if (portalBookshelfUI.GetComponent<PortalBookshelfUI>() == null) {
+        if (portalBookshelfController.GetComponent<PortalBookshelfUI>() == null) {
             Debug.LogError("PortalBookshelfUI script lost");
         }
-        portalBookshelfUI.SetActive(false);
+        portalBookshelfController.SetActive(false);
     }
 
     protected override void DialogManagerInit() {
@@ -30,7 +30,7 @@ public class PortalBookshelf : Talkable
 
     protected override void SpecialEvent() {
         GameUIManager.instance.clearDialogBox();
-        portalBookshelfUI.GetComponent<PortalBookshelfUI>().AccessBookshelf();
+        portalBookshelfController.GetComponent<PortalBookshelfUI>().AccessBookshelf();
     }
 
     //---------------------------Subclass for dialogmanager of PortalBookshelf-------------------

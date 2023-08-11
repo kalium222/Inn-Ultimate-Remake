@@ -16,7 +16,7 @@ public class DirectPortal : Portal
         if (controller == HeroController.instance && (Vector2.Dot(controller.velocity, EnteringDirection) > 0.0f))
         {
             // Debug.Log("DirectPortal: " + gameObject.name);
-            Teleport(controller.gameObject);
+            Teleport();
             isActive = false;
         }
     }

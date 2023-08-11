@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public PortalTargetMap portalTargetMap = new PortalTargetMap();
+    public DoorManager doorManager;
     public CollectableManager collectableManager = new CollectableManager();
     public OpenableManager openableManager = new OpenableManager();
     public StageManager stageManager = new StageManager();
@@ -19,15 +19,17 @@ public class GameManager : MonoBehaviour
         } else {
             Destroy(gameObject);
             Debug.Log("Duplicate Game Manager self-destructing!");
+            
         }
+        doorManager = GetComponent<DoorManager>();
     }
 
     // A public method to load a new scene asynchronously
-    public void LoadSceneAsync(string targetSceneName) {
-        StartCoroutine(LoadSceneAsyncCoroutine(targetSceneName));
+    public void ChangeScene(string targetSceneName, string targetPortalName) {
+        StartCoroutine(LoadSceneAsyncCoroutine(targetSceneName, targetPortalName));
     }
 
-    private IEnumerator LoadSceneAsyncCoroutine(string targetSceneName) {
+    private IEnumerator LoadSceneAsyncCoroutine(string targetSceneName, string targetPortalName) {
         Scene currentScene = SceneManager.GetActiveScene();
         if (currentScene.name != targetSceneName) {
             AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(targetSceneName, LoadSceneMode.Additive);
@@ -36,6 +38,14 @@ public class GameManager : MonoBehaviour
             }
             SceneManager.UnloadSceneAsync(currentScene);
         }
+        
+        // The new scene is now loaded, and the old one is unloaded
+        // Get to the right place in the Scene
+        Portal target = GameObject.Find(targetPortalName).GetComponent<Portal>();
+        if (target.name == targetPortalName) {
+            HeroController.instance.transform.position = target.transform.position;
+        }
+        // Load the collectables to the right status
         PreloadCollectables(SceneManager.GetActiveScene());
     }
 
@@ -82,7 +92,9 @@ public class GameManager : MonoBehaviour
     }
 
     void TestRoomExchange() {
-        portalTargetMap.SwapRoom("FirstFloorDoor", "SecondFloorDoor1");
+        // doorManager.SwapRoom("FirstFloorDoor", "SecondFloorDoor1");
+        doorManager.SetDoortoRoom("FirstFloorDoor", "Room2Door");
+
     }
 
     void TestChangedCollectable() {
@@ -104,6 +116,9 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Y)) {
             TestRoomExchange();
         }
+        if (Input.GetKeyDown(KeyCode.J)) {
+            doorManager.ShowAllDoors();
+        }
     }
 
     // ------------------------Sub classes in GameManager------------------------
@@ -121,68 +136,6 @@ public class GameManager : MonoBehaviour
 
 
 // Sub classes in GameManager
-
-// A Dictionary to store the maps of portals and the targets
-public class PortalTargetMap {
-    Dictionary<string, Target> PortalTargetTable = new Dictionary<string, Target>(){
-        {"FirstFloorDoor", new Target("Room0", "Room0Door")},
-        {"SecondFloorDoor1", new Target("Room1", "Room1Door")},
-        {"SecondFloorDoor2", new Target("Room2", "Room2Door")},
-        {"SecondFloorDoor3", new Target("Room3", "Room3Door")},
-        {"SecondFloorDoor4", new Target("Room4", "Room4Door")},
-        {"BasementDoor", new Target("Room5", "Room5Door")},
-
-        {"Room0Door", new Target("FirstFloor", "FirstFloorDoor")},
-        {"Room1Door", new Target("SecondFloor", "SecondFloorDoor1")},
-        {"Room2Door", new Target("SecondFloor", "SecondFloorDoor2")},
-        {"Room3Door", new Target("SecondFloor", "SecondFloorDoor3")},
-        {"Room4Door", new Target("SecondFloor", "SecondFloorDoor4")},
-        {"Room5Door", new Target("Basement", "BasementDoor")},
-    };
-
-    // Swap the target of two doors
-    // Also swap the target of the doors in the target room
-    // To make it seemed to change the space of rooms
-    public void SwapRoom(string door1, string door2) {
-        string scene1 = "", scene2 = "";
-        foreach (KeyValuePair<string, Target> vertex in PortalTargetTable) {
-            if (vertex.Value.TargetDoorName == door1) {
-                scene1 = vertex.Value.TargetSceneName;
-            } else if (vertex.Value.TargetDoorName == door2) {
-                scene2 = vertex.Value.TargetSceneName;
-            }
-        }
-        if (scene1 == "" || scene2 == "") {
-            Debug.LogError("Door not found!");
-            return;
-        }
-        Target originalTarget1 = PortalTargetTable[door1];
-        Target originalTarget2 = PortalTargetTable[door2];
-        PortalTargetTable[door1] = originalTarget2;
-        PortalTargetTable[door2] = originalTarget1;
-        
-        PortalTargetTable[originalTarget1.TargetDoorName] = new Target(scene2, door2);
-        PortalTargetTable[originalTarget2.TargetDoorName] = new Target(scene1, door1);
-    }
-
-    public string GetTargetScene(string doorName) {
-        return PortalTargetTable[doorName].TargetSceneName;
-    }
-
-    public string GetTargetDoor(string doorName) {
-        return PortalTargetTable[doorName].TargetDoorName;
-    }
-}
-
-// Not good?
-public class Target {
-    public string TargetSceneName;
-    public string TargetDoorName;
-    public Target(string targetSceneName, string targetDoorName) {
-        TargetSceneName = targetSceneName;
-        TargetDoorName = targetDoorName;
-    }
-}
 
 public class CollectableInfo {
     public string scenename;

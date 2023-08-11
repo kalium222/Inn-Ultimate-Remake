@@ -6,9 +6,17 @@ using UnityEngine.EventSystems;
 
 public class BookUI : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    private static float enlargeFactor = 1.2f;
+    private static readonly float enlargeFactor = 1.2f;
     private RectTransform rectTransform;
     private Image bookimage;
+
+    public RectTransform position;
+
+    // When ending draging the UI, invoking the event
+    // set the position of book to the nearest position of room
+    // update the doormanager
+    public delegate void BookEndDragHandler(GameObject book);
+    public static event BookEndDragHandler OnBookEndDrag;
 
 
     private void Awake() {
@@ -30,11 +38,10 @@ public class BookUI : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerEnte
     }
 
     public void OnDrag(PointerEventData eventData) {
-        Debug.Log("OnDrag");
         rectTransform.anchoredPosition += eventData.delta;
     }
 
     public void OnEndDrag(PointerEventData eventData) {
-        Debug.Log("OnEndDrag");
+        OnBookEndDrag?.Invoke(gameObject);
     }
 }

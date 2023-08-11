@@ -51,8 +51,10 @@
      <Compile Include="Assets\Scripts\Projectile.cs" />
      <Compile Include="Assets\Scripts\Openable.cs" />
      <Compile Include="Assets\Scripts\HeroController.cs" />
+     <Compile Include="Assets\Scripts\BookUI.cs" />
      <Compile Include="Assets\Scripts\Talkable.cs" />
      <Compile Include="Assets\Scripts\HeroInteraction.cs" />
+     <Compile Include="Assets\Scripts\DoorManager.cs" />
      <Compile Include="Assets\Scripts\Weapon.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\BotController.cs" />
@@ -60,8 +62,6 @@
      <Compile Include="Assets\Scripts\Collectable.cs" />
      <Compile Include="Assets\Scripts\HoldingRenderer.cs" />
      <Compile Include="Assets\Scripts\PortalBookshelf.cs" />
-     <Compile Include="Assets\Scripts\BookUI.cs" />
-     <Compile Include="Assets\Scripts\PortalController.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
