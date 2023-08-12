@@ -8,9 +8,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public DoorManager doorManager;
+    public GameStageManager gameStageManager;
     public CollectableManager collectableManager = new CollectableManager();
     public OpenableManager openableManager = new OpenableManager();
-    public StageManager stageManager = new StageManager();
 
     private void Awake() {
         if (instance == null) {
@@ -19,10 +19,11 @@ public class GameManager : MonoBehaviour
         } else {
             Destroy(gameObject);
             Debug.Log("Duplicate Game Manager self-destructing!");
-            
         }
         doorManager = GetComponent<DoorManager>();
+        gameStageManager = GetComponent<GameStageManager>();
     }
+
 
     // A public method to load a new scene asynchronously
     public void ChangeScene(string targetSceneName, string targetPortalName) {
@@ -104,14 +105,14 @@ public class GameManager : MonoBehaviour
     }
 
     void TestGameStage() {
-        stageManager.currentStage++;
+        gameStageManager.Next();
+        Debug.Log("Current stage: " + gameStageManager.CurrentStage);
     }
     // ------------------------
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.T)) {
             TestGameStage();
-            Debug.Log("Current stage: " + stageManager.currentStage);
         }
         if (Input.GetKeyDown(KeyCode.Y)) {
             TestRoomExchange();
@@ -122,14 +123,6 @@ public class GameManager : MonoBehaviour
     }
 
     // ------------------------Sub classes in GameManager------------------------
-
-    // Game Stage
-    public class StageManager {
-        public enum Stage {
-            stage1, stage2
-        }
-        public Stage currentStage = Stage.stage1;
-    }
 }
 
 

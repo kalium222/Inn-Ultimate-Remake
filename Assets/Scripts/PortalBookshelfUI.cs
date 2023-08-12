@@ -46,7 +46,7 @@ public class PortalBookshelfUI : MonoBehaviour
         confirmKey = HeroInteraction.instance.interactKey;
         doorManager = GameManager.instance.doorManager;
         LoadBooksPositions();
-        LoadFromPortalManager();
+        LoadFromDoorManager();
         BookUI.OnBookEndDrag += OnBookEndDrag;
     }
 
@@ -76,7 +76,7 @@ public class PortalBookshelfUI : MonoBehaviour
     }
 
     // Load the correct positions of books from PortalManager
-    private void LoadFromPortalManager() {
+    private void LoadFromDoorManager() {
         foreach (GameObject book in RoomBooks) {
             string targetRoom = doorManager.GetTargetDoor(book.name);
             foreach (GameObject position in DoorPositions) {
@@ -98,6 +98,6 @@ public class PortalBookshelfUI : MonoBehaviour
                 break;
             }
         }
-        LoadFromPortalManager();
+        LoadFromDoorManager();
     }
 }

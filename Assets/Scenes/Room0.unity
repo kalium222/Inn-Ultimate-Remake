@@ -258,6 +258,74 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3945174369620959954, guid: d0af55152c9c4a844baf0b311f7b0c62, type: 3}
   m_PrefabInstance: {fileID: 99812859}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &110855803 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1893187113, guid: 2cbf2349b8565314f96604dd7ec62064, type: 3}
+  m_PrefabInstance: {fileID: 7260245335831724759}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &110855807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110855803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c5bbe05d26078e4885eab4e0dd681ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &211880742 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1087457275, guid: 2cbf2349b8565314f96604dd7ec62064, type: 3}
+  m_PrefabInstance: {fileID: 7260245335831724759}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &211880746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 211880742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c5bbe05d26078e4885eab4e0dd681ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &252112661 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 171881120, guid: 2cbf2349b8565314f96604dd7ec62064, type: 3}
+  m_PrefabInstance: {fileID: 7260245335831724759}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &252112665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 252112661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c5bbe05d26078e4885eab4e0dd681ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &259958712 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 798744789, guid: 2cbf2349b8565314f96604dd7ec62064, type: 3}
+  m_PrefabInstance: {fileID: 7260245335831724759}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &259958716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259958712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c5bbe05d26078e4885eab4e0dd681ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &345823305
 GameObject:
   m_ObjectHideFlags: 0
@@ -667,6 +735,40 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.10151386, y: 1.9637383}
   m_EdgeRadius: 0
+--- !u!1 &1264060191 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 98996058, guid: 2cbf2349b8565314f96604dd7ec62064, type: 3}
+  m_PrefabInstance: {fileID: 7260245335831724759}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1264060195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1264060191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c5bbe05d26078e4885eab4e0dd681ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1480255873 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1887447877, guid: 2cbf2349b8565314f96604dd7ec62064, type: 3}
+  m_PrefabInstance: {fileID: 7260245335831724759}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1480255877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480255873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c5bbe05d26078e4885eab4e0dd681ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2061952994
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -788,6 +890,54 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 807861481}
     m_Modifications:
+    - target: {fileID: 98996058, guid: 2cbf2349b8565314f96604dd7ec62064, type: 3}
+      propertyPath: m_Name
+      value: Room5Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 171881120, guid: 2cbf2349b8565314f96604dd7ec62064, type: 3}
+      propertyPath: m_Name
+      value: Room0Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 273786169, guid: 2cbf2349b8565314f96604dd7ec62064, type: 3}
+      propertyPath: m_Name
+      value: SecondFloorDoor1
+      objectReference: {fileID: 0}
+    - target: {fileID: 680393585, guid: 2cbf2349b8565314f96604dd7ec62064, type: 3}
+      propertyPath: m_Name
+      value: FirstFloorDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 798744789, guid: 2cbf2349b8565314f96604dd7ec62064, type: 3}
+      propertyPath: m_Name
+      value: Room2Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 909897498, guid: 2cbf2349b8565314f96604dd7ec62064, type: 3}
+      propertyPath: m_Name
+      value: BasementDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 998802918, guid: 2cbf2349b8565314f96604dd7ec62064, type: 3}
+      propertyPath: m_Name
+      value: SecondFloorDoor4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1087457275, guid: 2cbf2349b8565314f96604dd7ec62064, type: 3}
+      propertyPath: m_Name
+      value: Room4Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 1585819082, guid: 2cbf2349b8565314f96604dd7ec62064, type: 3}
+      propertyPath: m_Name
+      value: SecondFloorDoor2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1680261866, guid: 2cbf2349b8565314f96604dd7ec62064, type: 3}
+      propertyPath: m_Name
+      value: SecondFloorDoor3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887447877, guid: 2cbf2349b8565314f96604dd7ec62064, type: 3}
+      propertyPath: m_Name
+      value: Room3Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 1893187113, guid: 2cbf2349b8565314f96604dd7ec62064, type: 3}
+      propertyPath: m_Name
+      value: Room1Door
+      objectReference: {fileID: 0}
     - target: {fileID: 7260245335421389513, guid: 2cbf2349b8565314f96604dd7ec62064, type: 3}
       propertyPath: m_Name
       value: BookShell
