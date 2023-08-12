@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Door : Interactable
 {
@@ -16,9 +17,14 @@ public class Door : Interactable
         } else {
             GetComponent<SpriteRenderer>().sprite = doorSprite;
         }
+        PortalBookshelfUI.OnUpdatingDoor += LoadTarget;
     }
 
-    public void LoadTarget() {
+    private void OnDestroy() {
+        PortalBookshelfUI.OnUpdatingDoor -= LoadTarget;
+    }
+
+    private void LoadTarget() {
          try {
             portal.TargetScene = GameManager.instance.doorManager.GetTargetScene(gameObject.name);
             portal.TargetPortal = GameManager.instance.doorManager.GetTargetDoor(gameObject.name);

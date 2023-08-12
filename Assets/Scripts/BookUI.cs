@@ -10,8 +10,6 @@ public class BookUI : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerEnte
     private RectTransform rectTransform;
     private Image bookimage;
 
-    public RectTransform position;
-
     // When ending draging the UI, invoking the event
     // set the position of book to the nearest position of room
     // update the doormanager

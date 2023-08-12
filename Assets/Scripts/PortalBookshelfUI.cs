@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PortalBookshelfUI : MonoBehaviour
 {
@@ -8,25 +9,41 @@ public class PortalBookshelfUI : MonoBehaviour
     private List<GameObject> RoomBooks = new List<GameObject>();
     private const string booksName = "Books";
     private const string positionsName = "Positions";
+    private static KeyCode confirmKey;
     private DoorManager doorManager;
 
-    [SerializeField]
     public const float attaching_distance = 100f;
+
+    public delegate void UpdatingDoorHandler();
+    public static event UpdatingDoorHandler OnUpdatingDoor;
 
     // For bookshelf
     // Activate the UI of the whole portal controller
     public void AccessBookshelf() {
         gameObject.SetActive(true);
+        StartCoroutine(runBookself());
     }
 
-    // TODO: 
-    private void Update() {
-        if (gameObject.activeSelf && Input.GetKeyDown(KeyCode.Space)) {
-            gameObject.SetActive(false);
+    private IEnumerator runBookself() {
+        // Start at next frame
+        yield return null;
+        // disable the hero and interaction
+        HeroController.instance.CanMove = false;
+        HeroInteraction.instance.CanInteract = false;
+
+        while (!Input.GetKeyDown(confirmKey)) {
+            yield return null;
         }
+        // Update the room0door
+        OnUpdatingDoor?.Invoke();
+        // enable the hero and interaction
+        HeroController.instance.CanMove = true;
+        HeroInteraction.instance.CanInteract = true;
+        gameObject.SetActive(false);
     }
 
     private void Start() {
+        confirmKey = HeroInteraction.instance.interactKey;
         doorManager = GameManager.instance.doorManager;
         LoadBooksPositions();
         LoadFromPortalManager();
