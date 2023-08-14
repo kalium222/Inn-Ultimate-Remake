@@ -34,4 +34,6 @@ public class Collectable : Interactable
         gameObject.transform.SetParent(GameManager.instance.transform);
         isCollected = false;
     }
+
+    virtual public void Use() {}
 }

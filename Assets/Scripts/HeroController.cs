@@ -29,15 +29,12 @@ public class HeroController : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
-    }
-
-    void Start() {
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
 
     void Update() {
-        getStatusParameters();
+        GetStatusParameters();
         setAnimation();
     }
 
@@ -46,7 +43,7 @@ public class HeroController : MonoBehaviour
     }
 
     // Get input and set status parameters
-    private void getStatusParameters() {
+    private void GetStatusParameters() {
         if (!canMove) {
             horizontal = 0;
             vertical = 0;
@@ -62,6 +59,7 @@ public class HeroController : MonoBehaviour
     // Move hero by changing its rigidbody2d.position
     // Called in FixedUpdate to ensure the correct physical behavior
     private void HeroMove() {
+        if (!canMove) return;
         Vector2 position = rigidbody2d.position;
         position.x += speed * horizontal * Time.deltaTime;
         position.y += speed * vertical * Time.deltaTime;

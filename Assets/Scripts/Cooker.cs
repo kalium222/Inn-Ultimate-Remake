@@ -21,7 +21,7 @@ public class Cooker : Talkable
         RawBigFood.SetActive(false);
         GameObject BigFood = Instantiate<GameObject>(specialEventObject, gameObject.transform);
         BigFood.transform.position = HeroController.instance.transform.position;
-        HeroInteraction.instance.setAnimation();
+        HeroInteraction.instance.SetAnimation();
     }
 
     // ------------------Subclass for dialogmanager of Cooker-------------------

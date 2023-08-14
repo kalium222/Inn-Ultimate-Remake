@@ -36,7 +36,7 @@ public class PortalBookshelf : Talkable
     //---------------------------Subclass for dialogmanager of PortalBookshelf-------------------
     private class PortalBookshelfDialogManager : DialogManager {
         protected override bool isSpecialConversation() {
-            return GameManager.instance.stageManager.currentStage == GameManager.StageManager.Stage.stage2;
+            return GameManager.instance.gameStageManager.CurrentStage == GameStageManager.Stage.Exploring;
         }
     }
 }

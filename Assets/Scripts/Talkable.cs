@@ -173,7 +173,7 @@ public class Talkable :  Interactable
                     while (currentConversationIndex < normalConversations.Count) {
                         currentConversationIndex++;
                         if (currentConversationIndex >= normalConversations.Count) break;
-                        if ( ((int)GameManager.instance.stageManager.currentStage == (int)getCurrentConversation().stage) 
+                        if ( ((int)GameManager.instance.gameStageManager.CurrentStage == (int)getCurrentConversation().stage) 
                             || (getCurrentConversation().stage == dialogStage.any) ) {
                             break;
                         }

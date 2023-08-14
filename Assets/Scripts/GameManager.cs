@@ -8,9 +8,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public DoorManager doorManager;
+    public GameStageManager gameStageManager;
     public CollectableManager collectableManager = new CollectableManager();
     public OpenableManager openableManager = new OpenableManager();
-    public StageManager stageManager = new StageManager();
 
     private void Awake() {
         if (instance == null) {
@@ -19,10 +19,11 @@ public class GameManager : MonoBehaviour
         } else {
             Destroy(gameObject);
             Debug.Log("Duplicate Game Manager self-destructing!");
-            
         }
         doorManager = GetComponent<DoorManager>();
+        gameStageManager = GetComponent<GameStageManager>();
     }
+
 
     // A public method to load a new scene asynchronously
     public void ChangeScene(string targetSceneName, string targetPortalName) {
@@ -59,9 +60,7 @@ public class GameManager : MonoBehaviour
                 item.collectable.gameObject.SetActive(false);
             }
             Transform original = GetChildGameObject(room.transform, item.collectable.name);
-            if (original != null) {
-                original.gameObject.SetActive(false);
-            }
+            original?.gameObject.SetActive(false);
         }
     }
 
@@ -104,32 +103,24 @@ public class GameManager : MonoBehaviour
     }
 
     void TestGameStage() {
-        stageManager.currentStage++;
+        gameStageManager.Next();
+        Debug.Log("Current stage: " + gameStageManager.CurrentStage);
     }
     // ------------------------
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.T)) {
             TestGameStage();
-            Debug.Log("Current stage: " + stageManager.currentStage);
         }
         if (Input.GetKeyDown(KeyCode.Y)) {
             TestRoomExchange();
         }
-        if (Input.GetKeyDown(KeyCode.J)) {
-            doorManager.ShowAllDoors();
-        }
+        // if (Input.GetKeyDown(KeyCode.J)) {
+        //     doorManager.ShowAllDoors();
+        // }
     }
 
     // ------------------------Sub classes in GameManager------------------------
-
-    // Game Stage
-    public class StageManager {
-        public enum Stage {
-            stage1, stage2
-        }
-        public Stage currentStage = Stage.stage1;
-    }
 }
 
 
