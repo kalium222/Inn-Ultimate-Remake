@@ -287,3 +287,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MeleeAttack: {fileID: 2832116296981846259, guid: 4b565bdf929998d4b93be8244041aeda, type: 3}
+  isAttacking: 0
+  attackRadius: 0.35
