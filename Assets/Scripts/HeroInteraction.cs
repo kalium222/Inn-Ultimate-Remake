@@ -101,11 +101,7 @@ public class HeroInteraction : MonoBehaviour
         if (currentItem.name == "emptyhanded") return;
         foreach (CollectableInfo item in GameManager.instance.collectableManager.changedCollectableInfos) {
             if (item.collectable.name == currentItem.name) {
-                if (currentItem.isUsable) {
-                    item.collectable.GetComponent<Collectable>().Use();
-                } else {
-                    item.collectable.GetComponent<Collectable>().Drop();
-                }
+                item.collectable.GetComponent<Collectable>().Use();
                 return;
             }
         }

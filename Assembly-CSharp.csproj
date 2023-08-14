@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\HealthCollectible.cs" />
      <Compile Include="Assets\Scripts\RubyController.cs" />
      <Compile Include="Assets\Scripts\Cooker.cs" />
+     <Compile Include="Assets\Scripts\MeleeAttack.cs" />
      <Compile Include="Assets\Scripts\Projectile.cs" />
      <Compile Include="Assets\Scripts\Openable.cs" />
      <Compile Include="Assets\Scripts\HeroController.cs" />
@@ -64,7 +65,9 @@
      <Compile Include="Assets\Scripts\Collectable.cs" />
      <Compile Include="Assets\Scripts\HoldingRenderer.cs" />
      <Compile Include="Assets\Scripts\PortalBookshelf.cs" />
-     <Compile Include="Assets\Scripts\MeleeAttack.cs" />
+     <Compile Include="Assets\Scripts\Bucket.cs" />
+     <Compile Include="Assets\Scripts\HeroWearing.cs" />
+     <Compile Include="Assets\Scripts\Wearable.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

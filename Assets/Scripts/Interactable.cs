@@ -12,13 +12,15 @@ public class Interactable : MonoBehaviour
     // private Vector2 originalSize;
     private bool isHighlighted = false;
     
-    private void Awake() {
+    protected virtual void Awake() {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         if (spriteRenderer == null) Debug.Log("SpriteRenderer not found on " + gameObject.name);
-        // originalSize = spriteRenderer.size;
+        // Check collider
+        if (gameObject.GetComponent<Collider2D>() == null) Debug.Log("Collider2D not found on " + gameObject.name);
         originalAlpha = spriteRenderer.color.a;
     }
 
+    // TODO: ugly
     private void FixedUpdate() {
         if (isHighlighted) {
             Highlight(false);

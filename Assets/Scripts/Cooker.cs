@@ -15,6 +15,7 @@ public class Cooker : Talkable
     }
 
     protected override void SpecialEvent() {
+        // TODO: ugly
         GameObject RawBigFood = HeroInteraction.instance.Bag.getCurrentItemObject();
         RawBigFood.GetComponent<Collectable>().Drop();
         RawBigFood.GetComponent<Collectable>().isCollected = true;

@@ -13,10 +13,6 @@ public class MeleeAttack : MonoBehaviour
     public MeleeAttackKind kind;
     public bool isSilver;
 
-    void Start() {
-        Debug.Log("kind: " + this.kind + ", isSilver: " + this.isSilver);
-    }
-
     public MeleeAttack(MeleeAttackKind kind = MeleeAttackKind.slash, bool isSilver = false) {
         this.kind = kind;
         this.isSilver = isSilver;

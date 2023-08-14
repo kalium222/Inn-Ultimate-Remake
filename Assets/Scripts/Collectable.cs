@@ -7,16 +7,18 @@ public class Collectable : Interactable
 {
     public bool isCollected = false;
     
-    private void Start() {
+    protected override void Awake() {
+        base.Awake();
         isCollected = false;
     }
-
+    
+    // TODO: ugly
     // Interact of collectable is taking it
     // put the item in bag and put the gameobject in GameManager.instance.collectableManager.changedCollectableInfos
     public override void Interact()
     {
         // If the collectable is got from a openable, set the openable to empty
-        if (transform.parent.GetComponent<Openable>()!=null) {
+        if (transform.parent!=null && transform.parent.GetComponent<Openable>()!=null) {
             transform.parent.GetComponent<Openable>().isEmpty = true;
         }
         HeroInteraction.instance.Bag.Add(gameObject);
@@ -35,5 +37,7 @@ public class Collectable : Interactable
         isCollected = false;
     }
 
-    virtual public void Use() {}
+    virtual public void Use() {
+        Drop();
+    }
 }
