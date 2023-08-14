@@ -5,18 +5,20 @@ using UnityEngine;
 public class HoldingRenderer : MonoBehaviour
 {
     SpriteRenderer holdingRenderer;
+    HeroAttack heroAttack;
 
     const float offsetx = 0.17f;
     const float offsety = 0.42f;
     
     void Start() {
         holdingRenderer = GetComponent<SpriteRenderer>();
+        heroAttack = HeroController.instance.GetComponent<HeroAttack>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (HeroInteraction.instance.Bag.getCurrentItemName()=="emptyhanded") {
+        if (HeroInteraction.instance.Bag.getCurrentItemName()=="emptyhanded" || heroAttack.isAttacking) {
             holdingRenderer.enabled = false;
         } else {
             holdingRenderer.enabled = true;

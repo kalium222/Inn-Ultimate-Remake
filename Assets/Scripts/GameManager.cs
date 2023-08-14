@@ -60,9 +60,7 @@ public class GameManager : MonoBehaviour
                 item.collectable.gameObject.SetActive(false);
             }
             Transform original = GetChildGameObject(room.transform, item.collectable.name);
-            if (original != null) {
-                original.gameObject.SetActive(false);
-            }
+            original?.gameObject.SetActive(false);
         }
     }
 
@@ -117,9 +115,9 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Y)) {
             TestRoomExchange();
         }
-        if (Input.GetKeyDown(KeyCode.J)) {
-            doorManager.ShowAllDoors();
-        }
+        // if (Input.GetKeyDown(KeyCode.J)) {
+        //     doorManager.ShowAllDoors();
+        // }
     }
 
     // ------------------------Sub classes in GameManager------------------------

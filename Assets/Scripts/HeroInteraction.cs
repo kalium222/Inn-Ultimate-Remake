@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HeroInteraction : MonoBehaviour
 {
+    // TODO: So ugly
     public static HeroInteraction instance;
     public float interactRadius = 0.5f;
     public KeyCode switchObjectKey = KeyCode.K;
@@ -51,7 +52,7 @@ public class HeroInteraction : MonoBehaviour
             }
             if (Input.GetKeyDown(interactKey)) {
                 interactableObjectColliders[currentObjectIndex % interactableObjectColliders.Length].GetComponent<Interactable>().Interact();
-                setAnimation();
+                SetAnimation();
             }
             if (interactableObjectColliders.Length>1) {
                 GameUIManager.instance.Exchange.SetActive(true);
@@ -63,15 +64,15 @@ public class HeroInteraction : MonoBehaviour
         }
         if (Input.GetKeyDown(useKey)) {
             UseCurrentItem();
-            setAnimation();
+            SetAnimation();
         }
         if (Input.GetKeyDown(nextItemKey)) {
             bag.itemsiteratorNext();
-            setAnimation();
+            SetAnimation();
         }
         if (Input.GetKeyDown(previousItemKey)) {
             bag.itemsiteratorPrevious();
-            setAnimation();
+            SetAnimation();
         }
 
         // Test code
@@ -82,7 +83,7 @@ public class HeroInteraction : MonoBehaviour
     }
 
     // A trigger function for animation
-    public void setAnimation() {
+    public void SetAnimation() {
         animator.SetBool("Holding", bag.getCurrentItemName()!="emptyhanded");
     }
 
@@ -97,16 +98,18 @@ public class HeroInteraction : MonoBehaviour
 
     public void UseCurrentItem() {
         ItemInBag currentItem = bag.getCurrentItem();
-        if (currentItem.name == "emptyhanded") {
-            return;
-        } else if (!currentItem.isUsable) {
-            foreach (CollectableInfo item in GameManager.instance.collectableManager.changedCollectableInfos) {
-                if (item.collectable.name == currentItem.name) {
+        if (currentItem.name == "emptyhanded") return;
+        foreach (CollectableInfo item in GameManager.instance.collectableManager.changedCollectableInfos) {
+            if (item.collectable.name == currentItem.name) {
+                if (currentItem.isUsable) {
+                    item.collectable.GetComponent<Collectable>().Use();
+                } else {
                     item.collectable.GetComponent<Collectable>().Drop();
-                    return;
                 }
+                return;
             }
         }
+        
     }
 }
 
@@ -114,9 +117,10 @@ public class ItemInBag {
     public string name;
     public int quantity;
     public bool isUsable = false;
-    public ItemInBag(string name, int quantity) {
+    public ItemInBag(string name, int quantity, bool isUsable = false) {
         this.name = name;
         this.quantity = quantity;
+        this.isUsable = isUsable;
     }
 }
 
@@ -154,7 +158,12 @@ public class Bag {
     }
 
     public void Add(GameObject item) {
-        Add(new ItemInBag(item.name, 1));
+        if (item.GetComponent<Weapon>() != null) {
+            Add(new ItemInBag(item.name, 1, true));
+        } else {
+            Add(new ItemInBag(item.name, 1));
+        }
+        
     }
 
     public void Remove(ItemInBag item) {
@@ -183,6 +192,9 @@ public class Bag {
     // ---------------------------------Test function
     public void Print() {
         Debug.Log("Iterator: " + itemsiterator);
+        Debug.Log("Current item is " + items[itemsiterator].name);
+        Debug.Log("Current item quantity is " + items[itemsiterator].quantity + "");
+        Debug.Log("Current item is usable: " + items[itemsiterator].isUsable + "");
         Debug.Log("Bag contains:");
         foreach (ItemInBag item in items) {
             Debug.Log(item.name);
