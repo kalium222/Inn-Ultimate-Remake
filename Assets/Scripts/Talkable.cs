@@ -81,6 +81,7 @@ public class Talkable :  Interactable
         // Then re-enable all movement and interaction
         HeroController.instance.CanMove = true;
         HeroInteraction.instance.CanInteract = true;
+        HeroInteraction.instance.SetAnimation();
     }
 
 

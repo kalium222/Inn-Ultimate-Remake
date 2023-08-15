@@ -33,6 +33,7 @@ public class Bucket : Wearable
     }
 
     public void Fill() {
+        Debug.Log("Fill");
         isFull = true;
         bucketRenderer.sprite = fullBucketSprite;
     }
@@ -45,7 +46,7 @@ public class Bucket : Wearable
     override public void Use() {
         // TODO: pour water?
         if (isFull) base.Drop();
-        base.Use();
+        else base.Use();
     }
 
 }

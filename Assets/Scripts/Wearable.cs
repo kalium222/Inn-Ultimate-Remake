@@ -23,7 +23,6 @@ public class Wearable : Collectable
 
     protected override void Awake() {
         base.Awake();
-        Debug.Log("Awake WearingSprite: " + wearingSprite.name);
         if (wearingSprite == null) {
             Debug.Log(name + " wearingSprite is null, tring to use the default sprite");
             if (GetComponent<SpriteRenderer>() == null) throw new System.Exception("GetComponent<SpriteRenderer>() is null");
@@ -32,7 +31,6 @@ public class Wearable : Collectable
     }
 
     protected virtual void Start() {
-        Debug.Log("WearingSprite: " + wearingSprite.name);
         heroWearing = HeroWearing.instance;
         if (heroWearing == null) throw new System.Exception("heroWearing is null");
     }

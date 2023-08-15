@@ -29,18 +29,16 @@ public class HoldingRenderer : MonoBehaviour
         && currItemObject.GetComponent<Wearable>().IsWearing) {
             holdingRenderer.enabled = false;
         } else {
-            holdingRenderer.enabled = true;
-            for (int i=0; i<GameManager.instance.collectableManager.changedCollectableInfos.Count; i++) {
-                GameObject curr = GameManager.instance.collectableManager.changedCollectableInfos[i].collectable;
-                if (curr.name == HeroInteraction.instance.Bag.getCurrentItemName()) {
-                    holdingRenderer.sprite = curr.GetComponent<SpriteRenderer>().sprite;
-                    holdingRenderer.flipX = (HeroController.instance.lookDirection == 1);
-                    transform.position =  HeroController.instance.transform.position + new Vector3(
-                        offsetx*HeroController.instance.lookDirection, offsety, 0
-                    );
-                    break;
-                }
-            }
+            HoldCurrentItem(currItemObject);
         }
+    }
+
+    private void HoldCurrentItem(GameObject currentItemObject) {
+        holdingRenderer.enabled = true;
+        holdingRenderer.sprite = currentItemObject.GetComponent<SpriteRenderer>().sprite;
+        holdingRenderer.flipX = (HeroController.instance.lookDirection == 1);
+        transform.position =  HeroController.instance.transform.position + new Vector3(
+            offsetx*HeroController.instance.lookDirection, offsety, 0
+        );
     }
 }
