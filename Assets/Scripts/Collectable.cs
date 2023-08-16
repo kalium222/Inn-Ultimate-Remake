@@ -6,15 +6,26 @@ using UnityEngine.SceneManagement;
 public class Collectable : Interactable, IGameObjectStateHandler
 {
     public bool isCollected = false;
+
+    // class for saved state
+    class CollectableState : GameObjectStateManager.GameObjectState {
+        public bool isCollected;
+        public Vector3 position;
+        public string sceneName;
+        public CollectableState(bool isCollected, Vector3 position, string sceneName) {
+            this.isCollected = isCollected;
+            this.position = position;
+            this.sceneName = sceneName;
+        }
+    }
     
     protected override void Awake() {
         base.Awake();
         isCollected = false;
     }
 
-    private void Start() {
-        // GameManager.instance.collectableManager.changedCollectableInfos.Add(new CollectableInfo(SceneManager.GetActiveScene().name, transform, gameObject));
-        // transform.SetParent(GameManager.instance.transform);
+    protected virtual void Start() {
+        if (GameManager.instance.gameObjectStateManager.Contains(gameObject.name)) Destroy(gameObject);
         GameObjectStateManager.OnSave += SavetoManager;
         GameObjectStateManager.OnLoad += LoadfromManager;
     }
@@ -22,6 +33,11 @@ public class Collectable : Interactable, IGameObjectStateHandler
     private void OnDestroy() {
         GameObjectStateManager.OnSave -= SavetoManager;
         GameObjectStateManager.OnLoad -= LoadfromManager;
+    }
+
+    // if isCollected, set the gameObject to inactive
+    private void SetObject() {
+        gameObject.SetActive(!isCollected);
     }
 
     
@@ -35,30 +51,48 @@ public class Collectable : Interactable, IGameObjectStateHandler
             transform.parent.GetComponent<Openable>().isEmpty = true;
         }
         HeroInteraction.instance.Bag.Add(gameObject);
-        GameManager.instance.collectableManager.changedCollectableInfos.Add(new CollectableInfo(SceneManager.GetActiveScene().name, transform, gameObject));
-        transform.SetParent(GameManager.instance.transform);
-        gameObject.SetActive(false);
+        transform.position = HeroController.instance.transform.position;
+        transform.SetParent(HeroController.instance.transform);
         isCollected = true;
+        SetObject();
     }
 
     public void Drop() {
         HeroInteraction.instance.Bag.Remove(gameObject);
-        gameObject.SetActive(true);
-        GameManager.instance.collectableManager.setChangedCollectableInfos(new CollectableInfo(SceneManager.GetActiveScene().name, transform, gameObject));
         gameObject.transform.position = HeroController.instance.transform.position;
         gameObject.transform.SetParent(GameManager.instance.transform);
         isCollected = false;
+        SetObject();
     }
 
     virtual public void Use() {
         Drop();
     }
 
+    // TODO: bit of ugly
     public void SavetoManager() {
-        // Debug.Log("SavetoManager: " + gameObject.name);
+        transform.SetParent(GameManager.instance.transform);
+        if (isCollected) {
+            GameManager.instance.gameObjectStateManager.Add(gameObject.name, new CollectableState(isCollected, transform.position, "InBag"));
+            // Debug.Log("SavetoManager: " + gameObject.name);
+            // Debug.Log("isCollected: " + isCollected + ", In bag");
+        } else if (gameObject.activeSelf) {
+            GameManager.instance.gameObjectStateManager.Add(gameObject.name, new CollectableState(isCollected, transform.position, SceneManager.GetActiveScene().name));
+            // Debug.Log("SavetoManager: " + gameObject.name);
+            // Debug.Log("isCollected: " + isCollected + ", SceneName: " + SceneManager.GetActiveScene().name);
+        }
     }
 
     public void LoadfromManager() {
         // Debug.Log("LoadfromManager: " + gameObject.name);
+        CollectableState state = (CollectableState)GameManager.instance.gameObjectStateManager.Get(gameObject.name);
+        if (state == null) return;
+        isCollected = state.isCollected;
+        transform.position = state.position;
+        // Debug.Log("isCollected: " + isCollected + ", SceneName: " + state.sceneName + ", ActiveSceneName: " + SceneManager.GetActiveScene().name);
+
+        if (state.sceneName != SceneManager.GetActiveScene().name) {
+            gameObject.SetActive(false);
+        } else SetObject();
     }
 }

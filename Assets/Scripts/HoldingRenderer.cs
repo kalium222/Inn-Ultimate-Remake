@@ -17,12 +17,12 @@ public class HoldingRenderer : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        string currItemName = HeroInteraction.instance.Bag.getCurrentItemName();
+        string currItemName = HeroInteraction.instance.Bag.GetCurrentItemName();
         if (currItemName == "emptyhanded") {
             holdingRenderer.enabled = false;
             return;
         }
-        GameObject currItemObject = HeroInteraction.instance.Bag.getCurrentItemObject();
+        GameObject currItemObject = HeroInteraction.instance.Bag.GetCurrentItem();
         if (heroAttack.isAttacking) {
             holdingRenderer.enabled = false;
         } else if (currItemObject.GetComponent<Wearable>() != null 

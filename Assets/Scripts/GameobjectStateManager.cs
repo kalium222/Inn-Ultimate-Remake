@@ -67,6 +67,13 @@ public class GameObjectStateManager : MonoBehaviour
         }
     }
 
+    public void LogList() {
+        Debug.Log("GameobjectStateManager: LogList");
+        foreach (KeyValuePair<string, GameObjectState> item in gameobjectStates) {
+            Debug.Log("     " + item.Key);
+        }
+    }
+
 }
 
 // interface for gameobject state

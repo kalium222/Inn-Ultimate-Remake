@@ -30,7 +30,8 @@ public class Wearable : Collectable
         }
     }
 
-    protected virtual void Start() {
+    override protected void Start() {
+        base.Start();
         heroWearing = HeroWearing.instance;
         if (heroWearing == null) throw new System.Exception("heroWearing is null");
     }
