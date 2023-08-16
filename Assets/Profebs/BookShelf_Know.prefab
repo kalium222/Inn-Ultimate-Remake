@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 666223818701602919}
   - component: {fileID: 6474713226741733746}
   m_Layer: 0
-  m_Name: BookShell_Know
+  m_Name: BookShelf_Know
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -940,7 +940,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7260245335421389513, guid: 2cbf2349b8565314f96604dd7ec62064, type: 3}
       propertyPath: m_Name
-      value: BookShell
+      value: BookShelf
       objectReference: {fileID: 0}
     - target: {fileID: 7260245335421389513, guid: 2cbf2349b8565314f96604dd7ec62064, type: 3}
       propertyPath: m_Layer

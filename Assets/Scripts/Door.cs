@@ -3,15 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Door : Interactable
+public class Door : Interactable, IGameObjectStateHandler, IAttackableHandler
 {
     public Portal portal;
     public bool isSealed;
     public Sprite doorSprite;
     public Sprite sealedDoorSprite;
-    private void Start() {
+
+    // class for saved state
+    class DoorState : GameObjectStateManager.GameObjectState {
+        public bool isSealed;
+        public DoorState(bool isSealed) {
+            this.isSealed = isSealed;
+        }
+    }
+
+    protected override void Awake() {
+        base.Awake();
         portal = GetComponent<Portal>();
+        if (portal == null) throw new System.Exception("Portal not found on " + gameObject.name);
+    }
+    
+    private void Start() {
         LoadTarget();
+        LoadfromManager();
         if (isSealed) {
             GetComponent<SpriteRenderer>().sprite = sealedDoorSprite;
         } else {
@@ -22,6 +37,7 @@ public class Door : Interactable
 
     private void OnDestroy() {
         PortalBookshelfUI.OnUpdatingDoor -= LoadTarget;
+        SavetoManager();
     }
 
     private void LoadTarget() {
@@ -39,10 +55,28 @@ public class Door : Interactable
     public override void Interact()
     {
         if (isSealed) {
-            Debug.Log("TODO: Sealed Door");
+            // TODO: animation?
             return;
         }
         portal.Teleport();
     }
-    
+
+    public void SavetoManager() {
+        GameManager.instance.gameObjectStateManager.Add(name, new DoorState(isSealed));
+    }
+
+    public void LoadfromManager() {
+        if (GameManager.instance.gameObjectStateManager.Contains(name)) {
+            DoorState doorState = (DoorState)GameManager.instance.gameObjectStateManager.Get(name);
+            isSealed = doorState.isSealed;
+        }
+    }
+
+    public void OnAttack(in MeleeAttack meleeAttack) {
+        if (meleeAttack.kind == MeleeAttack.MeleeAttackKind.blow) {
+            isSealed = false;
+            GetComponent<SpriteRenderer>().sprite = doorSprite;
+        }
+    }
+
 }

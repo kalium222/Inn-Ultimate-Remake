@@ -945,7 +945,7 @@ GameObject:
   - component: {fileID: 8540042869058315213}
   - component: {fileID: 4305945944566497150}
   m_Layer: 0
-  m_Name: BookShell
+  m_Name: BookShelf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

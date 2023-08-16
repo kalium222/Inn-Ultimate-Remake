@@ -68,6 +68,8 @@
      <Compile Include="Assets\Scripts\Bucket.cs" />
      <Compile Include="Assets\Scripts\HeroWearing.cs" />
      <Compile Include="Assets\Scripts\Wearable.cs" />
+     <Compile Include="Assets\Scripts\Boxes.cs" />
+     <Compile Include="Assets\Scripts\GameobjectStateManager.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

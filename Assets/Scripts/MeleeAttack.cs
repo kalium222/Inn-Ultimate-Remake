@@ -30,5 +30,5 @@ public class MeleeAttack : MonoBehaviour
 
 // interface for attackable object
 public interface IAttackableHandler : IEventSystemHandler {
-    void OnAttack(in MeleeAttack meleeAttack);
+    public void OnAttack(in MeleeAttack meleeAttack);
 }

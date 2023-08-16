@@ -9,8 +9,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public DoorManager doorManager;
     public GameStageManager gameStageManager;
+    public GameObjectStateManager gameObjectStateManager;
     public CollectableManager collectableManager = new CollectableManager();
-    public OpenableManager openableManager = new OpenableManager();
 
     private void Awake() {
         if (instance == null) {
@@ -18,10 +18,19 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         } else {
             Destroy(gameObject);
-            Debug.Log("Duplicate Game Manager self-destructing!");
         }
         doorManager = GetComponent<DoorManager>();
+        if (doorManager == null) {
+            throw new System.Exception("DoorManager not found!");
+        }
         gameStageManager = GetComponent<GameStageManager>();
+        if (gameStageManager == null) {
+            throw new System.Exception("GameStageManager not found!");
+        }
+        gameObjectStateManager = GetComponent<GameObjectStateManager>();
+        if (gameObjectStateManager == null) {
+            throw new System.Exception("GameObjectStateManager not found!");
+        }
     }
 
 
@@ -150,34 +159,5 @@ public class CollectableManager {
                 item.scenename = collectableInfo.scenename;
             }
         }
-    }
-}
-
-public class OpenableManager {
-    public struct OpenableInfo {
-        public bool isOpened;
-        public bool isEmpty;
-        public OpenableInfo(bool isOpened, bool isEmpty) {
-            this.isOpened = isOpened;
-            this.isEmpty = isEmpty;
-        }
-    }
-
-    public Dictionary<string, OpenableInfo> openableInfos;
-
-    public OpenableManager() {
-        openableInfos = new Dictionary<string, OpenableInfo>(){
-            {"Room1Bed", new OpenableInfo(true, true)},
-            {"Room4Bed", new OpenableInfo(false, false)},
-            {"Refrigerator", new OpenableInfo(false, false)}
-        };
-    }
-
-    public void setValue(string name, bool isOpened, bool isEmpty) {
-        if (!openableInfos.ContainsKey(name)) {
-            Debug.LogError("Openable not found!");
-            return;
-        }            
-        openableInfos[name] = new OpenableInfo(isOpened, isEmpty);
     }
 }
