@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,10 +16,10 @@ public class GameManager : MonoBehaviour
     private void Awake() {
         if (instance == null) {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         } else {
             Destroy(gameObject);
         }
+        DontDestroyOnLoad(gameObject);
         doorManager = GetComponent<DoorManager>();
         if (doorManager == null) {
             throw new System.Exception("DoorManager not found!");
@@ -32,7 +33,6 @@ public class GameManager : MonoBehaviour
             throw new System.Exception("GameObjectStateManager not found!");
         }
     }
-
 
     // A public method to load a new scene asynchronously
     public void ChangeScene(string targetSceneName, string targetPortalName) {
@@ -100,7 +100,6 @@ public class GameManager : MonoBehaviour
     }
 
     void TestRoomExchange() {
-        // doorManager.SwapRoom("FirstFloorDoor", "SecondFloorDoor1");
         doorManager.SetDoortoRoom("FirstFloorDoor", "Room2Door");
 
     }
@@ -121,9 +120,9 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.T)) {
             TestGameStage();
         }
-        if (Input.GetKeyDown(KeyCode.Y)) {
-            TestRoomExchange();
-        }
+        // if (Input.GetKeyDown(KeyCode.Y)) {
+        //     LogSubscribed();
+        // }
         // if (Input.GetKeyDown(KeyCode.J)) {
         //     doorManager.ShowAllDoors();
         // }

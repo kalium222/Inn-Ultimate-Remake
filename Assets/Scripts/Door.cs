@@ -26,18 +26,16 @@ public class Door : Interactable, IGameObjectStateHandler, IAttackableHandler
     
     private void Start() {
         LoadTarget();
-        LoadfromManager();
-        if (isSealed) {
-            GetComponent<SpriteRenderer>().sprite = sealedDoorSprite;
-        } else {
-            GetComponent<SpriteRenderer>().sprite = doorSprite;
-        }
+        SetSprite();
         PortalBookshelfUI.OnUpdatingDoor += LoadTarget;
+        GameObjectStateManager.OnSave += SavetoManager;
+        GameObjectStateManager.OnLoad += LoadfromManager;
     }
 
     private void OnDestroy() {
         PortalBookshelfUI.OnUpdatingDoor -= LoadTarget;
-        SavetoManager();
+        GameObjectStateManager.OnSave -= SavetoManager;
+        GameObjectStateManager.OnLoad -= LoadfromManager;
     }
 
     private void LoadTarget() {
@@ -49,6 +47,14 @@ public class Door : Interactable, IGameObjectStateHandler, IAttackableHandler
             portal.TargetPortal = "Room0Door";
             Debug.LogError("Door " + gameObject.name + " not found in doorRoomBijection");
             throw;
+        }
+    }
+
+    private void SetSprite() {
+        if (isSealed) {
+            GetComponent<SpriteRenderer>().sprite = sealedDoorSprite;
+        } else {
+            GetComponent<SpriteRenderer>().sprite = doorSprite;
         }
     }
 
@@ -70,6 +76,7 @@ public class Door : Interactable, IGameObjectStateHandler, IAttackableHandler
             DoorState doorState = (DoorState)GameManager.instance.gameObjectStateManager.Get(name);
             isSealed = doorState.isSealed;
         }
+        SetSprite();
     }
 
     public void OnAttack(in MeleeAttack meleeAttack) {

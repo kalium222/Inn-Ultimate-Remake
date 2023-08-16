@@ -11,6 +11,20 @@ public class Collectable : Interactable
         base.Awake();
         isCollected = false;
     }
+
+    private void Start() {
+        // GameManager.instance.collectableManager.changedCollectableInfos.Add(new CollectableInfo(SceneManager.GetActiveScene().name, transform, gameObject));
+        // transform.SetParent(GameManager.instance.transform);
+        GameObjectStateManager.OnSave += OnSave;
+    }
+
+    private void OnDestroy() {
+        GameObjectStateManager.OnSave -= OnSave;
+    }
+
+    private void OnSave() {
+        // Debug.Log("OnSave: " + gameObject.name);
+    }
     
     // TODO: ugly
     // Interact of collectable is taking it

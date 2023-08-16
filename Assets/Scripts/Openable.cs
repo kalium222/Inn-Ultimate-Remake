@@ -27,6 +27,8 @@ public class Openable : Interactable, IGameObjectStateHandler
     }
     
     private void Start() {
+        GameObjectStateManager.OnSave += SavetoManager;
+        GameObjectStateManager.OnLoad += LoadfromManager;
         // check content
         if (!isEmpty) {
             if (transform.Find(content.name)==null) {
@@ -34,17 +36,13 @@ public class Openable : Interactable, IGameObjectStateHandler
             }
         }
         content = transform.Find(content.name).gameObject;
-        
-        // load state from GameObjectStateManager if it exists
-        LoadfromManager();
-
         SetSprite();
         SetContent();
     }
 
     private void OnDestroy() {
-        // save state to GameObjectStateManager
-        SavetoManager();
+        GameObjectStateManager.OnSave -= SavetoManager;
+        GameObjectStateManager.OnLoad -= LoadfromManager;
     }
 
     public override void Interact() {
@@ -83,6 +81,8 @@ public class Openable : Interactable, IGameObjectStateHandler
             isOpened = openableState.isOpened;
             isEmpty = openableState.isEmpty;
         }
+        SetContent();
+        SetSprite();
     }
 
 }
