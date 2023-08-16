@@ -26,13 +26,6 @@ public class GameObjectStateManager : MonoBehaviour
         SceneManager.sceneUnloaded -= OnSceneUnloaded;
     }
 
-    // Events for saving and loading gameobject states
-    // All gameobjects that should be saved and loaded should subscribe to these events
-    // !!! SUBSCRIBE in Start() instead of Awake() !!!
-    // because Awake() will be called before OnSceneLoaded(), and call OnSave() before all gameobjects are loaded
-    public static event Action OnSave;
-    public static event Action OnLoad;
-
     // When loading scene, save all gameobject states
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         OnSave?.Invoke();
@@ -42,6 +35,13 @@ public class GameObjectStateManager : MonoBehaviour
     private void OnSceneUnloaded(Scene scene) {
         OnLoad?.Invoke();
     }
+
+    // Events for saving and loading gameobject states
+    // All gameobjects that should be saved and loaded should subscribe to these events
+    // !!! SUBSCRIBE in Start() instead of Awake() !!!
+    // because Awake() will be called before OnSceneLoaded(), and call OnSave() before all gameobjects are loaded
+    public static event Action OnSave;
+    public static event Action OnLoad;
 
     public void Add(string name, GameObjectState gameobjectState) {
         if (gameobjectStates.ContainsKey(name)) {

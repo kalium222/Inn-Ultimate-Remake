@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Collectable : Interactable
+public class Collectable : Interactable, IGameObjectStateHandler
 {
     public bool isCollected = false;
     
@@ -15,16 +15,15 @@ public class Collectable : Interactable
     private void Start() {
         // GameManager.instance.collectableManager.changedCollectableInfos.Add(new CollectableInfo(SceneManager.GetActiveScene().name, transform, gameObject));
         // transform.SetParent(GameManager.instance.transform);
-        GameObjectStateManager.OnSave += OnSave;
+        GameObjectStateManager.OnSave += SavetoManager;
+        GameObjectStateManager.OnLoad += LoadfromManager;
     }
 
     private void OnDestroy() {
-        GameObjectStateManager.OnSave -= OnSave;
+        GameObjectStateManager.OnSave -= SavetoManager;
+        GameObjectStateManager.OnLoad -= LoadfromManager;
     }
 
-    private void OnSave() {
-        // Debug.Log("OnSave: " + gameObject.name);
-    }
     
     // TODO: ugly
     // Interact of collectable is taking it
@@ -53,5 +52,13 @@ public class Collectable : Interactable
 
     virtual public void Use() {
         Drop();
+    }
+
+    public void SavetoManager() {
+        // Debug.Log("SavetoManager: " + gameObject.name);
+    }
+
+    public void LoadfromManager() {
+        // Debug.Log("LoadfromManager: " + gameObject.name);
     }
 }
