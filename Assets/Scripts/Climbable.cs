@@ -31,7 +31,6 @@ public class Climbable : MonoBehaviour
     // if the hero collides with the climbable object
     void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.name == "Hero") {
-            Debug.Log("Hero is on " + gameObject.name);
             StartCoroutine(ClimbCoroutine());
         }
     }

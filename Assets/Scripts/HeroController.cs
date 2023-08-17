@@ -98,7 +98,6 @@ public class HeroController : MonoBehaviour
         if (position == default) transform.position += new Vector3(0, offsetY, 0);
         else {
             transform.position = position + new Vector3(0, offsetY, 0);
-            Debug.Log("Not Default");
         }
         climbed = true;
         GetComponent<SpriteRenderer>().sortingOrder = 1;

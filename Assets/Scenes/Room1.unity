@@ -672,7 +672,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4467329666920166057, guid: 4ec2fab134abc584ea9372a0707d1819, type: 3}
       propertyPath: m_Name
-      value: Chair
+      value: Room1ChairChair
       objectReference: {fileID: 0}
     - target: {fileID: 8599691549799795131, guid: 4ec2fab134abc584ea9372a0707d1819, type: 3}
       propertyPath: m_RootOrder

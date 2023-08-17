@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class Door : Interactable, IGameObjectStateHandler, IAttackableHandler
 {
-    public Portal portal;
+    protected Portal portal;
     public bool isSealed;
     public Sprite doorSprite;
     public Sprite sealedDoorSprite;
@@ -38,7 +38,7 @@ public class Door : Interactable, IGameObjectStateHandler, IAttackableHandler
         GameObjectStateManager.OnLoad -= LoadfromManager;
     }
 
-    private void LoadTarget() {
+    virtual protected void LoadTarget() {
          try {
             portal.TargetScene = GameManager.instance.doorManager.GetTargetScene(gameObject.name);
             portal.TargetPortal = GameManager.instance.doorManager.GetTargetDoor(gameObject.name);
@@ -80,7 +80,7 @@ public class Door : Interactable, IGameObjectStateHandler, IAttackableHandler
         SetSprite();
     }
 
-    public void OnAttack(in MeleeAttack meleeAttack) {
+    virtual public void OnAttack(in MeleeAttack meleeAttack) {
         if (meleeAttack.kind == MeleeAttack.MeleeAttackKind.blow) {
             isSealed = false;
             GetComponent<SpriteRenderer>().sprite = doorSprite;
