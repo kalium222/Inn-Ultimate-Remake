@@ -50,7 +50,7 @@ public class Collectable : Interactable, IGameObjectStateHandler
         if (transform.parent!=null && transform.parent.GetComponent<Openable>()!=null) {
             transform.parent.GetComponent<Openable>().isEmpty = true;
         }
-        HeroInteraction.instance.Bag.Add(gameObject);
+        HeroInteraction.instance.bag.Add(gameObject);
         transform.position = HeroController.instance.transform.position;
         transform.SetParent(HeroController.instance.transform);
         isCollected = true;
@@ -58,7 +58,7 @@ public class Collectable : Interactable, IGameObjectStateHandler
     }
 
     public void Drop() {
-        HeroInteraction.instance.Bag.Remove(gameObject);
+        HeroInteraction.instance.bag.Remove(gameObject);
         gameObject.transform.position = HeroController.instance.transform.position;
         gameObject.transform.SetParent(GameManager.instance.transform);
         isCollected = false;

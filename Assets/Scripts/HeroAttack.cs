@@ -65,7 +65,7 @@ public class HeroAttack : MonoBehaviour
         yield return null;
         // instantiate attack gameobject
         Vector3 targetposition = transform.position;
-        targetposition.x += attackRadius*heroController.lookDirection;
+        targetposition.x += attackRadius*heroController.LookDirection;
         GameObject attack = Instantiate(MeleeAttack, targetposition, Quaternion.identity);
         attack.GetComponent<MeleeAttack>().isSilver = isSilver;
         attack.GetComponent<MeleeAttack>().kind = (MeleeAttack.MeleeAttackKind)kind;

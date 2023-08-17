@@ -17,12 +17,12 @@ public class HoldingRenderer : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        string currItemName = HeroInteraction.instance.Bag.GetCurrentItemName();
+        string currItemName = HeroInteraction.instance.bag.GetCurrentItemName();
         if (currItemName == "emptyhanded") {
             holdingRenderer.enabled = false;
             return;
         }
-        GameObject currItemObject = HeroInteraction.instance.Bag.GetCurrentItem();
+        GameObject currItemObject = HeroInteraction.instance.bag.GetCurrentItem();
         if (heroAttack.isAttacking) {
             holdingRenderer.enabled = false;
         } else if (currItemObject.GetComponent<Wearable>() != null 
@@ -36,9 +36,9 @@ public class HoldingRenderer : MonoBehaviour
     private void HoldCurrentItem(GameObject currentItemObject) {
         holdingRenderer.enabled = true;
         holdingRenderer.sprite = currentItemObject.GetComponent<SpriteRenderer>().sprite;
-        holdingRenderer.flipX = (HeroController.instance.lookDirection == 1);
+        holdingRenderer.flipX = (HeroController.instance.LookDirection == 1);
         transform.position =  HeroController.instance.transform.position + new Vector3(
-            offsetx*HeroController.instance.lookDirection, offsety, 0
+            offsetx*HeroController.instance.LookDirection, offsety, 0
         );
     }
 }

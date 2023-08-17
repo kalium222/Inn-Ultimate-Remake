@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Talkable :  Interactable
 {
+    // TODO: So ugly
     // get the Keycode from HeroInteraction to make sure the key is the same
     static private KeyCode leftKey;
     static private KeyCode rightKey;

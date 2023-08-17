@@ -10,12 +10,6 @@ public class HeroWearing : MonoBehaviour
         get { return wearingObject; }
         set {
             wearingObject = value;
-            // TODO: useful?
-            // if (wearingObject == null) {
-            //     wearingRenderer.sprite = null;
-            // } else {
-            //     wearingRenderer.sprite = wearingObject.GetComponent<SpriteRenderer>().sprite;
-            // }
         }
     }
     private SpriteRenderer wearingRenderer;
@@ -39,9 +33,9 @@ public class HeroWearing : MonoBehaviour
                 throw new System.Exception("wearingObject.GetComponent<Wearable>() is null");
             // TODO: check the wearing sprite
             wearingRenderer.sprite = wearingObject.GetComponent<Wearable>().wearingSprite;
-            wearingRenderer.flipX = (HeroController.instance.lookDirection == 1);
+            wearingRenderer.flipX = (HeroController.instance.LookDirection == 1);
             transform.position =  HeroController.instance.transform.position + new Vector3(
-                wearingObject.GetComponent<Wearable>().offsetX*HeroController.instance.lookDirection,
+                wearingObject.GetComponent<Wearable>().offsetX*HeroController.instance.LookDirection,
                 wearingObject.GetComponent<Wearable>().offsetY, 0
             );
 

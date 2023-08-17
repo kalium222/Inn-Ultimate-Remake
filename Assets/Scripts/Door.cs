@@ -62,6 +62,7 @@ public class Door : Interactable, IGameObjectStateHandler, IAttackableHandler
     {
         if (isSealed) {
             // TODO: animation?
+            GameUIManager.instance.ShowDialogue("The door is sealed.");
             return;
         }
         portal.Teleport();
