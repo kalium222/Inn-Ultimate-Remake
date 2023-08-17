@@ -178,6 +178,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boxes
       objectReference: {fileID: 0}
+    - target: {fileID: 3645441998950534126, guid: 7d417116f5daa7c46b736c47268e8c1f, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8061253182408475652, guid: 7d417116f5daa7c46b736c47268e8c1f, type: 3}
+      propertyPath: offsetY
+      value: -0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d417116f5daa7c46b736c47268e8c1f, type: 3}
 --- !u!4 &717701886 stripped

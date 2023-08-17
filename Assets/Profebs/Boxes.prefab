@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3645441998950534127}
   - component: {fileID: 5864470854266630397}
   - component: {fileID: 8061253182408475652}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Boxes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,3 +122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3069eb92d9b215846a8f6d76b73201f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boxSprite: {fileID: 21300000, guid: c30e9d9f07beecf41a4e0a918da5ab96, type: 3}
+  brokenBoxSprite: {fileID: 21300000, guid: 308023e738142de45b116fc148eb9a1b, type: 3}
+  content: {fileID: 5995140809594999563, guid: 1fac82c84b85478478145ef754359ea3, type: 3}
+  offsetX: 0
+  offsetY: 0
