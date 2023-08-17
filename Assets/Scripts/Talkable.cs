@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Talkable :  Interactable
 {
+    // TODO: So ugly
     // get the Keycode from HeroInteraction to make sure the key is the same
     static private KeyCode leftKey;
     static private KeyCode rightKey;
@@ -81,6 +82,7 @@ public class Talkable :  Interactable
         // Then re-enable all movement and interaction
         HeroController.instance.CanMove = true;
         HeroInteraction.instance.CanInteract = true;
+        HeroInteraction.instance.SetAnimation();
     }
 
 

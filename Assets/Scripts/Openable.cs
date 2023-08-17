@@ -2,48 +2,64 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Openable : Interactable
+public class Openable : Interactable, IGameObjectStateHandler
 {
     public Sprite sprite_Opened;
     public Sprite sprite_Closed;
-    public bool isOpened = false;
-    public bool isEmpty = false;
-    public GameObject content;        
+    // handle in inspector
+    public bool isOpened;
+    public bool isEmpty;
+    public GameObject content;
+
+    // class for saved state
+    class OpenableState : GameObjectStateManager.GameObjectState {
+        public bool isOpened;
+        public bool isEmpty;
+        public OpenableState(bool isOpened, bool isEmpty) {
+            this.isOpened = isOpened;
+            this.isEmpty = isEmpty;
+        }
+    }
+
+    override protected void Awake() {
+        base.Awake();
+        if (content == null) throw new System.Exception("Content not found on " + gameObject.name);
+    }
     
     private void Start() {
-        if (!GameManager.instance.openableManager.openableInfos.ContainsKey(gameObject.name)) {
-            Debug.LogError("Openable: "+gameObject.name+" is not found");
-           return;
-        }
-        isOpened = GameManager.instance.openableManager.openableInfos[gameObject.name].isOpened;
-        isEmpty = GameManager.instance.openableManager.openableInfos[gameObject.name].isEmpty;
+        GameObjectStateManager.OnSave += SavetoManager;
+        GameObjectStateManager.OnLoad += LoadfromManager;
+        // check content
         if (!isEmpty) {
             if (transform.Find(content.name)==null) {
-                Debug.LogError("Openable: "+gameObject.name+" does not have a child");
+                throw new System.Exception("Openable: "+gameObject.name+" does not have a child");
             }
         }
         content = transform.Find(content.name).gameObject;
-        content.SetActive(false);
-        base.spriteRenderer = GetComponent<SpriteRenderer>();
-        setSprite();
-        setContent();
-    }
-    public override void Interact() {
-        isOpened = !isOpened;
-        setSprite();
-        setContent();
-        GameManager.instance.openableManager.setValue(gameObject.name, isOpened, isEmpty);
+        SetSprite();
+        SetContent();
     }
 
-    private void setContent(){
-        if (isOpened&&!isEmpty) {
+    private void OnDestroy() {
+        GameObjectStateManager.OnSave -= SavetoManager;
+        GameObjectStateManager.OnLoad -= LoadfromManager;
+    }
+
+    public override void Interact() {
+        isOpened = !isOpened;
+        SetSprite();
+        SetContent();
+    }
+
+    private void SetContent(){
+        if (isOpened && !isEmpty) {
             content.SetActive(true);
-        } else if (!isOpened&&!isEmpty) {
+        } else {
             content.SetActive(false);
         }
     }
 
-    private void setSprite() {
+    private void SetSprite() {
         if (isOpened) {
             spriteRenderer.sprite = sprite_Opened;
             if (!isEmpty) {
@@ -54,4 +70,19 @@ public class Openable : Interactable
             spriteRenderer.sortingOrder = 0;
         }
     }
+
+    public void SavetoManager() {
+        GameManager.instance.gameObjectStateManager.Add(name, new OpenableState(isOpened, isEmpty));
+    }
+
+    public void LoadfromManager() {
+        if (GameManager.instance.gameObjectStateManager.Contains(name)) {
+            OpenableState openableState = (OpenableState)GameManager.instance.gameObjectStateManager.Get(name);
+            isOpened = openableState.isOpened;
+            isEmpty = openableState.isEmpty;
+        }
+        SetContent();
+        SetSprite();
+    }
+
 }

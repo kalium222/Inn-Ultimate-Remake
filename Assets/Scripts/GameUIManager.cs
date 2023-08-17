@@ -6,6 +6,7 @@ using TMPro;
 
 public class GameUIManager : MonoBehaviour
 {
+    // objects that hold UI elements
     public GameObject Interact;
     public GameObject Use;
     public GameObject Exchange;
@@ -15,6 +16,11 @@ public class GameUIManager : MonoBehaviour
     GameObject Option_Continue;
     GameObject Content;
 
+    // Keycodes for DialogBox, get from HeroInteraction
+    private KeyCode leftKey;
+    private KeyCode rightKey;
+    private KeyCode confirmKey;
+
     public static GameUIManager instance;
     private void Awake() {
         if (instance == null) {
@@ -23,9 +29,6 @@ public class GameUIManager : MonoBehaviour
         } else {
             Destroy(gameObject);
         }
-    }
-
-    private void Start() {
         GameObject DialogBox = transform.Find("DialogBox").gameObject;
         BlackBox = DialogBox.transform.Find("BlackBox").gameObject;
         Option_Yes = BlackBox.transform.Find("Yes").gameObject;
@@ -44,6 +47,12 @@ public class GameUIManager : MonoBehaviour
         Interact.SetActive(false);
         Use.SetActive(false);
         Exchange.SetActive(false);
+    }
+
+    private void Start() {
+        leftKey = HeroInteraction.instance.previousItemKey;
+        rightKey = HeroInteraction.instance.nextItemKey;
+        confirmKey = HeroInteraction.instance.interactKey;
     }
 
     public void setDialogBox(string content, bool isContinue = true) {
@@ -90,5 +99,30 @@ public class GameUIManager : MonoBehaviour
         } else {
             option.SetActive(false);
         }
+    }
+
+    // function for others to show a simple dialog UI and coroutine
+    public void ShowDialogue(string content, bool isContinuing = true) {
+        StartCoroutine(runDialogCoroutine(content, isContinuing));
+    }
+
+    private IEnumerator runDialogCoroutine(string content, bool isContinuing = true) {
+        // Start from next frame
+        yield return null;
+        // First disable all movement and interaction
+        HeroController.instance.CanMove = false;
+        HeroInteraction.instance.CanInteract = false;
+
+        while (!Input.GetKeyDown(confirmKey)) {
+            setDialogBox(content, isContinuing);
+            yield return null;
+        }
+
+        // Then clear the dialog box
+        clearDialogBox();
+        // Then re-enable all movement and interaction
+        HeroController.instance.CanMove = true;
+        HeroInteraction.instance.CanInteract = true;
+
     }
 }
