@@ -1,15 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UIElements;
 using TMPro;
 
 public class GameUIManager : MonoBehaviour
 {
+
     // objects that hold UI elements
+    // UI element that shows up when player can interact, use, or exchange
+    [HideInInspector]
     public GameObject Interact;
+    [HideInInspector]
     public GameObject Use;
+    [HideInInspector]
     public GameObject Exchange;
+    // BlackBox is for dialogue
     GameObject BlackBox;
     GameObject Option_Yes;
     GameObject Option_No;
@@ -55,7 +62,12 @@ public class GameUIManager : MonoBehaviour
         confirmKey = HeroInteraction.instance.interactKey;
     }
 
-    public void setDialogBox(string content, bool isContinue = true) {
+    /// <summary>
+    /// Set the dialog box with content
+    /// </summary>
+    /// <param name="content">the content of one dialog displayed in the blackbox</param>
+    /// <param name="isContinue">whether this dialogue has options</param>
+    public void SetDialogBox(string content, bool isContinue = true) {
         Interact.SetActive(false);
         Use.SetActive(false);
         Exchange.SetActive(false);
@@ -68,7 +80,10 @@ public class GameUIManager : MonoBehaviour
         Option_Continue.SetActive(isContinue);
     }
 
-    public void clearDialogBox() {
+    /// <summary>
+    /// Clear the dialog box
+    /// </summary>
+    public void ClearDialogBox() {
         BlackBox.SetActive(false);
         Content.SetActive(false);
         Option_Yes.SetActive(false);
@@ -76,7 +91,12 @@ public class GameUIManager : MonoBehaviour
         Option_Continue.SetActive(false);
     }
 
-    public void setDialogOption(bool isContinuing, bool isYes) {
+    /// <summary>
+    /// Set the dialog box with options
+    /// </summary>
+    /// <param name="isContinuing">whether the dialog is not optioned</param>
+    /// <param name="isYes">parameter for current option, in order to hight the current option</param>
+    public void SetDialogOption(bool isContinuing, bool isYes) {
         if (isContinuing) {
             highlightOption(Option_Continue, true, true);
             highlightOption(Option_Yes, false, false);
@@ -88,41 +108,60 @@ public class GameUIManager : MonoBehaviour
         }
     }
 
-    private void highlightOption(GameObject option, bool isActivated, bool isHighlighted) {
-        if (isActivated) {
-            option.SetActive(true);
-            if (isHighlighted) {
-                option.GetComponent<TextMeshProUGUI>().fontStyle = FontStyles.Underline;
-            } else {
-                option.GetComponent<TextMeshProUGUI>().fontStyle = FontStyles.Normal;
-            }
+    private void highlightOption(GameObject option, bool Activate, bool isHighlighted) {
+        if (isHighlighted) {
+            option.GetComponent<TextMeshProUGUI>().fontStyle = FontStyles.Underline;
         } else {
-            option.SetActive(false);
+            option.GetComponent<TextMeshProUGUI>().fontStyle = FontStyles.Normal;
         }
+        option.SetActive(Activate);
     }
 
-    // function for others to show a simple dialog UI and coroutine
+    /// <summary>
+    /// Public method for others to show one dialog coroutine
+    /// </summary>
+    /// <param name="content">The content of the dialog</param>
+    /// <param name="isContinuing">Whether the dialog is not optioned</param>
     public void ShowDialogue(string content, bool isContinuing = true) {
-        StartCoroutine(runDialogCoroutine(content, isContinuing));
+        StartCoroutine(DialogCoroutine(content, isContinuing));
     }
-
-    private IEnumerator runDialogCoroutine(string content, bool isContinuing = true) {
+    // The event for others to subscribe, to convey the decision of the dialog
+    // Invoked when one dialog is ended
+    public UnityEvent<bool> OnDecisionMade;
+    /// <summary>
+    /// A public coroutine for showing dialog
+    /// </summary>
+    /// <param name="content">The content of the dialog</param>
+    /// <param name="isContinuing">Whether the dialog is not optioned</param>
+    /// <returns>A IEnumerator for c# to run coroutine</returns>
+    public IEnumerator DialogCoroutine(string content, bool isContinuing = true) {
         // Start from next frame
         yield return null;
         // First disable all movement and interaction
         HeroController.instance.CanMove = false;
         HeroInteraction.instance.CanInteract = false;
-
+        // A state parameter for the current option
+        bool isYes = true;
+        // set the dialog box
+        SetDialogBox(content, isContinuing);
+        // framely update the dialog
         while (!Input.GetKeyDown(confirmKey)) {
-            setDialogBox(content, isContinuing);
+            // handle the option
+            if (Input.GetKeyDown(leftKey) || (Input.GetAxis("Horizontal") < -0.1f)) {
+                isYes = true;
+            } else if (Input.GetKeyDown(rightKey) || (Input.GetAxis("Horizontal") > 0.1f)) {
+                isYes = false;
+            }
+            SetDialogOption(isContinuing, isYes);
             yield return null;
         }
 
+        // Sent the decision to the subscribers
+        OnDecisionMade.Invoke(isYes);
         // Then clear the dialog box
-        clearDialogBox();
+        ClearDialogBox();
         // Then re-enable all movement and interaction
         HeroController.instance.CanMove = true;
         HeroInteraction.instance.CanInteract = true;
-
     }
 }

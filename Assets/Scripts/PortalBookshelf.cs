@@ -29,7 +29,7 @@ public class PortalBookshelf : Talkable
     }
 
     protected override void SpecialEvent() {
-        GameUIManager.instance.clearDialogBox();
+        GameUIManager.instance.ClearDialogBox();
         portalBookshelfController.GetComponent<PortalBookshelfUI>().AccessBookshelf();
     }
 

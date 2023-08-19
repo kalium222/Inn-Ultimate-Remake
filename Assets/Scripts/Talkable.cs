@@ -54,7 +54,7 @@ public class Talkable :  Interactable
 
             // set the dialog box
             Conversation currentConversation = dialogManager.getCurrentConversation();
-            GameUIManager.instance.setDialogBox(currentConversation.text, currentConversation.isContinuing);
+            GameUIManager.instance.SetDialogBox(currentConversation.text, currentConversation.isContinuing);
 
             // take the input and set the options
             bool confirm = Input.GetKeyDown(confirmKey);
@@ -64,7 +64,7 @@ public class Talkable :  Interactable
                 } else if (Input.GetKeyDown(rightKey) || (Input.GetAxis("Horizontal") > 0.1f)) {
                     isYes = false;
                 }
-                GameUIManager.instance.setDialogOption(currentConversation.isContinuing, isYes);
+                GameUIManager.instance.SetDialogOption(currentConversation.isContinuing, isYes);
             }
 
             // update
@@ -78,7 +78,7 @@ public class Talkable :  Interactable
         }
 
         // Then clear the dialog box
-        GameUIManager.instance.clearDialogBox();
+        GameUIManager.instance.ClearDialogBox();
         // Then re-enable all movement and interaction
         HeroController.instance.CanMove = true;
         HeroInteraction.instance.CanInteract = true;
