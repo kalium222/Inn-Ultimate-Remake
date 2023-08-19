@@ -14,6 +14,7 @@ public class Vent : Door
         }
     }
 
+    // TODO: ugly
     override protected void LoadTarget() {
         
     }

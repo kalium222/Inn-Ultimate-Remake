@@ -40,7 +40,7 @@
      <Compile Include="Assets\Scripts\PortalBookshelfUI.cs" />
      <Compile Include="Assets\Scripts\HeroAttack.cs" />
      <Compile Include="Assets\Scripts\Damagable.cs" />
-     <Compile Include="Assets\Scripts\GameObjectStateManager.cs" />
+     <Compile Include="Assets\Scripts\GameobjectStateManager.cs" />
      <Compile Include="Assets\Scripts\HeroWearing.cs" />
      <Compile Include="Assets\Scripts\UIHealthBar.cs" />
      <Compile Include="Assets\Scripts\NonPlayerCharacter.cs" />
