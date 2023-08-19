@@ -18,11 +18,20 @@ public class Talkable :  Interactable
     protected DialogManager dialogManager;
 
     protected virtual void Start() {
+        GameUIManager.instance.OnDecisionMade.AddListener(OnDecisionMade);
         leftKey = HeroInteraction.instance.previousItemKey;
         rightKey = HeroInteraction.instance.nextItemKey;
         confirmKey = HeroInteraction.instance.interactKey;
         dialogManager = new DialogManager();
         DialogManagerInit();
+    }
+
+    private void OnDestroy() {
+        GameUIManager.instance.OnDecisionMade.RemoveListener(OnDecisionMade);
+    }
+
+    private void OnDecisionMade(bool isYes) {
+        this.isYes = isYes;
     }
 
     protected virtual void DialogManagerInit() {
@@ -51,25 +60,12 @@ public class Talkable :  Interactable
 
         // Then run the dialog
         while (!dialogManager.isEndConversation()) {
-
-            // set the dialog box
             Conversation currentConversation = dialogManager.getCurrentConversation();
-            GameUIManager.instance.SetDialogBox(currentConversation.text, currentConversation.isContinuing);
-
-            // take the input and set the options
-            bool confirm = Input.GetKeyDown(confirmKey);
-            if (!currentConversation.isContinuing) {
-                if (Input.GetKeyDown(leftKey) || (Input.GetAxis("Horizontal") < -0.1f)) {
-                    isYes = true;
-                } else if (Input.GetKeyDown(rightKey) || (Input.GetAxis("Horizontal") > 0.1f)) {
-                    isYes = false;
-                }
-                GameUIManager.instance.SetDialogOption(currentConversation.isContinuing, isYes);
-            }
+            yield return GameUIManager.instance.DialogCoroutine(currentConversation.text, currentConversation.isContinuing);
 
             // update
-            dialogManager.UpdateConversation(confirm, isYes);
-            yield return null;
+            dialogManager.UpdateConversation(true, isYes);
+            // yield return null;
         }
 
         // Then do the special event
