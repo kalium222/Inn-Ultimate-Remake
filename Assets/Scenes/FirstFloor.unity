@@ -1090,6 +1090,34 @@ PrefabInstance:
       propertyPath: m_fontStyle
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4626849399727495764, guid: bf1cb0877843a514d933694dcc0f1b33, type: 3}
+      propertyPath: OnDecisionMade.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4626849399727495764, guid: bf1cb0877843a514d933694dcc0f1b33, type: 3}
+      propertyPath: OnDecisionMade.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4626849399727495764, guid: bf1cb0877843a514d933694dcc0f1b33, type: 3}
+      propertyPath: OnDecisionMade.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11500000, guid: d1bf84aeab1bdab4e9dc60eb5f7f2493, type: 3}
+    - target: {fileID: 4626849399727495764, guid: bf1cb0877843a514d933694dcc0f1b33, type: 3}
+      propertyPath: OnDecisionMade.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4626849399727495764, guid: bf1cb0877843a514d933694dcc0f1b33, type: 3}
+      propertyPath: OnDecisionMade.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_name
+      objectReference: {fileID: 0}
+    - target: {fileID: 4626849399727495764, guid: bf1cb0877843a514d933694dcc0f1b33, type: 3}
+      propertyPath: OnDecisionMade.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4626849399727495764, guid: bf1cb0877843a514d933694dcc0f1b33, type: 3}
+      propertyPath: OnDecisionMade.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5214377498357544918, guid: bf1cb0877843a514d933694dcc0f1b33, type: 3}
       propertyPath: m_Name
       value: UIManager

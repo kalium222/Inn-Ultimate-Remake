@@ -98,17 +98,17 @@ public class GameUIManager : MonoBehaviour
     /// <param name="isYes">parameter for current option, in order to hight the current option</param>
     public void SetDialogOption(bool isContinuing, bool isYes) {
         if (isContinuing) {
-            highlightOption(Option_Continue, true, true);
-            highlightOption(Option_Yes, false, false);
-            highlightOption(Option_No, false, false);
+            HighlightOption(Option_Continue, true, true);
+            HighlightOption(Option_Yes, false, false);
+            HighlightOption(Option_No, false, false);
         } else {
-            highlightOption(Option_Continue, false, false);
-            highlightOption(Option_Yes, true, isYes);
-            highlightOption(Option_No, true, !isYes);
+            HighlightOption(Option_Continue, false, false);
+            HighlightOption(Option_Yes, true, isYes);
+            HighlightOption(Option_No, true, !isYes);
         }
     }
 
-    private void highlightOption(GameObject option, bool Activate, bool isHighlighted) {
+    private void HighlightOption(GameObject option, bool Activate, bool isHighlighted) {
         if (isHighlighted) {
             option.GetComponent<TextMeshProUGUI>().fontStyle = FontStyles.Underline;
         } else {
