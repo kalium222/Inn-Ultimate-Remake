@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class Talkable :  Interactable
 {
-    // TODO: So ugly
     // get the Keycode from HeroInteraction to make sure the key is the same
     static private KeyCode leftKey;
     static private KeyCode rightKey;
     static private KeyCode confirmKey;
-
+    // handle in inspector
     public GameObject specialEventObject;
 
     // status parameters of one conversation
+    // store the player's decision
     private bool isYes = true;
-    // DialogManager. Check in tool class
+    // DialogManager. Contain the all the dialog and the logic of dialog and special event
+    // all the talkable object should a manager derived from DialogManager
     protected DialogManager dialogManager;
 
     protected virtual void Start() {
@@ -22,7 +23,6 @@ public class Talkable :  Interactable
         leftKey = HeroInteraction.instance.previousItemKey;
         rightKey = HeroInteraction.instance.nextItemKey;
         confirmKey = HeroInteraction.instance.interactKey;
-        dialogManager = new DialogManager();
         DialogManagerInit();
     }
 
@@ -34,160 +34,113 @@ public class Talkable :  Interactable
         this.isYes = isYes;
     }
 
+    // set the dialogManager
     protected virtual void DialogManagerInit() {
-        dialogManager.setNormalConversations(new List<Conversation>(){
-            new Conversation(true, dialogStage.any, "This is base class for talkable"),
-        });
-        dialogManager.setSpecialConversation(new Conversation(false, dialogStage.any, "Test Special."));
+        dialogManager = new DialogManager();
     }
 
-    protected virtual void SpecialEvent() {
+    protected virtual void DoSpecialEvent() {
         Debug.Log("Special Event");
     }
     
     override public void Interact() {
-        StartCoroutine(runDialogCoroutine());
+        StartCoroutine(RunDialogCoroutine());
     }
 
-    private IEnumerator runDialogCoroutine() {
+    private IEnumerator RunDialogCoroutine() {
         // Start at next frame
         yield return null;
         // First disable all movement and interaction
         HeroController.instance.CanMove = false;
         HeroInteraction.instance.CanInteract = false;
-        // reset the dialog
-        dialogManager.ResetConversation();
-
-        // Then run the dialog
-        while (!dialogManager.isEndConversation()) {
-            Conversation currentConversation = dialogManager.getCurrentConversation();
-            yield return GameUIManager.instance.DialogCoroutine(currentConversation.text, currentConversation.isContinuing);
-
-            // update
-            dialogManager.UpdateConversation(true, isYes);
-            // yield return null;
+        
+        // run the dialogs
+        List<Dialogue> currentConversation = dialogManager.GetCurrentConversation();
+        foreach (Dialogue dialogue in currentConversation) {
+            yield return GameUIManager.instance.DialogCoroutine(dialogue.text, dialogue.isContinuing);
         }
-
         // Then do the special event
-        if (dialogManager.isSpecialEvent()) {
-            SpecialEvent();
-        }
+        if (dialogManager.IsSpecialConversation()&&isYes) DoSpecialEvent();
 
-        // Then clear the dialog box
-        GameUIManager.instance.ClearDialogBox();
         // Then re-enable all movement and interaction
         HeroController.instance.CanMove = true;
         HeroInteraction.instance.CanInteract = true;
-        HeroInteraction.instance.SetAnimation();
     }
 
 
 
-    // ------------------------------Tool class-----------------------------
+    // ------------------------------Dialogue related classes-----------------------------
 
-    // Lable the dialog to select whether to show in current stage
-    public enum dialogStage{
-        stage1, stage2, first, any
-    }
-
-    // One conversation
-    [System.Serializable]
-    public class Conversation {
+    // One dialogue that displayed in the dialog box at one time
+    public class Dialogue {
+        // Whether the dialog need player to make decision
+        // otherwise, the the option UI will be only one "continue"
         public bool isContinuing;
-        public dialogStage stage;
+        // the content text of this dialogue
         public string text;
-        public Conversation() {
-            isContinuing = true;
-            stage = dialogStage.any;
-            text = "Empty";
-        }
-        public Conversation(bool isContinuing = true, dialogStage stage = dialogStage.any, string text = "Empty") {
+        public Dialogue(bool isContinuing = true, string text = "Empty") {
             this.isContinuing = isContinuing;
-            this.stage = stage;
             this.text = text;
         }
     }
 
-    // Manage the dialog
+
+    // Manage the dialogue
     public class DialogManager {
-        private int currentConversationIndex = 0;
-        private bool endConversation = false;
-        private bool happenSpecialEvent = false;
-        protected List<Conversation> normalConversations;
-        private Conversation specialConversation;
+        // container for all the dialogues of this talkable object
+        protected List<List<Dialogue>> normalConversations = new List<List<Dialogue>>();
+        private List<Dialogue> specialConversation = new List<Dialogue>();
 
-        protected virtual bool isSpecialConversation() {
-            return false;
+        public DialogManager() {
+            string[] strings_1 = new string[]{"Test for normal conversation", "Test 1", "Test 2"};
+            string[] strings_2 = new string[]{"Same as above", "Test 3", "Test 4"};
+            string[] strings_3 = new string[]{"test for special conversation", "Test 5", "Test 6"};
+            normalConversations.Add(new List<Dialogue>());
+            normalConversations.Add(new List<Dialogue>());
+            specialConversation = new List<Dialogue>();
+            foreach (string s in strings_1) {
+                normalConversations[0].Add(new Dialogue(true, s));
+            }
+            foreach (string s in strings_2) {
+                normalConversations[1].Add(new Dialogue(true, s));
+            }
+            foreach (string s in strings_3) {
+                specialConversation.Add(new Dialogue(true, s));
+            }
         }
 
-        public bool isSpecialEvent() {
-            return happenSpecialEvent;
+        // whether play special conversation according to the state of the manager
+        // virtual for derived class
+        virtual public bool IsSpecialConversation() {
+            // according to the game stage
+            return GameManager.instance.gameStageManager.CurrentStage == GameStageManager.Stage.Exploring;
         }
 
-        public void setSpecialConversation(Conversation conversation = null) {
+        // Manially initial functions
+        public void SetSpecialDialogue(Dialogue dialogue) {
+            specialConversation = new List<Dialogue>(){dialogue};
+        }
+        public void SetSpecialDialogue(List<Dialogue> conversation) {
             specialConversation = conversation;
         }
-
-        public void setNormalConversations(List<Conversation> conversations) {
-            normalConversations = conversations;
+        public void SetNormalConversations(Dialogue dialogue) {
+            normalConversations = new List<List<Dialogue>>(){new List<Dialogue>(){dialogue}};
+        }
+        public void SetNormalConversations(List<Dialogue> conversation) {
+            normalConversations = new List<List<Dialogue>>(){conversation};
         }
 
-        public bool isEndConversation() {
-            return endConversation;
-        }
-
-        // Return the current conversation no matter it is special or normal
-        public Conversation getCurrentConversation() {
-            if (isSpecialConversation()) {
-                if (specialConversation == null) {
-                    Debug.LogError("Special conversation is not set");
-                    return null;
-                }
+        // Return the current conversation according
+        // to the current state of the talkable object
+        virtual public List<Dialogue> GetCurrentConversation() {
+            if (IsSpecialConversation()) {
                 return specialConversation;
             } else {
-                if (currentConversationIndex >= normalConversations.Count) {
-                    Debug.LogError("Normal conversation is out of range");
-                    return null;
-                }
-                return normalConversations[currentConversationIndex];
+                if ((int)GameManager.instance.gameStageManager.CurrentStage<normalConversations.Count)
+                    return normalConversations[(int)GameManager.instance.gameStageManager.CurrentStage];
+                else
+                    return normalConversations[0];
             }
-        }
-
-        // Update the current conversation index no matter it is special or normal
-        // Update the endConversation flag
-        public void UpdateConversation(bool confirm, bool isYes) {
-            if (isSpecialConversation()) {
-                // Case for special conversation
-                if (confirm) {
-                    if (!getCurrentConversation().isContinuing&&isYes) {
-                        // flag for special event
-                        happenSpecialEvent = true;
-                    } 
-                    endConversation = true;
-                }
-            } else {
-                // case of normal
-                if (confirm) {
-                    while (currentConversationIndex < normalConversations.Count) {
-                        currentConversationIndex++;
-                        if (currentConversationIndex >= normalConversations.Count) break;
-                        if ( ((int)GameManager.instance.gameStageManager.CurrentStage == (int)getCurrentConversation().stage) 
-                            || (getCurrentConversation().stage == dialogStage.any) ) {
-                            break;
-                        }
-                    }
-                }
-                // Mechanism: end the conversation when the index is out of range
-                if (currentConversationIndex >= normalConversations.Count) {
-                    endConversation = true;
-                }
-            }
-        }
-
-        public void ResetConversation() {
-            endConversation = false;
-            currentConversationIndex = 0;
-            happenSpecialEvent = false;
         }
 
     }

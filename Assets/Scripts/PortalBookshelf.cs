@@ -21,21 +21,21 @@ public class PortalBookshelf : Talkable
 
     protected override void DialogManagerInit() {
         base.dialogManager = new PortalBookshelfDialogManager();
-        dialogManager.setNormalConversations(new List<Conversation>(){
-            new Conversation(true, dialogStage.stage1, "Better not to touch it while its owner is here."),
-            new Conversation(false, dialogStage.stage2, "There is nobody else here.")
+        dialogManager.SetNormalConversations(new List<Dialogue>(){
+            new Dialogue(true, "Better not to touch it while its owner is here."),
+            // new Dialogue(false, "There is nobody else here.")
         });
-        dialogManager.setSpecialConversation(new Conversation(false, dialogStage.stage2, "There is nobodyelse here. Check the bookshelf?"));
+        dialogManager.SetSpecialDialogue(new Dialogue(false, "There is nobodyelse here. Check the bookshelf?"));
     }
 
-    protected override void SpecialEvent() {
+    protected override void DoSpecialEvent() {
         GameUIManager.instance.ClearDialogBox();
         portalBookshelfController.GetComponent<PortalBookshelfUI>().AccessBookshelf();
     }
 
     //---------------------------Subclass for dialogmanager of PortalBookshelf-------------------
     private class PortalBookshelfDialogManager : DialogManager {
-        protected override bool isSpecialConversation() {
+        public override bool IsSpecialConversation() {
             return GameManager.instance.gameStageManager.CurrentStage == GameStageManager.Stage.Exploring;
         }
     }

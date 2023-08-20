@@ -127,6 +127,7 @@ public class GameUIManager : MonoBehaviour
     }
     // The event for others to subscribe, to convey the decision of the dialog
     // Invoked when one dialog is ended
+    [HideInInspector]
     public UnityEvent<bool> OnDecisionMade;
     /// <summary>
     /// A public coroutine for showing dialog
