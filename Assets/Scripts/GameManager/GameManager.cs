@@ -78,9 +78,9 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.T)) {
             TestGameStage();
         }
-        if (Input.GetKeyDown(KeyCode.Y)) {
-            gameObjectStateManager.LogList();
-        }
+        // if (Input.GetKeyDown(KeyCode.Y)) {
+        //     gameObjectStateManager.LogList();
+        // }
         // if (Input.GetKeyDown(KeyCode.J)) {
         //     doorManager.ShowAllDoors();
         // }

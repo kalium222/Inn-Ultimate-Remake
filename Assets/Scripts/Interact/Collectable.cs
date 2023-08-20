@@ -63,6 +63,8 @@ public class Collectable : Interactable, IGameObjectStateHandler
         gameObject.transform.SetParent(GameManager.instance.transform);
         isCollected = false;
         SetObject();
+        // TODO: ugly
+        HeroInteraction.instance.SetAnimation();
     }
 
     virtual public void Use() {
