@@ -1056,3 +1056,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   specialEventObject: {fileID: 0}
+  normalConversations:
+  - {fileID: 11400000, guid: 732ead73bc68b1d4bad93983b24ff246, type: 2}
+  specialConversation: {fileID: 11400000, guid: 835d8ba60157f3d4e9dd06c00c442702, type: 2}

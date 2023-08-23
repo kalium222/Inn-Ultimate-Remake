@@ -37,10 +37,12 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\GameUIManager.cs" />
+     <Compile Include="Assets\Scripts\Climbable.cs" />
      <Compile Include="Assets\Scripts\PortalBookshelfUI.cs" />
+     <Compile Include="Assets\Scripts\XuZhenTalk.cs" />
      <Compile Include="Assets\Scripts\HeroAttack.cs" />
      <Compile Include="Assets\Scripts\Damagable.cs" />
-     <Compile Include="Assets\Scripts\GameobjectStateManager.cs" />
+     <Compile Include="Assets\Scripts\GameObjectStateManager.cs" />
      <Compile Include="Assets\Scripts\HeroWearing.cs" />
      <Compile Include="Assets\Scripts\UIHealthBar.cs" />
      <Compile Include="Assets\Scripts\NonPlayerCharacter.cs" />
@@ -48,6 +50,7 @@
      <Compile Include="Assets\Scripts\JsonReader.cs" />
      <Compile Include="Assets\Scripts\DirectPortal.cs" />
      <Compile Include="Assets\Scripts\Portal.cs" />
+     <Compile Include="Assets\Dialogue\Conversation.cs" />
      <Compile Include="Assets\Scripts\HealthCollectible.cs" />
      <Compile Include="Assets\Scripts\RubyController.cs" />
      <Compile Include="Assets\Scripts\Bucket.cs" />
@@ -58,6 +61,7 @@
      <Compile Include="Assets\Scripts\HeroController.cs" />
      <Compile Include="Assets\Scripts\GameStageManager.cs" />
      <Compile Include="Assets\Scripts\Boxes.cs" />
+     <Compile Include="Assets\Scripts\Vent.cs" />
      <Compile Include="Assets\Scripts\BookUI.cs" />
      <Compile Include="Assets\Scripts\Talkable.cs" />
      <Compile Include="Assets\Scripts\HeroInteraction.cs" />
@@ -70,8 +74,7 @@
      <Compile Include="Assets\Scripts\HoldingRenderer.cs" />
      <Compile Include="Assets\Scripts\Wearable.cs" />
      <Compile Include="Assets\Scripts\PortalBookshelf.cs" />
-     <Compile Include="Assets\Scripts\Climbable.cs" />
-     <Compile Include="Assets\Scripts\Vent.cs" />
+     <Compile Include="Assets\Dialogue\PlotState.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
@@ -664,100 +667,100 @@
         <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.18f1c1\Editor\Data\NetStandard\compat\2.0.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Editor">
-        <HintPath>C:\Users\kaliu\Desktop\HelloWorld\Inn\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll</HintPath>
+        <HintPath>E:\unityPro\Inn\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InternalAPIEngineBridge.001">
-        <HintPath>C:\Users\kaliu\Desktop\HelloWorld\Inn\Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll</HintPath>
+        <HintPath>E:\unityPro\Inn\Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-        <HintPath>C:\Users\kaliu\Desktop\HelloWorld\Inn\Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
+        <HintPath>E:\unityPro\Inn\Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.PixelPerfect">
-        <HintPath>C:\Users\kaliu\Desktop\HelloWorld\Inn\Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll</HintPath>
+        <HintPath>E:\unityPro\Inn\Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
-        <HintPath>C:\Users\kaliu\Desktop\HelloWorld\Inn\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
+        <HintPath>E:\unityPro\Inn\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
     <Reference Include="PsdPlugin">
-        <HintPath>C:\Users\kaliu\Desktop\HelloWorld\Inn\Library\ScriptAssemblies\PsdPlugin.dll</HintPath>
+        <HintPath>E:\unityPro\Inn\Library\ScriptAssemblies\PsdPlugin.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-        <HintPath>C:\Users\kaliu\Desktop\HelloWorld\Inn\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
+        <HintPath>E:\unityPro\Inn\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualStudio.Editor">
-        <HintPath>C:\Users\kaliu\Desktop\HelloWorld\Inn\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
+        <HintPath>E:\unityPro\Inn\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-        <HintPath>C:\Users\kaliu\Desktop\HelloWorld\Inn\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
+        <HintPath>E:\unityPro\Inn\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-        <HintPath>C:\Users\kaliu\Desktop\HelloWorld\Inn\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
+        <HintPath>E:\unityPro\Inn\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.IK.Editor">
-        <HintPath>C:\Users\kaliu\Desktop\HelloWorld\Inn\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll</HintPath>
+        <HintPath>E:\unityPro\Inn\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
-        <HintPath>C:\Users\kaliu\Desktop\HelloWorld\Inn\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
+        <HintPath>E:\unityPro\Inn\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Psdimporter.Editor">
-        <HintPath>C:\Users\kaliu\Desktop\HelloWorld\Inn\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll</HintPath>
+        <HintPath>E:\unityPro\Inn\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Path.Editor">
-        <HintPath>C:\Users\kaliu\Desktop\HelloWorld\Inn\Library\ScriptAssemblies\Unity.2D.Path.Editor.dll</HintPath>
+        <HintPath>E:\unityPro\Inn\Library\ScriptAssemblies\Unity.2D.Path.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InternalAPIEditorBridge.001">
-        <HintPath>C:\Users\kaliu\Desktop\HelloWorld\Inn\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll</HintPath>
+        <HintPath>E:\unityPro\Inn\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-        <HintPath>C:\Users\kaliu\Desktop\HelloWorld\Inn\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
+        <HintPath>E:\unityPro\Inn\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PlasticSCM.Editor">
-        <HintPath>C:\Users\kaliu\Desktop\HelloWorld\Inn\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
+        <HintPath>E:\unityPro\Inn\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-        <HintPath>C:\Users\kaliu\Desktop\HelloWorld\Inn\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
+        <HintPath>E:\unityPro\Inn\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-        <HintPath>C:\Users\kaliu\Desktop\HelloWorld\Inn\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+        <HintPath>E:\unityPro\Inn\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics">
-        <HintPath>C:\Users\kaliu\Desktop\HelloWorld\Inn\Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
+        <HintPath>E:\unityPro\Inn\Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.IK.Runtime">
-        <HintPath>C:\Users\kaliu\Desktop\HelloWorld\Inn\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll</HintPath>
+        <HintPath>E:\unityPro\Inn\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Cinemachine">
-        <HintPath>C:\Users\kaliu\Desktop\HelloWorld\Inn\Library\ScriptAssemblies\Cinemachine.dll</HintPath>
+        <HintPath>E:\unityPro\Inn\Library\ScriptAssemblies\Cinemachine.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.cinemachine.editor">
-        <HintPath>C:\Users\kaliu\Desktop\HelloWorld\Inn\Library\ScriptAssemblies\com.unity.cinemachine.editor.dll</HintPath>
+        <HintPath>E:\unityPro\Inn\Library\ScriptAssemblies\com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Triangle.Runtime">
-        <HintPath>C:\Users\kaliu\Desktop\HelloWorld\Inn\Library\ScriptAssemblies\Unity.2D.Animation.Triangle.Runtime.dll</HintPath>
+        <HintPath>E:\unityPro\Inn\Library\ScriptAssemblies\Unity.2D.Animation.Triangle.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Runtime">
-        <HintPath>C:\Users\kaliu\Desktop\HelloWorld\Inn\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll</HintPath>
+        <HintPath>E:\unityPro\Inn\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.PixelPerfect.Editor">
-        <HintPath>C:\Users\kaliu\Desktop\HelloWorld\Inn\Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll</HintPath>
+        <HintPath>E:\unityPro\Inn\Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-        <HintPath>C:\Users\kaliu\Desktop\HelloWorld\Inn\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
+        <HintPath>E:\unityPro\Inn\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics.Editor">
-        <HintPath>C:\Users\kaliu\Desktop\HelloWorld\Inn\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
+        <HintPath>E:\unityPro\Inn\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Common.Runtime">
-        <HintPath>C:\Users\kaliu\Desktop\HelloWorld\Inn\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll</HintPath>
+        <HintPath>E:\unityPro\Inn\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.SpriteShape.Editor">
-        <HintPath>C:\Users\kaliu\Desktop\HelloWorld\Inn\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll</HintPath>
+        <HintPath>E:\unityPro\Inn\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Common.Editor">
-        <HintPath>C:\Users\kaliu\Desktop\HelloWorld\Inn\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll</HintPath>
+        <HintPath>E:\unityPro\Inn\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.SpriteShape.Runtime">
-        <HintPath>C:\Users\kaliu\Desktop\HelloWorld\Inn\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll</HintPath>
+        <HintPath>E:\unityPro\Inn\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

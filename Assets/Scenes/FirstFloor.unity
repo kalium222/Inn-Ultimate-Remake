@@ -852,6 +852,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   specialEventObject: {fileID: 1812838099}
+  normalConversations:
+  - {fileID: 11400000, guid: 8e8239b32c367f942b9dd11a83fcd31f, type: 2}
+  specialConversation: {fileID: 11400000, guid: 8e8239b32c367f942b9dd11a83fcd31f, type: 2}
 --- !u!212 &2020994562
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -2,18 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Dialoues;
+
 public class Cooker : Talkable
 {
     private const string RAW_BIG_FOOD = "RawBigFood";
     private const string BUCKET = "Bucket";
-
-    override protected void DialogManagerInit() {
-        base.dialogManager = new CookerDialogManager();
-        base.dialogManager.SetNormalConversations(new List<Dialogue>(){
-            new Dialogue(true, "This can be used for cooking or geting water."),
-        });
-        base.dialogManager.SetSpecialDialogue(new Dialogue(false, "Use this?"));
-    }
 
     protected override void DoSpecialEvent() {
         // TODO: ugly
@@ -34,15 +28,24 @@ public class Cooker : Talkable
         }
     }
 
-    // ------------------Subclass for dialogmanager of Cooker-------------------
-    private class CookerDialogManager : DialogManager {
-        public override bool IsSpecialConversation() {
-            return HeroInteraction.instance.bag.GetCurrentItemName() switch
-            {
-                RAW_BIG_FOOD => true,
-                BUCKET => true,
-                _ => false,
-            };
-        }
+    override protected bool IsSpecialConversation() {
+        return HeroInteraction.instance.bag.GetCurrentItemName() switch
+        {
+            RAW_BIG_FOOD => true,
+            BUCKET => true,
+            _ => false,
+        };
     }
+
+    // ------------------Subclass for dialogmanager of Cooker-------------------
+    // private class CookerDialogManager : DialogueManager {
+    //     public override bool IsSpecialConversation() {
+    //         return HeroInteraction.instance.bag.GetCurrentItemName() switch
+    //         {
+    //             RAW_BIG_FOOD => true,
+    //             BUCKET => true,
+    //             _ => false,
+    //         };
+    //     }
+    // }
 }
