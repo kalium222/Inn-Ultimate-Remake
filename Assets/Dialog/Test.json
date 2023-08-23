@@ -1,7 +1,0 @@
-{
-    "player": {
-        "name": "John",
-        "level": 10,
-        "inventory": ["sword", "shield", "potion"]
-    }
-}
