@@ -143,3 +143,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   specialEventObject: {fileID: 0}
+  normalConversations:
+  - {fileID: 11400000, guid: 926e78c9148d3d2458b1edb3bfcbbf6a, type: 2}
+  - {fileID: 11400000, guid: 65cb4f2c19211974ca9de659970d09db, type: 2}
+  - {fileID: 11400000, guid: a46c456df5e53554783ce4b149a7805a, type: 2}
+  - {fileID: 11400000, guid: 8ec16916238976b4d9ecf1b538490aff, type: 2}
+  - {fileID: 11400000, guid: aca22382f0519b24db17167312be3140, type: 2}
+  - {fileID: 11400000, guid: f7bf1d176a116da4b9c04ef5758fcca2, type: 2}
+  specialConversation: {fileID: 11400000, guid: 4c5ae8723aef7c7498890e1e45da162b, type: 2}
+  starvingDeltaTime: 60

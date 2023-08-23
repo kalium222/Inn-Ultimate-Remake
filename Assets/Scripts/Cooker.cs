@@ -37,15 +37,4 @@ public class Cooker : Talkable
         };
     }
 
-    // ------------------Subclass for dialogmanager of Cooker-------------------
-    // private class CookerDialogManager : DialogueManager {
-    //     public override bool IsSpecialConversation() {
-    //         return HeroInteraction.instance.bag.GetCurrentItemName() switch
-    //         {
-    //             RAW_BIG_FOOD => true,
-    //             BUCKET => true,
-    //             _ => false,
-    //         };
-    //     }
-    // }
 }

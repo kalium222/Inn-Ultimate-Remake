@@ -32,7 +32,7 @@ public class Interactable : MonoBehaviour
         InteractTime++;
     }
 
-    public void Highlight(bool highlight = true) {
+    virtual public void Highlight(bool highlight = true) {
         if (spriteRenderer == null) {
             Debug.Log("No SpriteRenderer found on " + gameObject.name);
         } else if (highlight) {

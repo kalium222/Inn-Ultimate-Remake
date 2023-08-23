@@ -8,7 +8,7 @@ namespace Dialoues
 {
     // Conversation is a list of dialogues. Once the player talked the the talkable
     // object, the dialogues will be displayed in the dialog box one by one.
-    [CreateAssetMenu(menuName = "NPC/Conversation")]
+    [CreateAssetMenu(menuName = "Dialogues/Conversation")]
     [Serializable]
     public class Conversation : ScriptableObject, IEnumerable<Dialogue> {
         public List<Dialogue> dialogues = new List<Dialogue>();
