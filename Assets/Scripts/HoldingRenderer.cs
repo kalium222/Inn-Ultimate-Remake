@@ -17,7 +17,7 @@ public class HoldingRenderer : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        string currItemName = HeroInteraction.instance.bag.GetCurrentItemName();
+        string currItemName = HeroInteraction.instance.bag.GetCurrentItemKind();
         if (currItemName == "emptyhanded") {
             holdingRenderer.enabled = false;
             return;

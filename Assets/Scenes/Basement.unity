@@ -410,9 +410,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1805267343201094931, guid: bf1cb0877843a514d933694dcc0f1b33, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.8580933
+      objectReference: {fileID: 0}
     - target: {fileID: 5214377498357544918, guid: bf1cb0877843a514d933694dcc0f1b33, type: 3}
       propertyPath: m_Name
       value: UIManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012604652132782365, guid: bf1cb0877843a514d933694dcc0f1b33, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.6499023
       objectReference: {fileID: 0}
     - target: {fileID: 8689673921907954439, guid: bf1cb0877843a514d933694dcc0f1b33, type: 3}
       propertyPath: m_RootOrder

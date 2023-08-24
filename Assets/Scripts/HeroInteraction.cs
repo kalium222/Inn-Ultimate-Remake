@@ -89,7 +89,7 @@ public class HeroInteraction : MonoBehaviour
 
     // A trigger function for animation
     public void SetAnimation() {
-        animator.SetBool("Holding", bag.GetCurrentItemName()!="emptyhanded");
+        animator.SetBool("Holding", bag.GetCurrentItemKind()!="emptyhanded");
     }
 
     private void HighlightCurrentInteractable() {
@@ -115,9 +115,9 @@ public class HeroInteraction : MonoBehaviour
             return items[itemsiterator];
         }
 
-        public string GetCurrentItemName() {
+        public string GetCurrentItemKind() {
             if (GetCurrentItem() == null) return "emptyhanded";
-            return GetCurrentItem().name;
+            return GetCurrentItem().GetComponent<Collectable>().kind;
         }
         public void ItemsiteratorNext() {
             itemsiterator = (itemsiterator + 1) % items.Count;

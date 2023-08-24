@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
 using TMPro;
+using Dialoues;
 
 public class GameUIManager : MonoBehaviour
 {
@@ -164,5 +165,12 @@ public class GameUIManager : MonoBehaviour
         // Then re-enable all movement and interaction
         HeroController.instance.CanMove = true;
         HeroInteraction.instance.CanInteract = true;
+    }
+    // Similar, but for Conversation
+    public IEnumerator ConversationCoroutine(Conversation con) {
+        if (con == null) yield break;
+        foreach (Dialogue dialogue in con) {
+            yield return DialogCoroutine(dialogue.text, dialogue.isContinuing);
+        }
     }
 }

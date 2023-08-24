@@ -41,10 +41,10 @@ public class Talkable :  Interactable
     }
     
     override public void Interact() {
-        StartCoroutine(RunDialogCoroutine());
+        StartCoroutine(RunConversationCoroutine(GetCurrentConversation()));
     }
 
-    private IEnumerator RunDialogCoroutine() {
+    protected IEnumerator RunConversationCoroutine(Conversation con) {
         // Start at next frame
         yield return null;
         // First disable all movement and interaction
@@ -52,14 +52,9 @@ public class Talkable :  Interactable
         HeroInteraction.instance.CanInteract = false;
         
         // run the dialogs
-        Conversation currentConversation = GetCurrentConversation();
-        if (currentConversation != null) {
-            foreach (Dialogue dialogue in currentConversation) {
-                yield return GameUIManager.instance.DialogCoroutine(dialogue.text, dialogue.isContinuing);
-            }
-            // Then do the special event
-            if (IsSpecialConversation()&&isYes) DoSpecialEvent();
-        }
+        yield return GameUIManager.instance.ConversationCoroutine(con);
+        // Then do the special event
+        if (IsSpecialConversation()&&isYes) DoSpecialEvent();
         
         // Then re-enable all movement and interaction
         HeroController.instance.CanMove = true;

@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isCollected: 0
+  kind: RawBigFood
 --- !u!61 &1384133235843919850
 BoxCollider2D:
   m_ObjectHideFlags: 0
