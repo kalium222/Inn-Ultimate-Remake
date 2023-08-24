@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class Collectable : Interactable, IGameObjectStateHandler
 {
     public bool isCollected = false;
+    // handle in inspector, for example, "RawBigFood"
+    public string kind;
 
     // class for saved state
     class CollectableState : GameObjectStateManager.GameObjectState {

@@ -150,5 +150,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8ec16916238976b4d9ecf1b538490aff, type: 2}
   - {fileID: 11400000, guid: aca22382f0519b24db17167312be3140, type: 2}
   - {fileID: 11400000, guid: f7bf1d176a116da4b9c04ef5758fcca2, type: 2}
+  - {fileID: 11400000, guid: 442fc42236b1b674fbe45b8564038f80, type: 2}
   specialConversation: {fileID: 11400000, guid: 4c5ae8723aef7c7498890e1e45da162b, type: 2}
   starvingDeltaTime: 60

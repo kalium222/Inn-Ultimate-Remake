@@ -8,7 +8,7 @@ public class Weapon : Collectable
     {
         sword, axe
     }
-    public weaponsKind kind;
+    public weaponsKind weaponKind;
     public Sprite Laying;
     public Sprite Holded;
     public Sprite HoldedSilver;
@@ -25,6 +25,6 @@ public class Weapon : Collectable
     }
 
     override public void Use() {
-       OnWeaponAttack?.Invoke(kind, isSilver);
+       OnWeaponAttack?.Invoke(weaponKind, isSilver);
     }
 }

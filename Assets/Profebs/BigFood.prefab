@@ -96,8 +96,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 869cf54a40dd81b458b5e5544dd75f74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeAmount: 0.99
   isCollected: 0
+  kind: BigFood
 --- !u!61 &8652455139658256057
 BoxCollider2D:
   m_ObjectHideFlags: 0

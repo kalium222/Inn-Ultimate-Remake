@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isCollected: 0
+  kind: Cola
 --- !u!61 &-2082396510643125855
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ public class Cooker : Talkable
 
     protected override void DoSpecialEvent() {
         // TODO: ugly
-        string currentName = HeroInteraction.instance.bag.GetCurrentItemName();
+        string currentName = HeroInteraction.instance.bag.GetCurrentItemKind();
         GameObject currentObject = HeroInteraction.instance.bag.GetCurrentItem();
         if (currentName == RAW_BIG_FOOD) {
             currentObject.GetComponent<Collectable>().Drop();
@@ -29,7 +29,7 @@ public class Cooker : Talkable
     }
 
     override protected bool IsSpecialConversation() {
-        return HeroInteraction.instance.bag.GetCurrentItemName() switch
+        return HeroInteraction.instance.bag.GetCurrentItemKind() switch
         {
             RAW_BIG_FOOD => true,
             BUCKET => true,
