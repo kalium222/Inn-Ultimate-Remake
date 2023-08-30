@@ -17,6 +17,11 @@ public class GameUIManager : MonoBehaviour
     public GameObject Use;
     [HideInInspector]
     public GameObject Exchange;
+    // When changing scene, the curtain will fade in and out
+    [HideInInspector]
+    public GameObject CurtainCanvas;
+    // The duration of the fade, set in inspector
+    public float FadeDuration = 0.5f;
     // BlackBox is for dialogue
     GameObject BlackBox;
     GameObject Option_Yes;
@@ -37,6 +42,11 @@ public class GameUIManager : MonoBehaviour
         } else {
             Destroy(gameObject);
         }
+        // Find all the UI elements in the son objects
+        // Find the curtain and set the alpha to 0
+        CurtainCanvas = transform.Find("CurtainCanvas").gameObject;
+        CurtainCanvas.GetComponent<CanvasGroup>().alpha = 0;
+        // For dialog box
         GameObject DialogBox = transform.Find("DialogBox").gameObject;
         BlackBox = DialogBox.transform.Find("BlackBox").gameObject;
         Option_Yes = BlackBox.transform.Find("Yes").gameObject;
@@ -48,6 +58,7 @@ public class GameUIManager : MonoBehaviour
         Option_No.SetActive(false);
         Option_Continue.SetActive(false);
         Content.SetActive(false);
+        // For HeroUI
         GameObject HeroUI = transform.Find("HeroUI").gameObject;
         Interact = HeroUI.transform.Find("Interact").gameObject;
         Use = HeroUI.transform.Find("Use").gameObject;
@@ -172,5 +183,25 @@ public class GameUIManager : MonoBehaviour
         foreach (Dialogue dialogue in con) {
             yield return DialogCoroutine(dialogue.text, dialogue.isContinuing);
         }
+    }
+
+    // public coroutines for fading in and out the curtain
+    public IEnumerator CurtainFadingIn() {
+        float timer = 0f;
+        while (timer < FadeDuration) {
+            timer += Time.deltaTime;
+            CurtainCanvas.GetComponent<CanvasGroup>().alpha = timer / FadeDuration;
+            yield return null;
+        }
+        CurtainCanvas.GetComponent<CanvasGroup>().alpha = 1;
+    }
+    public IEnumerator CurtainFadingOut() {
+        float timer = 0f;
+        while (timer < FadeDuration) {
+            timer += Time.deltaTime;
+            CurtainCanvas.GetComponent<CanvasGroup>().alpha = 1 - timer / FadeDuration;
+            yield return null;
+        }
+        CurtainCanvas.GetComponent<CanvasGroup>().alpha = 0;
     }
 }
