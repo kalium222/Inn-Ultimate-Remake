@@ -8,8 +8,11 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    [HideInInspector]
     public DoorManager doorManager;
+    [HideInInspector]
     public GameStageManager gameStageManager;
+    [HideInInspector]
     public GameObjectStateManager gameObjectStateManager;
 
     private void Awake() {
@@ -39,6 +42,9 @@ public class GameManager : MonoBehaviour
     }
 
     private IEnumerator LoadSceneAsyncCoroutine(string targetSceneName, string targetPortalName) {
+        // First fade in the curtain
+        yield return GameUIManager.instance.CurtainFadingIn();
+        // Then load the new scene
         Scene currentScene = SceneManager.GetActiveScene();
         if (currentScene.name != targetSceneName) {
             AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(targetSceneName, LoadSceneMode.Additive);
@@ -47,13 +53,14 @@ public class GameManager : MonoBehaviour
             }
             SceneManager.UnloadSceneAsync(currentScene);
         }
-        
         // The new scene is now loaded, and the old one is unloaded
         // Get to the right place in the Scene
         Portal target = GameObject.Find(targetPortalName).GetComponent<Portal>();
         if (target.name == targetPortalName) {
             HeroController.instance.transform.position = target.transform.position;
         }
+        // Then fade out the curtain
+        yield return GameUIManager.instance.CurtainFadingOut();
     }
 
     // -------------Test functions

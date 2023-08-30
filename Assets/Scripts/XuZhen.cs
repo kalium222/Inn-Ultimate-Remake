@@ -171,6 +171,7 @@ public class XuZhen : Talkable, IGameObjectStateHandler, IAttackableHandler
     public void LoadfromManager()
     {
         XuZhenState xuZhenState = (XuZhenState)GameManager.instance.gameObjectStateManager.Get(gameObject.name);
+        if (xuZhenState == null) return;
         hasTalked = xuZhenState.hasTalked;
         hasCola = xuZhenState.hasCola;
         hasKilled = xuZhenState.hasKilled;
