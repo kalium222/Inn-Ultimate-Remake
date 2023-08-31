@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class DoorManager : MonoBehaviour
 {
-    // TODO: immidiately change the room
-
+    // A class for storing the mapping of doors
     public class Portal {
         public string SceneName;
         public string DoorName;
@@ -19,7 +18,10 @@ public class DoorManager : MonoBehaviour
         }
     }
 
-    Dictionary<Portal, Portal> PortalPairTable = new Dictionary<Portal, Portal>() {
+    Dictionary<Portal, Portal> PortalPairTable;
+
+    // The initial mapping of doors, used for reseting every new round
+    readonly Dictionary<Portal, Portal> InitialPortalPairTable = new Dictionary<Portal, Portal>() {
         {new Portal("FirstFloor", "FirstFloorDoor"), new Portal("Room0", "Room0Door")},
         {new Portal("SecondFloor", "SecondFloorDoor1"), new Portal("Room1", "Room1Door")},
         {new Portal("SecondFloor", "SecondFloorDoor2"), new Portal("Room2", "Room2Door")},
@@ -28,7 +30,13 @@ public class DoorManager : MonoBehaviour
         {new Portal("Basement", "BasementDoor"), new Portal("Room5", "Room5Door")}
     };
     
-    
+    public void ResetMapping() {
+        PortalPairTable = new Dictionary<Portal, Portal>(InitialPortalPairTable);
+    }
+
+    private void Awake() {
+        ResetMapping();
+    }
 
     // Swap the target of two doors
     // To make it seemed to change the space of rooms
