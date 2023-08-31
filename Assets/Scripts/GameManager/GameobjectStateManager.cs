@@ -62,10 +62,12 @@ public class GameObjectStateManager : MonoBehaviour
         if (gameobjectStates.ContainsKey(name)) {
             return gameobjectStates[name];
         } else {
-            // TODO: useful?
-            // Debug.LogWarning("GameobjectStateManager: "+name+" is not in the dictionary");
             return null;
         }
+    }
+
+    public void Clear() {
+        gameobjectStates.Clear();
     }
 
     public void LogList() {

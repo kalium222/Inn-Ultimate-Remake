@@ -542,6 +542,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5214377498357544918, guid: bf1cb0877843a514d933694dcc0f1b33, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8689673921907954439, guid: bf1cb0877843a514d933694dcc0f1b33, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -601,11 +605,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4087211850289540446, guid: 327c75f8be4031f4a8c710b7512f181d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.085
+      value: 0.731
       objectReference: {fileID: 0}
     - target: {fileID: 4087211850289540446, guid: 327c75f8be4031f4a8c710b7512f181d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.608
+      value: -0.703
       objectReference: {fileID: 0}
     - target: {fileID: 4087211850289540446, guid: 327c75f8be4031f4a8c710b7512f181d, type: 3}
       propertyPath: m_LocalPosition.z

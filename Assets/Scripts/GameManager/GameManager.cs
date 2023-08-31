@@ -36,6 +36,24 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void NewRound() {
+        // Reset the mapping of doors in the Room0.
+        doorManager.ResetMapping();
+        // Reset all gameobject states
+        gameObjectStateManager.Clear();
+        // Clear the subobjects of the GameManager
+        DestroyAllSubObjects();
+        // TODO: Game stage
+        // First Scene
+        ChangeScene("Room1", "Room1Door");
+    }
+
+    private void DestroyAllSubObjects() {
+        foreach (Transform child in transform) {
+            Destroy(child.gameObject);
+        }
+    }
+
     // A public method to load a new scene asynchronously
     public void ChangeScene(string targetSceneName, string targetPortalName) {
         StartCoroutine(LoadSceneAsyncCoroutine(targetSceneName, targetPortalName));
@@ -83,7 +101,7 @@ public class GameManager : MonoBehaviour
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.T)) {
-            TestGameStage();
+            NewRound();
         }
         // if (Input.GetKeyDown(KeyCode.Y)) {
         //     gameObjectStateManager.LogList();

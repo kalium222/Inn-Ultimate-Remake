@@ -27,7 +27,10 @@ public class Collectable : Interactable, IGameObjectStateHandler
     }
 
     protected virtual void Start() {
-        if (GameManager.instance.gameObjectStateManager.Contains(gameObject.name)) Destroy(gameObject);
+        if (GameManager.instance.gameObjectStateManager.Contains(gameObject.name)) {
+            Destroy(gameObject);
+            return;
+        }
         GameObjectStateManager.OnSave += SavetoManager;
         GameObjectStateManager.OnLoad += LoadfromManager;
     }
