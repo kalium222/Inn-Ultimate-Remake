@@ -95,7 +95,8 @@ public class HeroInteraction : MonoBehaviour
     private void HighlightCurrentInteractable() {
         GameObject curr = interactableObjectColliders[currentObjectIndex%interactableObjectColliders.Length].gameObject;
         if (curr.GetComponent<Interactable>() == null) {
-            Debug.LogError("No Interactable component found on " + curr.name);
+            return;
+            // Debug.LogError("No Interactable component found on " + curr.name);
         } else {
             curr.GetComponent<Interactable>().Highlight();
         }

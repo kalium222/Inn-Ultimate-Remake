@@ -96,6 +96,7 @@ public class XuZhen : Talkable, IGameObjectStateHandler, IAttackableHandler
     }
 
     override protected void DoSpecialEvent() {
+        // TODO: ugly
         string currentItemName = HeroInteraction.instance.bag.GetCurrentItemKind();
         GameObject currentItem = HeroInteraction.instance.bag.GetCurrentItem();
         switch (currentItemName)
@@ -138,7 +139,7 @@ public class XuZhen : Talkable, IGameObjectStateHandler, IAttackableHandler
     }
 
     override protected Conversation GetCurrentConversation() {
-        if (hasDied) return null;
+        if (hasDied) return normalConversations[6];
         else if (!hasTalked) {
             hasTalked = true;
             return normalConversations[0];
@@ -186,6 +187,12 @@ public class XuZhen : Talkable, IGameObjectStateHandler, IAttackableHandler
         hasKilled = true;
         hasDied = true;
         SetAnimator();
+    }
+
+    public void OnCatch() {
+        if (!hasDied||hasKilled) return;
+        animator.SetTrigger("KillPlayer");
+        GameManager.instance.EndingRound();
     }
 
 }

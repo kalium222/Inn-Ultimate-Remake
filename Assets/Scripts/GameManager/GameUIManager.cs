@@ -20,6 +20,9 @@ public class GameUIManager : MonoBehaviour
     // When changing scene, the curtain will fade in and out
     [HideInInspector]
     public GameObject CurtainCanvas;
+    // Fade in and out with curtain when hero dies
+    [HideInInspector]
+    public GameObject DiedText;
     // The duration of the fade, set in inspector
     public float FadeDuration = 0.5f;
     // BlackBox is for dialogue
@@ -46,6 +49,8 @@ public class GameUIManager : MonoBehaviour
         // Find the curtain and set the alpha to 0
         CurtainCanvas = transform.Find("CurtainCanvas").gameObject;
         CurtainCanvas.GetComponent<CanvasGroup>().alpha = 0;
+        DiedText = CurtainCanvas.transform.Find("DiedText").gameObject;
+        DiedText.GetComponent<CanvasGroup>().alpha = 0;
         // For dialog box
         GameObject DialogBox = transform.Find("DialogBox").gameObject;
         BlackBox = DialogBox.transform.Find("BlackBox").gameObject;
@@ -186,7 +191,10 @@ public class GameUIManager : MonoBehaviour
     }
 
     // public coroutines for fading in and out the curtain
-    public IEnumerator CurtainFadingIn() {
+    public IEnumerator CurtainFadingIn(bool showDiedText = false) {
+        if (showDiedText) {
+            DiedText.GetComponent<CanvasGroup>().alpha = 1;
+        }
         float timer = 0f;
         while (timer < FadeDuration) {
             timer += Time.deltaTime;
@@ -203,5 +211,6 @@ public class GameUIManager : MonoBehaviour
             yield return null;
         }
         CurtainCanvas.GetComponent<CanvasGroup>().alpha = 0;
+        DiedText.GetComponent<CanvasGroup>().alpha = 0;
     }
 }

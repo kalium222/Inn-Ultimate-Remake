@@ -36,7 +36,30 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void NewRound() {
+    // End the current round and start a new one
+    public void EndingRound() {
+        StartCoroutine(EndingRoundCoroutine());
+    }
+    public IEnumerator EndingRoundCoroutine() {
+        GameUIManager.instance.ClearDialogBox();
+        HeroController.instance.CanMove = false;
+        HeroInteraction.instance.CanInteract = false;
+        HeroController.instance.GetComponent<SpriteRenderer>().enabled = false;
+        yield return new WaitForSeconds(3f);
+        yield return GameUIManager.instance.CurtainFadingIn(true);
+        while (!Input.anyKeyDown) {
+            yield return null;
+        }
+        ResetRound();
+        yield return LoadSceneAsyncCoroutine("Room1", "Room1Door", false);
+        HeroController.instance.GetComponent<SpriteRenderer>().enabled = true;
+        yield return GameUIManager.instance.CurtainFadingOut();
+        HeroController.instance.CanMove = true;
+        HeroInteraction.instance.CanInteract = true;
+        
+    }
+
+    public void ResetRound() {
         // Reset the mapping of doors in the Room0.
         doorManager.ResetMapping();
         // Reset all gameobject states
@@ -44,8 +67,6 @@ public class GameManager : MonoBehaviour
         // Clear the subobjects of the GameManager
         DestroyAllSubObjects();
         // TODO: Game stage
-        // First Scene
-        ChangeScene("Room1", "Room1Door");
     }
 
     private void DestroyAllSubObjects() {
@@ -59,9 +80,9 @@ public class GameManager : MonoBehaviour
         StartCoroutine(LoadSceneAsyncCoroutine(targetSceneName, targetPortalName));
     }
 
-    private IEnumerator LoadSceneAsyncCoroutine(string targetSceneName, string targetPortalName) {
+    private IEnumerator LoadSceneAsyncCoroutine(string targetSceneName, string targetPortalName, bool isFading = true) {
         // First fade in the curtain
-        yield return GameUIManager.instance.CurtainFadingIn();
+        if (isFading) yield return GameUIManager.instance.CurtainFadingIn();
         // Then load the new scene
         Scene currentScene = SceneManager.GetActiveScene();
         if (currentScene.name != targetSceneName) {
@@ -78,7 +99,7 @@ public class GameManager : MonoBehaviour
             HeroController.instance.transform.position = target.transform.position;
         }
         // Then fade out the curtain
-        yield return GameUIManager.instance.CurtainFadingOut();
+        if (isFading) yield return GameUIManager.instance.CurtainFadingOut();
     }
 
     // -------------Test functions
@@ -101,7 +122,7 @@ public class GameManager : MonoBehaviour
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.T)) {
-            NewRound();
+            TestGameStage();
         }
         // if (Input.GetKeyDown(KeyCode.Y)) {
         //     gameObjectStateManager.LogList();
