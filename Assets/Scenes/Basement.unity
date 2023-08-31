@@ -410,17 +410,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1805267343201094931, guid: bf1cb0877843a514d933694dcc0f1b33, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 1.8580933
-      objectReference: {fileID: 0}
     - target: {fileID: 5214377498357544918, guid: bf1cb0877843a514d933694dcc0f1b33, type: 3}
       propertyPath: m_Name
       value: UIManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 7012604652132782365, guid: bf1cb0877843a514d933694dcc0f1b33, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 1.6499023
       objectReference: {fileID: 0}
     - target: {fileID: 8689673921907954439, guid: bf1cb0877843a514d933694dcc0f1b33, type: 3}
       propertyPath: m_RootOrder
@@ -831,6 +823,10 @@ PrefabInstance:
     - target: {fileID: 5670171487807536503, guid: 7474a0f9782484a49a457250cf1b8959, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874529026751498013, guid: 7474a0f9782484a49a457250cf1b8959, type: 3}
+      propertyPath: CaughtDistance
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 7089128055791492764, guid: 7474a0f9782484a49a457250cf1b8959, type: 3}
       propertyPath: m_Name
