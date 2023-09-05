@@ -64,6 +64,7 @@ TextureImporter:
     second: MrClockworkEmpty
   externalObjects: {}
   serializedVersion: 12
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -138,6 +139,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     ignorePlatformSupport: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   - serializedVersion: 3
@@ -154,7 +156,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   - serializedVersion: 3
-    buildTarget: WebGL
+    buildTarget: Server
     maxTextureSize: 1024
     resizeAlgorithm: 1
     textureFormat: -1
@@ -578,6 +580,27 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      MrClockworkFixed1: 21300030
+      MrClockworkFixed2: 21300032
+      MrClockworkFixed3: 21300034
+      MrClockworkFixed4: 21300036
+      MrClockworkIdleDown: 21300026
+      MrClockworkIdleSides: 21300024
+      MrClockworkIdleUp: 21300028
+      MrClockworkWalkDown1: 21300008
+      MrClockworkWalkDown2: 21300010
+      MrClockworkWalkDown3: 21300012
+      MrClockworkWalkDown4: 21300014
+      MrClockworkWalkSides1: 21300016
+      MrClockworkWalkSides2: 21300018
+      MrClockworkWalkSides3: 21300020
+      MrClockworkWalkSides4: 21300022
+      MrClockworkWalkUp1: 21300000
+      MrClockworkWalkUp2: 21300002
+      MrClockworkWalkUp3: 21300004
+      MrClockworkWalkUp4: 21300006
+  mipmapLimitGroupName: 
     nameFileIdTable:
       MrClockworkFixed1: 21300030
       MrClockworkFixed2: 21300032

@@ -112,6 +112,7 @@ TextureImporter:
     second: RubyIdleUp2
   externalObjects: {}
   serializedVersion: 12
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -129,10 +130,12 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMipmapLimit: 0
   ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
@@ -174,6 +177,8 @@ TextureImporter:
   applyGammaDecoding: 1
   swizzle: 50462976
   cookieLightType: 1
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -185,6 +190,7 @@ TextureImporter:
     crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
@@ -202,7 +208,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   - serializedVersion: 3
-    buildTarget: WebGL
+    buildTarget: Server
     maxTextureSize: 1024
     resizeAlgorithm: 1
     textureFormat: -1
@@ -731,6 +737,32 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      RubyHitSides: 21300056
+      RubyHitUp: 21300058
+      RubyHitdown: 21300060
+      RubyIdleDown1: 21300050
+      RubyIdleDown2: 21300068
+      RubyIdleSide1: 21300048
+      RubyIdleSides2: 21300066
+      RubyIdleUp1: 21300052
+      RubyIdleUp2: 21300070
+      RubyLauchSides: 21300064
+      RubyLaunchDown: 21300054
+      RubyLaunchUp: 21300062
+      RubyRunDown1: 21300040
+      RubyRunDown2: 21300042
+      RubyRunDown3: 21300044
+      RubyRunDown4: 21300046
+      RubyRunSide1: 21300024
+      RubyRunSide2: 21300026
+      RubyRunSide3: 21300028
+      RubyRunSide4: 21300030
+      RubyRunUp1: 21300032
+      RubyRunUp2: 21300034
+      RubyRunUp3: 21300036
+      RubyRunUp4: 21300038
+  mipmapLimitGroupName: 
     nameFileIdTable:
       RubyHitSides: 21300056
       RubyHitUp: 21300058
