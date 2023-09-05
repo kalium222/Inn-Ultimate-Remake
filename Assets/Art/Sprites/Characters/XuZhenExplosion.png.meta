@@ -81,7 +81,7 @@ TextureImporter:
       213: -8014701686925711390
     second: XuZhenExplosion_25
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -98,10 +98,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -140,6 +142,8 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -151,6 +155,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -163,6 +168,20 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -724,9 +743,35 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    nameFileIdTable:
+      XuZhenExplosion_0: -231013449338271767
+      XuZhenExplosion_1: -5384581333465680565
+      XuZhenExplosion_10: -4552846405232027800
+      XuZhenExplosion_11: -174776786965400486
+      XuZhenExplosion_12: -5960997432139853555
+      XuZhenExplosion_13: -2339204602475179641
+      XuZhenExplosion_14: 6053954223626805292
+      XuZhenExplosion_15: 4360512599783583230
+      XuZhenExplosion_16: 935298912706391522
+      XuZhenExplosion_17: -4137032656700574540
+      XuZhenExplosion_18: 3741581837267973270
+      XuZhenExplosion_19: -1894907537668757918
+      XuZhenExplosion_2: -5364227697293387653
+      XuZhenExplosion_20: -4110142174197843165
+      XuZhenExplosion_21: -5294921279522313113
+      XuZhenExplosion_22: -6062513869818975748
+      XuZhenExplosion_23: 8827895944405960222
+      XuZhenExplosion_24: -4940718034639500615
+      XuZhenExplosion_25: -8014701686925711390
+      XuZhenExplosion_3: 7042756002273713241
+      XuZhenExplosion_4: 632639191324902501
+      XuZhenExplosion_5: 8052871829038026539
+      XuZhenExplosion_6: 1580711731120447484
+      XuZhenExplosion_7: -2066087233972903823
+      XuZhenExplosion_8: 8217691630392633884
+      XuZhenExplosion_9: -3320425949100262091
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

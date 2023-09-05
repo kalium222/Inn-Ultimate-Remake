@@ -60,7 +60,7 @@ TextureImporter:
       213: 3810663285446302976
     second: XuZhen_Die_18
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -77,10 +77,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -119,6 +121,8 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -130,6 +134,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -142,6 +147,20 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -556,9 +575,28 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    nameFileIdTable:
+      XuZhen_Die_0: 1044540294785133546
+      XuZhen_Die_1: -3877231609603152141
+      XuZhen_Die_10: -3430389007804286469
+      XuZhen_Die_11: -7542150483096803238
+      XuZhen_Die_12: 6808580724445466438
+      XuZhen_Die_13: -8307493357018427914
+      XuZhen_Die_14: 6681065948376447157
+      XuZhen_Die_15: -4167510548536326183
+      XuZhen_Die_16: 5888971477280168157
+      XuZhen_Die_17: -3980000810315004761
+      XuZhen_Die_18: 3810663285446302976
+      XuZhen_Die_2: 7521710169375960531
+      XuZhen_Die_3: -3144315902330849646
+      XuZhen_Die_4: -4189662916073350651
+      XuZhen_Die_5: 2446012463380883139
+      XuZhen_Die_6: -1732461921101324978
+      XuZhen_Die_7: -4804324456589840818
+      XuZhen_Die_8: -1713690127075830603
+      XuZhen_Die_9: 3892828730706487097
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
