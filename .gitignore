@@ -1,7 +1,27 @@
-.vscode/
+# ignore
 
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
 /[Bb]uild/
-/Logs/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+
+# layout file
+*.wlt
+
+# profiler file
+*.data
+
+*.csproj
+*.unityproj
+*.sln
+
+# code editor stuff
+.vscode/
+
+# except
+!.gitignore
+!/[Aa]ssets/**/*.meta
+
