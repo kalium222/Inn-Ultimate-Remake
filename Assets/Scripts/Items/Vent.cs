@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Vent : Door
 {
+    // TODO: check the other side of the vent
+    // !!!
+
     public override void Interact() {
         if (!HeroController.instance.Climbed) {
             GameUIManager.instance.ShowDialogue("Too high to reach.");
+
         } else if (isSealed) {
             GameUIManager.instance.ShowDialogue("It's sealed.");
         } else {
@@ -25,4 +29,5 @@ public class Vent : Door
         }
         base.OnAttack(in meleeAttack);
     }
+
 }
