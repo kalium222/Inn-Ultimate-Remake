@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8d8b0f637478a9498ea4c35ea921b5f, type: 3}
-  m_Name: CookerSpecial
+  m_Name: UseDialogues
   m_EditorClassIdentifier: 
   dialogues:
   - isContinuing: 0
