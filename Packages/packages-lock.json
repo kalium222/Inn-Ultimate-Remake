@@ -14,7 +14,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.2d.common": {
-      "version": "8.0.1",
+      "version": "8.0.2",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -24,14 +24,14 @@
         "com.unity.modules.animation": "1.0.0",
         "com.unity.burst": "1.7.3"
       },
-      "url": "https://packages.unity.cn"
+      "url": "https://packages.unity.com"
     },
     "com.unity.2d.pixel-perfect": {
       "version": "5.0.3",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
-      "url": "https://packages.unity.cn"
+      "url": "https://packages.unity.com"
     },
     "com.unity.2d.psdimporter": {
       "version": "8.0.2",
@@ -77,16 +77,17 @@
       "dependencies": {
         "com.unity.modules.ai": "1.0.0"
       },
-      "url": "https://packages.unity.cn"
+      "url": "https://packages.unity.com"
     },
     "com.unity.burst": {
-      "version": "1.8.7",
+      "version": "1.8.12",
       "depth": 2,
       "source": "registry",
       "dependencies": {
-        "com.unity.mathematics": "1.2.1"
+        "com.unity.mathematics": "1.2.1",
+        "com.unity.modules.jsonserialize": "1.0.0"
       },
-      "url": "https://packages.unity.cn"
+      "url": "https://packages.unity.com"
     },
     "com.unity.cinemachine": {
       "version": "2.9.5",
@@ -95,18 +96,13 @@
       "dependencies": {
         "com.unity.test-framework": "1.1.31"
       },
-      "url": "https://packages.unity.cn"
+      "url": "https://packages.unity.com"
     },
     "com.unity.collab-proxy": {
       "version": "2.0.5",
       "depth": 0,
       "source": "registry",
-      "dependencies": {
-        "com.unity.modules.tilemap": "1.0.0",
-        "com.unity.2d.tilemap": "1.0.0",
-        "com.unity.ugui": "1.0.0",
-        "com.unity.modules.jsonserialize": "1.0.0"
-      },
+      "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.collections": {
@@ -117,7 +113,7 @@
         "com.unity.burst": "1.6.6",
         "com.unity.test-framework": "1.1.31"
       },
-      "url": "https://packages.unity.cn"
+      "url": "https://packages.unity.com"
     },
     "com.unity.ext.nunit": {
       "version": "1.0.6",
@@ -133,7 +129,7 @@
       "dependencies": {
         "com.unity.ext.nunit": "1.0.6"
       },
-      "url": "https://packages.unity.cn"
+      "url": "https://packages.unity.com"
     },
     "com.unity.ide.visualstudio": {
       "version": "2.0.18",
@@ -142,6 +138,13 @@
       "dependencies": {
         "com.unity.test-framework": "1.1.9"
       },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.ide.vscode": {
+      "version": "1.2.5",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.mathematics": {
@@ -169,7 +172,7 @@
       "dependencies": {
         "com.unity.ugui": "1.0.0"
       },
-      "url": "https://packages.unity.cn"
+      "url": "https://packages.unity.com"
     },
     "com.unity.timeline": {
       "version": "1.7.5",
@@ -181,7 +184,7 @@
         "com.unity.modules.audio": "1.0.0",
         "com.unity.modules.particlesystem": "1.0.0"
       },
-      "url": "https://packages.unity.cn"
+      "url": "https://packages.unity.com"
     },
     "com.unity.ugui": {
       "version": "1.0.0",
