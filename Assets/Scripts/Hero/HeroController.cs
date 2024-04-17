@@ -1,12 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class HeroController : MonoBehaviour
 {
     public static HeroController instance;
+    public Control control;
 
     // the speed of the hero, handle in inspector
+    [SerializeField]
     public const float speed = 1.5f;
 
     // reference to components
@@ -21,7 +22,8 @@ public class HeroController : MonoBehaviour
     }
     private float horizontal;
     private float vertical;
-    public Vector2 velocity {
+    private Vector2 m_velocity = new();
+    public Vector2 Velocity {
         get { return new Vector2(horizontal, vertical); }
     }
     private bool canMove = true;
@@ -48,6 +50,18 @@ public class HeroController : MonoBehaviour
         if (animator == null) throw new System.Exception("Animator not found on " + gameObject.name);
         collider2d = GetComponent<Collider2D>();
         if (collider2d == null) throw new System.Exception("Collider2D not found on " + gameObject.name);
+        control = new();
+        control.gameplay.Test.performed += OnTest;
+    }
+
+    public void OnEnable()
+    {
+        control.Enable();
+    }
+    
+    private void OnTest(InputAction.CallbackContext context)
+    {
+        Debug.Log("Test!");
     }
 
     void Update() {
@@ -77,10 +91,8 @@ public class HeroController : MonoBehaviour
     // Called in FixedUpdate to ensure the correct physical behavior
     private void HeroMove(float x, float y) {
         if (!canMove) return;
-        Vector2 position = rigidbody2d.position;
-        position.x += x;
-        position.y += y;
-        rigidbody2d.MovePosition(position);
+        m_velocity = control.gameplay.Move.ReadValue<Vector2>();
+        rigidbody2d.MovePosition(rigidbody2d.position + speed*Time.deltaTime*m_velocity);
     }
 
     private void SetAnimation() {

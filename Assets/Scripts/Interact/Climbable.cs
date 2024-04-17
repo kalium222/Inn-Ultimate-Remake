@@ -51,7 +51,7 @@ public class Climbable : MonoBehaviour
     }
     // check if the hero is walking towards the climbable object
     private bool IsClimbingTowards() {
-        return Vector3.Dot(HeroController.instance.velocity, transform.position - HeroController.instance.transform.position)>0;
+        return Vector3.Dot(HeroController.instance.Velocity, transform.position - HeroController.instance.transform.position)>0;
     }
     // set the hero's state and sprite
     private void Climb() {
