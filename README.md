@@ -33,6 +33,7 @@
 - 与NPC以及某些重要物品（门，灯（可选）等）的交互，
 
 ### UI
+
 低像素。最好没有。
 
 ## AI
@@ -43,9 +44,58 @@
 
 ### 场景
 
+- 大厅
+- 书房
+- 二楼走廊
+- 二楼 1, 2, 3, 4 号房间
+- 地下室
+- 厨房
+
 ### 角色
 
+In one day, the NPCs will do series of same things. Through
+some interaction, for example, talking with them and choosing
+some branch, complete their request, or influencing the environment,
+or even killing them, you will influence their daily routines.
+Then, you can make different conditions or as a result, different end.
+
+- You.
+- The owner of the Inn.  
+    He's actually a demon, getting power from pain and desire of human.  
+- Han.   
+    He is desired of wealth. So he was cursed by the owner. turning
+    everything he touched into silver, including himself.
+- Ting.  
+    He is very lazy. He just lies on the bed and does nothing every day.
+- Xu.  
+    He cannot stop eating things. He can ony starve or burst his stomach.
+- Ran.  
+    He knows about the truth of this Inn. But he is crazy, and is a riddler.
+
 ### 物品
+
+- some collectable items which you can pick them up
+- something you can open and get something, such as refrigerator. 
+- something have several different states, such as food which can
+    be raw and cooked.
+- something you can change other things' state. For example, you can 
+    cook a raw chichen at kitchen, Han can turn something into silver
+- lots of things can be turned into silver, and this can have different
+    effect(optional)
+- a sword and an axe. you can use them to kill human, such as NPCs.
+    the axe can also be used to broke the sealed door.
+    after you give them to Han, he can turn your weapons into silver-made
+    weapons, which can be used to attack monsters.
+- you can step on something to reach higher things, such as chairs and
+    tables.
+- you can change the map of doors and rooms through a bookshelf in the 
+    study.
+- (optional) you can turn on and off the light, so that you can discover
+    the ghost monsters.
+- (optional) you can see the control guide in the television in your room
+- (optional) you can put something on the head to get some effects, such
+    as bucket.
+- (optional) the decorations change when time passing.
 
 ## 游戏过程
 
@@ -54,6 +104,7 @@
 ### 游戏流程
 
 ## 系统
+
 - 场景切换
 - 持物，穿戴,背包
 - 房间切换
@@ -70,5 +121,6 @@
 - 光影
 - 声音
 - 选项，设置
+    - 存档
 - 开始界面
 
