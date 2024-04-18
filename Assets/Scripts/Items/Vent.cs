@@ -8,7 +8,7 @@ public class Vent : Door
     // !!!
 
     public override void Interact() {
-        if (!HeroController.instance.Climbed) {
+        if (!HeroController.Instance.Climbed) {
             GameUIManager.instance.ShowDialogue("Too high to reach.");
 
         } else if (isSealed) {
@@ -24,7 +24,7 @@ public class Vent : Door
     }
 
     override public void OnAttack(in MeleeAttack meleeAttack) {
-        if (!HeroController.instance.Climbed) {
+        if (!HeroController.Instance.Climbed) {
             return;
         }
         base.OnAttack(in meleeAttack);

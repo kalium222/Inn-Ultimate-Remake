@@ -14,7 +14,7 @@ public class Observer : MonoBehaviour
     
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject != HeroController.instance.gameObject) return;
+        if (other.gameObject != HeroController.Instance.gameObject) return;
         OnNotify.Invoke();
         StartCoroutine(CaughtCoroutine());
     }
@@ -22,7 +22,7 @@ public class Observer : MonoBehaviour
     private IEnumerator CaughtCoroutine() {
         float startTime = Time.time;
         while (Time.time - startTime < CaughtTime) {
-            if (Vector3.Distance(transform.position, HeroController.instance.transform.position) > CaughtDistance) yield break;
+            if (Vector3.Distance(transform.position, HeroController.Instance.transform.position) > CaughtDistance) yield break;
             yield return null;
         }
         OnCatch.Invoke();

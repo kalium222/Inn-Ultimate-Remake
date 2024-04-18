@@ -12,7 +12,7 @@ public class HoldingRenderer : MonoBehaviour
     
     void Start() {
         holdingRenderer = GetComponent<SpriteRenderer>();
-        heroAttack = HeroController.instance.GetComponent<HeroAttack>();
+        heroAttack = HeroController.Instance.GetComponent<HeroAttack>();
     }
 
     // Update is called once per frame
@@ -36,9 +36,9 @@ public class HoldingRenderer : MonoBehaviour
     private void HoldCurrentItem(GameObject currentItemObject) {
         holdingRenderer.enabled = true;
         holdingRenderer.sprite = currentItemObject.GetComponent<SpriteRenderer>().sprite;
-        holdingRenderer.flipX = (HeroController.instance.LookDirection == 1);
-        transform.position =  HeroController.instance.transform.position + new Vector3(
-            offsetx*HeroController.instance.LookDirection, offsety, 0
+        holdingRenderer.flipX = (HeroController.Instance.LookDirection == 1);
+        transform.position =  HeroController.Instance.transform.position + new Vector3(
+            offsetx*HeroController.Instance.LookDirection, offsety, 0
         );
     }
 }

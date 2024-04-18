@@ -13,7 +13,7 @@ public class DirectPortal : Portal
     private void OnTriggerStay2D(Collider2D other) {
         if (!isActive) return;
         HeroController controller = other.GetComponent<HeroController>();
-        if (controller == HeroController.instance && (Vector2.Dot(controller.Velocity, EnteringDirection) > 0.0f))
+        if (controller == HeroController.Instance && (Vector2.Dot(controller.Velocity, EnteringDirection) > 0.0f))
         {
             Teleport();
             isActive = false;

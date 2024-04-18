@@ -48,7 +48,7 @@ public class Talkable :  Interactable
         // Start at next frame
         yield return null;
         // First disable all movement and interaction
-        HeroController.instance.CanMove = false;
+        HeroController.Instance.CanMove = false;
         HeroInteraction.instance.CanInteract = false;
         
         // run the dialogs
@@ -57,7 +57,7 @@ public class Talkable :  Interactable
         if (IsSpecialConversation()&&isYes) DoSpecialEvent();
         
         // Then re-enable all movement and interaction
-        HeroController.instance.CanMove = true;
+        HeroController.Instance.CanMove = true;
         HeroInteraction.instance.CanInteract = true;
     }
 

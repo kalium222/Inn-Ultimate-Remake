@@ -28,7 +28,7 @@ public class PortalBookshelfUI : MonoBehaviour
         // Start at next frame
         yield return null;
         // disable the hero and interaction
-        HeroController.instance.CanMove = false;
+        HeroController.Instance.CanMove = false;
         HeroInteraction.instance.CanInteract = false;
 
         while (!Input.GetKeyDown(confirmKey)) {
@@ -37,7 +37,7 @@ public class PortalBookshelfUI : MonoBehaviour
         // Update the room0door
         OnUpdatingDoor?.Invoke();
         // enable the hero and interaction
-        HeroController.instance.CanMove = true;
+        HeroController.Instance.CanMove = true;
         HeroInteraction.instance.CanInteract = true;
         gameObject.SetActive(false);
     }

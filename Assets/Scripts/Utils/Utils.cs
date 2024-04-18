@@ -2,8 +2,8 @@ using System;
 
 namespace Utils
 {
-    public class NoComponentException : Exception
+    public class NotGetException : Exception
     {
-        public NoComponentException(string message = "") : base(message) {}
+        public NotGetException(string message = "") : base(message) {}
     }
 }

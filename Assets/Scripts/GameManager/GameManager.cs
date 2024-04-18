@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    private Control m_control;
+    public Control Control => m_control;
     [HideInInspector]
     public DoorManager doorManager;
     [HideInInspector]
@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+        m_control = new();
         doorManager = GetComponent<DoorManager>();
         if (doorManager == null) {
             throw new System.Exception("DoorManager not found!");
@@ -36,15 +37,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        m_control.Enable();
+    }
+
     // End the current round and start a new one
     public void EndingRound() {
         StartCoroutine(EndingRoundCoroutine());
     }
     public IEnumerator EndingRoundCoroutine() {
         GameUIManager.instance.ClearDialogBox();
-        HeroController.instance.CanMove = false;
+        HeroController.Instance.CanMove = false;
         HeroInteraction.instance.CanInteract = false;
-        HeroController.instance.GetComponent<SpriteRenderer>().enabled = false;
+        HeroController.Instance.GetComponent<SpriteRenderer>().enabled = false;
         yield return new WaitForSeconds(3f);
         yield return GameUIManager.instance.CurtainFadingIn(true);
         while (!Input.anyKeyDown) {
@@ -52,9 +58,9 @@ public class GameManager : MonoBehaviour
         }
         ResetRound();
         yield return LoadSceneAsyncCoroutine("Room1", "Room1Door", false);
-        HeroController.instance.GetComponent<SpriteRenderer>().enabled = true;
+        HeroController.Instance.GetComponent<SpriteRenderer>().enabled = true;
         yield return GameUIManager.instance.CurtainFadingOut();
-        HeroController.instance.CanMove = true;
+        HeroController.Instance.CanMove = true;
         HeroInteraction.instance.CanInteract = true;
         
     }
@@ -96,7 +102,7 @@ public class GameManager : MonoBehaviour
         // Get to the right place in the Scene
         Portal target = GameObject.Find(targetPortalName).GetComponent<Portal>();
         if (target.name == targetPortalName) {
-            HeroController.instance.transform.position = target.transform.position;
+            HeroController.Instance.transform.position = target.transform.position;
         }
         // Then fade out the curtain
         if (isFading) yield return GameUIManager.instance.CurtainFadingOut();

@@ -45,34 +45,34 @@ public class Climbable : MonoBehaviour
         }
         Climb();
         // disable HeroMove for a while
-        HeroController.instance.CanMove = false;
+        HeroController.Instance.CanMove = false;
         yield return new WaitForSeconds(waitTime);
-        HeroController.instance.CanMove = true;
+        HeroController.Instance.CanMove = true;
     }
     // check if the hero is walking towards the climbable object
     private bool IsClimbingTowards() {
-        return Vector3.Dot(HeroController.instance.Velocity, transform.position - HeroController.instance.transform.position)>0;
+        return Vector3.Dot(HeroController.Instance.Velocity, transform.position - HeroController.Instance.transform.position)>0;
     }
     // set the hero's state and sprite
     private void Climb() {
-        if (HeroController.instance.Climbed) return;
+        if (HeroController.Instance.Climbed) return;
         // collider2d.isTrigger = true;
         foreach (Collider2D collider2d in collider2ds) {
             collider2d.isTrigger = true;
         }
-        if (setPosition) HeroController.instance.ClimbUp(offsetY, transform.position);
-        else HeroController.instance.ClimbUp(offsetY);
+        if (setPosition) HeroController.Instance.ClimbUp(offsetY, transform.position);
+        else HeroController.Instance.ClimbUp(offsetY);
     }
 
     // When hero leaves the climbable object
     void OnTriggerExit2D(Collider2D other) {
-        if (!HeroController.instance.Climbed) return;
-        if (other.gameObject.name == HeroController.instance.gameObject.name) {
+        if (!HeroController.Instance.Climbed) return;
+        if (other.gameObject.name == HeroController.Instance.gameObject.name) {
             // collider2d.isTrigger = false;
             foreach (Collider2D collider2d in collider2ds) {
                 collider2d.isTrigger = false;
             }
-            HeroController.instance.ClimbDown(offsetY);
+            HeroController.Instance.ClimbDown(offsetY);
         }
     }
 

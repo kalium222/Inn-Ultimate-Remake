@@ -18,7 +18,7 @@ public class Cooker : Talkable
             currentObject.GetComponent<Collectable>().isCollected = true;
             currentObject.SetActive(false);
             GameObject BigFood = Instantiate<GameObject>(specialEventObject, gameObject.transform);
-            BigFood.transform.position = HeroController.instance.transform.position;
+            BigFood.transform.position = HeroController.Instance.transform.position;
         } else if (currentName == BUCKET) {
             Bucket bucket = currentObject.GetComponent<Bucket>();
             if (bucket.IsWearing || bucket.IsFull) return;

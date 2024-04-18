@@ -156,7 +156,7 @@ public class GameUIManager : MonoBehaviour
         // Start from next frame
         yield return null;
         // First disable all movement and interaction
-        HeroController.instance.CanMove = false;
+        HeroController.Instance.CanMove = false;
         HeroInteraction.instance.CanInteract = false;
         // A state parameter for the current option
         bool isYes = true;
@@ -179,7 +179,7 @@ public class GameUIManager : MonoBehaviour
         // Then clear the dialog box
         ClearDialogBox();
         // Then re-enable all movement and interaction
-        HeroController.instance.CanMove = true;
+        HeroController.Instance.CanMove = true;
         HeroInteraction.instance.CanInteract = true;
     }
     // Similar, but for Conversation

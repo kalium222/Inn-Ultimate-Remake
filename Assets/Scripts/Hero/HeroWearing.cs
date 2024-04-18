@@ -33,9 +33,9 @@ public class HeroWearing : MonoBehaviour
                 throw new System.Exception("wearingObject.GetComponent<Wearable>() is null");
             // TODO: check the wearing sprite
             wearingRenderer.sprite = wearingObject.GetComponent<Wearable>().wearingSprite;
-            wearingRenderer.flipX = (HeroController.instance.LookDirection == 1);
-            transform.position =  HeroController.instance.transform.position + new Vector3(
-                wearingObject.GetComponent<Wearable>().offsetX*HeroController.instance.LookDirection,
+            wearingRenderer.flipX = (HeroController.Instance.LookDirection == 1);
+            transform.position =  HeroController.Instance.transform.position + new Vector3(
+                wearingObject.GetComponent<Wearable>().offsetX*HeroController.Instance.LookDirection,
                 wearingObject.GetComponent<Wearable>().offsetY, 0
             );
 
