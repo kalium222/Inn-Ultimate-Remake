@@ -2,7 +2,6 @@ using System;
 
 namespace Utils
 {
-    using System.Diagnostics;
     using UnityEngine;
     public class LackingPropertyException : Exception
     {

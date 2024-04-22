@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : SingletonMono<GameManager>
 {
-    private Control m_control;
-    public Control Control => m_control;
+    public Control Control { get; private set; }
     [HideInInspector]
     public DoorManager doorManager;
     [HideInInspector]
@@ -16,7 +15,7 @@ public class GameManager : SingletonMono<GameManager>
 
     protected override void Awake() {
         base.Awake();
-        m_control = new();
+        Control = new();
         doorManager = GetComponent<DoorManager>();
         if (doorManager == null) {
             throw new System.Exception("DoorManager not found!");
@@ -33,7 +32,7 @@ public class GameManager : SingletonMono<GameManager>
 
     private void OnEnable()
     {
-        m_control.Enable();
+        Control.Enable();
     }
 
     // End the current round and start a new one

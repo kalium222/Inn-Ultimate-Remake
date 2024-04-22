@@ -13,7 +13,10 @@ public abstract class StaticInstanceMono<T> : MonoBehaviour
 public abstract class TempSingletonMono<T> : StaticInstanceMono<T>
                                             where T : MonoBehaviour {
     protected override void Awake() {
-        if ( Instance!=null ) Destroy(gameObject);
+        if ( Instance!=null ) {
+            Destroy(gameObject);
+            return;
+        }
         base.Awake();
     }
 }
