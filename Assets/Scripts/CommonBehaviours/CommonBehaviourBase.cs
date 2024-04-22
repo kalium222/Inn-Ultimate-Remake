@@ -1,4 +1,5 @@
 using UnityEngine;
+using Utils;
 
 public abstract class CommonBehaviourBase {
     protected readonly GameObject gameObject;
@@ -9,8 +10,7 @@ public abstract class CommonBehaviourBase {
 
 public class Move2DController : CommonBehaviourBase { 
     public Move2DController(GameObject gameObject, float velocityFactor = 1f) : base(gameObject) {
-        if (!gameObject.TryGetComponent(out m_rigidbody2D))
-            throw Utils.LackingPropertyException.NoComponent("Ridigbody2D", gameObject.name);
+        gameObject.GetAndCheckComponent(out m_rigidbody2D);
         m_velocityFactor = velocityFactor;
     }
 

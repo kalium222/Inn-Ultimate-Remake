@@ -61,12 +61,12 @@ public class Boxes : MonoBehaviour, IAttackableHandler, IGameObjectStateHandler
     }
 
     public void SavetoManager() {
-        GameManager.instance.gameObjectStateManager.Add(gameObject.name, new BoxesState(isBroken));
+        GameManager.Instance.gameObjectStateManager.Add(gameObject.name, new BoxesState(isBroken));
     }
 
     public void LoadfromManager() {
-        if (GameManager.instance.gameObjectStateManager.Contains(gameObject.name)) {
-            BoxesState state = (BoxesState)GameManager.instance.gameObjectStateManager.Get(gameObject.name);
+        if (GameManager.Instance.gameObjectStateManager.Contains(gameObject.name)) {
+            BoxesState state = (BoxesState)GameManager.Instance.gameObjectStateManager.Get(gameObject.name);
             isBroken = state.isBroken;
         }
         SetSprite();

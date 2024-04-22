@@ -44,7 +44,7 @@ public class PortalBookshelfUI : MonoBehaviour
 
     private void Start() {
         confirmKey = HeroInteraction.instance.interactKey;
-        doorManager = GameManager.instance.doorManager;
+        doorManager = GameManager.Instance.doorManager;
         LoadBooksPositions();
         LoadFromDoorManager();
         BookUI.OnBookEndDrag += OnBookEndDrag;

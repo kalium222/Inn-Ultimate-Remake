@@ -65,12 +65,12 @@ public class Talkable :  Interactable
         if (IsSpecialConversation()) return specialConversation;
         else if (normalConversations == null || normalConversations.Count == 0) return null;
         else 
-            return normalConversations[(int)GameManager.instance.gameStageManager.CurrentStage%normalConversations.Count];
+            return normalConversations[(int)GameManager.Instance.gameStageManager.CurrentStage%normalConversations.Count];
         
     }
 
     virtual protected bool IsSpecialConversation() {
-        return GameManager.instance.gameStageManager.CurrentStage == GameStageManager.Stage.Exploring;
+        return GameManager.Instance.gameStageManager.CurrentStage == GameStageManager.Stage.Exploring;
     }
 
 }

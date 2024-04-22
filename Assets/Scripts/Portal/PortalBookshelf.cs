@@ -22,7 +22,7 @@ public class PortalBookshelf : Talkable
     }
 
     override protected bool IsSpecialConversation() {
-        return GameManager.instance.gameStageManager.CurrentStage == GameStageManager.Stage.Exploring;
+        return GameManager.Instance.gameStageManager.CurrentStage == GameStageManager.Stage.Exploring;
     }
 
     protected override void DoSpecialEvent() {

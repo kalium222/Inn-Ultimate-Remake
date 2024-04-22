@@ -166,12 +166,12 @@ public class XuZhen : Talkable, IGameObjectStateHandler, IAttackableHandler
 
     public void SavetoManager()
     {
-        GameManager.instance.gameObjectStateManager.Add(gameObject.name, new XuZhenState(hasTalked, hasCola, hasKilled, hasDied, lastChangeTime));
+        GameManager.Instance.gameObjectStateManager.Add(gameObject.name, new XuZhenState(hasTalked, hasCola, hasKilled, hasDied, lastChangeTime));
     }
 
     public void LoadfromManager()
     {
-        XuZhenState xuZhenState = (XuZhenState)GameManager.instance.gameObjectStateManager.Get(gameObject.name);
+        XuZhenState xuZhenState = (XuZhenState)GameManager.Instance.gameObjectStateManager.Get(gameObject.name);
         if (xuZhenState == null) return;
         hasTalked = xuZhenState.hasTalked;
         hasCola = xuZhenState.hasCola;
@@ -192,7 +192,7 @@ public class XuZhen : Talkable, IGameObjectStateHandler, IAttackableHandler
     public void OnCatch() {
         if (!hasDied||hasKilled) return;
         animator.SetTrigger("KillPlayer");
-        GameManager.instance.EndingRound();
+        GameManager.Instance.EndingRound();
     }
 
 }

@@ -27,7 +27,7 @@ public class Collectable : Interactable, IGameObjectStateHandler
     }
 
     protected virtual void Start() {
-        if (GameManager.instance.gameObjectStateManager.Contains(gameObject.name)) {
+        if (GameManager.Instance.gameObjectStateManager.Contains(gameObject.name)) {
             Destroy(gameObject);
             return;
         }
@@ -65,7 +65,7 @@ public class Collectable : Interactable, IGameObjectStateHandler
     public void Drop() {
         HeroInteraction.instance.bag.Remove(gameObject);
         gameObject.transform.position = HeroController.Instance.transform.position;
-        gameObject.transform.SetParent(GameManager.instance.transform);
+        gameObject.transform.SetParent(GameManager.Instance.transform);
         isCollected = false;
         SetObject();
         // TODO: ugly
@@ -78,13 +78,13 @@ public class Collectable : Interactable, IGameObjectStateHandler
 
     // TODO: bit of ugly
     public void SavetoManager() {
-        transform.SetParent(GameManager.instance.transform);
+        transform.SetParent(GameManager.Instance.transform);
         if (isCollected) {
-            GameManager.instance.gameObjectStateManager.Add(gameObject.name, new CollectableState(isCollected, transform.position, "InBag"));
+            GameManager.Instance.gameObjectStateManager.Add(gameObject.name, new CollectableState(isCollected, transform.position, "InBag"));
             // Debug.Log("SavetoManager: " + gameObject.name);
             // Debug.Log("isCollected: " + isCollected + ", In bag");
         } else if (gameObject.activeSelf) {
-            GameManager.instance.gameObjectStateManager.Add(gameObject.name, new CollectableState(isCollected, transform.position, SceneManager.GetActiveScene().name));
+            GameManager.Instance.gameObjectStateManager.Add(gameObject.name, new CollectableState(isCollected, transform.position, SceneManager.GetActiveScene().name));
             // Debug.Log("SavetoManager: " + gameObject.name);
             // Debug.Log("isCollected: " + isCollected + ", SceneName: " + SceneManager.GetActiveScene().name);
         }
@@ -92,7 +92,7 @@ public class Collectable : Interactable, IGameObjectStateHandler
 
     public void LoadfromManager() {
         // Debug.Log("LoadfromManager: " + gameObject.name);
-        CollectableState state = (CollectableState)GameManager.instance.gameObjectStateManager.Get(gameObject.name);
+        CollectableState state = (CollectableState)GameManager.Instance.gameObjectStateManager.Get(gameObject.name);
         if (state == null) return;
         isCollected = state.isCollected;
         transform.position = state.position;

@@ -72,12 +72,12 @@ public class Openable : Interactable, IGameObjectStateHandler
     }
 
     public void SavetoManager() {
-        GameManager.instance.gameObjectStateManager.Add(name, new OpenableState(isOpened, isEmpty));
+        GameManager.Instance.gameObjectStateManager.Add(name, new OpenableState(isOpened, isEmpty));
     }
 
     public void LoadfromManager() {
-        if (GameManager.instance.gameObjectStateManager.Contains(name)) {
-            OpenableState openableState = (OpenableState)GameManager.instance.gameObjectStateManager.Get(name);
+        if (GameManager.Instance.gameObjectStateManager.Contains(name)) {
+            OpenableState openableState = (OpenableState)GameManager.Instance.gameObjectStateManager.Get(name);
             isOpened = openableState.isOpened;
             isEmpty = openableState.isEmpty;
         }

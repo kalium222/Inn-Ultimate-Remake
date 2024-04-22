@@ -11,6 +11,6 @@ public class Portal : MonoBehaviour
     // Change the scene and teleport the player to the right place
     // Do this in a coroutine
     public void Teleport() {
-        GameManager.instance.ChangeScene(TargetScene, TargetPortal);
+        GameManager.Instance.ChangeScene(TargetScene, TargetPortal);
     }
 }

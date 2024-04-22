@@ -40,8 +40,8 @@ public class Door : Interactable, IGameObjectStateHandler, IAttackableHandler
 
     virtual protected void LoadTarget() {
          try {
-            portal.TargetScene = GameManager.instance.doorManager.GetTargetScene(gameObject.name);
-            portal.TargetPortal = GameManager.instance.doorManager.GetTargetDoor(gameObject.name);
+            portal.TargetScene = GameManager.Instance.doorManager.GetTargetScene(gameObject.name);
+            portal.TargetPortal = GameManager.Instance.doorManager.GetTargetDoor(gameObject.name);
         } catch (KeyNotFoundException) {
             portal.TargetScene = "Room0";
             portal.TargetPortal = "Room0Door";
@@ -69,12 +69,12 @@ public class Door : Interactable, IGameObjectStateHandler, IAttackableHandler
     }
 
     public void SavetoManager() {
-        GameManager.instance.gameObjectStateManager.Add(name, new DoorState(isSealed));
+        GameManager.Instance.gameObjectStateManager.Add(name, new DoorState(isSealed));
     }
 
     public void LoadfromManager() {
-        if (GameManager.instance.gameObjectStateManager.Contains(name)) {
-            DoorState doorState = (DoorState)GameManager.instance.gameObjectStateManager.Get(name);
+        if (GameManager.Instance.gameObjectStateManager.Contains(name)) {
+            DoorState doorState = (DoorState)GameManager.Instance.gameObjectStateManager.Get(name);
             isSealed = doorState.isSealed;
         }
         SetSprite();

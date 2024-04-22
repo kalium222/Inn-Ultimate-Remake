@@ -3,9 +3,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class GameManager : MonoBehaviour
+public class GameManager : SingletonMono<GameManager>
 {
-    public static GameManager instance;
     private Control m_control;
     public Control Control => m_control;
     [HideInInspector]
@@ -15,13 +14,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public GameObjectStateManager gameObjectStateManager;
 
-    private void Awake() {
-        if (instance == null) {
-            instance = this;
-        } else {
-            Destroy(gameObject);
-        }
-        DontDestroyOnLoad(gameObject);
+    protected override void Awake() {
+        base.Awake();
         m_control = new();
         doorManager = GetComponent<DoorManager>();
         if (doorManager == null) {

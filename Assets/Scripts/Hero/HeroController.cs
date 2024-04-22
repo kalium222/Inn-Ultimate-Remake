@@ -1,16 +1,24 @@
 using UnityEngine;
+using Utils;
 
 /// <summary>
 /// HeroController should be responsible for hero's movement,
 /// interaction, and attack, etc
 /// </summary>
-public class HeroController : MonoBehaviour
+public class HeroController : SingletonMono<HeroController>
 {
-    /// <summary>
-    /// HeroController Singleton
-    /// </summary>
-    private static HeroController s_instance;
-    public static HeroController Instance => s_instance;
+    private class HeroMoveController : Move2DController {
+        public HeroMoveController(GameObject gameObject, float velocityFactor, Control control)
+        : base(gameObject, velocityFactor) {
+                m_control = control;
+        }
+        private readonly Control m_control;
+        public override void SetVelocity()
+        {
+            m_velocity = m_control.gameplay.Move.ReadValue<Vector2>();
+        }
+    }
+    private HeroMoveController heroMoveController;
     // Input System c# wrapper
     private Control m_control;
     // the speed factor of the hero, handle in inspector
@@ -50,21 +58,17 @@ public class HeroController : MonoBehaviour
         set { m_climbed = value; }
     }
 
-    private void Awake() {
-        if(s_instance == null)
-            s_instance = this;
-        else
-            Destroy(gameObject);
-        DontDestroyOnLoad(gameObject);
-        if (!TryGetComponent<Rigidbody2D>(out m_rigidbody2d))
-            throw new Utils.LackingPropertyException("Rigidbody2D is not found on " + gameObject.name);
-        if (!TryGetComponent<Animator>(out m_animator))
-            throw new Utils.LackingPropertyException("Animator is not found on " + gameObject.name);
-        if (!TryGetComponent<Collider2D>(out m_collider2d))
-            throw new Utils.LackingPropertyException("Collider2D is not found on " + gameObject.name);
-        m_control = GameManager.instance.Control;
+    protected override void Awake() {
+        base.Awake();
+        this.GetAndCheckComponent(out m_rigidbody2d);
+        this.GetAndCheckComponent(out m_animator);
+        this.GetAndCheckComponent(out m_collider2d);
+    }
+
+    private void Start() {
+        m_control = GameManager.Instance.Control;
         if ( m_control==null )
-            throw new Utils.LackingPropertyException("Control is not found on" + GameManager.instance.gameObject);
+            throw new LackingPropertyException("Control is not found on" + GameManager.Instance.gameObject);
         #if SCRIPT_TEST
         m_control.gameplay.Test.performed += OnTest;
         #endif
