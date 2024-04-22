@@ -2,8 +2,13 @@ using System;
 
 namespace Utils
 {
-    public class NotGetException : Exception
+    public class LackingPropertyException : Exception
     {
-        public NotGetException(string message = "") : base(message) {}
+        public LackingPropertyException(string message = "") : base(message) {}
+
+        public static LackingPropertyException NoComponent(string component,
+                                                    string gameobject) {
+            return new LackingPropertyException(component + " is not found on " + gameobject + " !");
+        }
     }
 }

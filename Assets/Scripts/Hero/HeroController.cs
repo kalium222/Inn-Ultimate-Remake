@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 /// <summary>
 /// HeroController should be responsible for hero's movement,
@@ -58,14 +57,14 @@ public class HeroController : MonoBehaviour
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
         if (!TryGetComponent<Rigidbody2D>(out m_rigidbody2d))
-            throw new Utils.NotGetException("Rigidbody2D is not found on " + gameObject.name);
+            throw new Utils.LackingPropertyException("Rigidbody2D is not found on " + gameObject.name);
         if (!TryGetComponent<Animator>(out m_animator))
-            throw new Utils.NotGetException("Animator is not found on " + gameObject.name);
+            throw new Utils.LackingPropertyException("Animator is not found on " + gameObject.name);
         if (!TryGetComponent<Collider2D>(out m_collider2d))
-            throw new Utils.NotGetException("Collider2D is not found on " + gameObject.name);
+            throw new Utils.LackingPropertyException("Collider2D is not found on " + gameObject.name);
         m_control = GameManager.instance.Control;
         if ( m_control==null )
-            throw new Utils.NotGetException("Control is not found on" + GameManager.instance.gameObject);
+            throw new Utils.LackingPropertyException("Control is not found on" + GameManager.instance.gameObject);
         #if SCRIPT_TEST
         m_control.gameplay.Test.performed += OnTest;
         #endif
