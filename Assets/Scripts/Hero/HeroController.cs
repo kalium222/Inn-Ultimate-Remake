@@ -22,13 +22,13 @@ public class HeroController : SingletonMono<HeroController>
     // the speed factor of the hero, handle in inspector
     [SerializeField]
     private float m_velocityFactor = 1.5f;
+    public float LookDirection => m_heroMoveController.LookDirection;
+    public Vector2 Velocity => m_heroMoveController.Velocity;
+
 
     // reference to components
     private Animator m_animator;
     private Collider2D m_collider2d;
-
-    public float LookDirection => m_heroMoveController.LookDirection;
-    public Vector2 Velocity => m_heroMoveController.Velocity;
 
     private bool m_canMove = true;
     public bool CanMove {
@@ -79,14 +79,6 @@ public class HeroController : SingletonMono<HeroController>
         }
         m_heroMoveController.SetState();
     }
-
-    // Move hero by changing its rigidbody2d.position
-    // Called in FixedUpdate to ensure the correct physical behavior
-    // private void HeroMove() {
-    //     if (!m_canMove) return;
-    //     m_velocity = m_control.gameplay.Move.ReadValue<Vector2>();
-    //     m_rigidbody2d.MovePosition(m_rigidbody2d.position + speedFactor*Time.deltaTime*m_velocity);
-    // }
 
     private void SetAnimation() {
         m_animator.SetFloat("lookDirection", m_heroMoveController.LookDirection);
