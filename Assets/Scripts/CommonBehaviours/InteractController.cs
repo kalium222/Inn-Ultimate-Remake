@@ -4,7 +4,8 @@ using UnityEngine;
 public class InteractController : CommonBehaviourBase {
     protected readonly LayerMask m_interactLayer;
     protected readonly Collider2D m_interactCollider2D;
-    protected List<GameObject> m_reachableList = new();
+    protected List<Collider2D> m_reachableList = new();
+    protected IEnumerator<Collider2D> m_currentChosen;
 
     /// <summary>
     /// Constructor.
@@ -19,7 +20,10 @@ public class InteractController : CommonBehaviourBase {
     : base(gameObject) {
         m_interactLayer = interactLayer;
         m_interactCollider2D = interactCollider2D;
+        m_currentChosen = m_reachableList.GetEnumerator();
     }
 
-    
+    public void CheckAllContacted() {
+
+    }
 }
