@@ -26,7 +26,6 @@ public class HeroInteractController : CommonBehaviourBase {
             return m_reachableList[m_selectedIndex%m_reachableList.Count];
         }
     }
-    private InputAction m_selectNext;
 
     public event Action OnReachableChanged;
 
@@ -43,10 +42,6 @@ public class HeroInteractController : CommonBehaviourBase {
     : base(gameObject) {
         m_interactLayer = interactLayer;
         m_interactCollider2D = interactCollider2D;
-    }
-
-    public void SetInputAction(InputAction selectNext) {
-        m_selectNext = selectNext;
     }
 
     public void CheckAllContacted() {

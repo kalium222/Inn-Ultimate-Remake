@@ -9,17 +9,7 @@ using UnityEngine.InputSystem;
 public class HeroController : SingletonMono<HeroController>
 {
     // Move Controller
-    private class HeroMoveController : Move2DController {
-        public HeroMoveController(GameObject gameObject, float velocityFactor)
-        : base(gameObject, velocityFactor) {}
-        public InputAction move;
-        public void SetMoveInput(InputAction move) => this.move = move;
-        protected override void SetVelocity()
-        {
-            m_velocity = move.ReadValue<Vector2>();
-        }
-    }
-    private HeroMoveController m_heroMoveController;
+    private Move2DController m_heroMoveController;
     // the speed factor of the hero, handle in inspector
     [SerializeField]
     private float m_velocityFactor = 1.5f;
@@ -69,8 +59,7 @@ public class HeroController : SingletonMono<HeroController>
 
     private void Start() {
         control = GameManager.Instance.Control;
-        m_heroMoveController.SetMoveInput(control.gameplay.Move);
-        m_heroInteractController.SetInputAction(control.gameplay.SelectNext);
+        control.gameplay.SelectNext.performed += m_heroInteractController.OnNextSelected;
         m_heroInteractController.CheckAllContacted();
     }
 
@@ -86,7 +75,8 @@ public class HeroController : SingletonMono<HeroController>
     // Get input and set status parameters
     private void GetStatusParameters() {
         if (!m_canMove) return;
-        m_heroMoveController.SetState();
+        m_heroMoveController.SetVelocity(control.gameplay.Move.ReadValue<Vector2>());
+        m_heroMoveController.SetLookDirection();
     }
 
     private void SetAnimation() {

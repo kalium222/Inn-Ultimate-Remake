@@ -34,18 +34,12 @@ public class Move2DController : CommonBehaviourBase {
         m_rigidbody2D.MovePosition(m_rigidbody2D.position+m_velocityFactor*Time.deltaTime*m_velocity);
     }
 
-    private void SetLookDirection() {
+    public void SetLookDirection() {
         if (!Mathf.Approximately(m_velocity.x, 0f))
             m_lookDirection = m_velocity.x > 0 ? LookDirectionEnum.Right : LookDirectionEnum.Left;
     }
 
-    protected virtual void SetVelocity() {
-        m_velocity.x = 0.1f;
-        m_velocity.y = 0.1f;
-    }
-
-    public void SetState() {
-        SetVelocity();
-        SetLookDirection();
+    public void SetVelocity(Vector2 velocity) {
+        m_velocity = velocity;
     }
 }
