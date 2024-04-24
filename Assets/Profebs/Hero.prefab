@@ -397,6 +397,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_velocityFactor: 1.5
+  m_interactLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  m_interactCollider: {fileID: 4155410558541546959}
+  m_animator: {fileID: 0}
+  m_physicsCollider: {fileID: -7882813028887510013}
 --- !u!95 &6621933424163817578
 Animator:
   serializedVersion: 5

@@ -743,10 +743,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4087211850289540446, guid: 327c75f8be4031f4a8c710b7512f181d, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4087211850289540446, guid: 327c75f8be4031f4a8c710b7512f181d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.417
       objectReference: {fileID: 0}
@@ -793,51 +789,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8133916159418049022, guid: 327c75f8be4031f4a8c710b7512f181d, type: 3}
-      insertIndex: 3
-      addedObject: {fileID: 1884467774}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 327c75f8be4031f4a8c710b7512f181d, type: 3}
---- !u!1 &1884467773 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8133916159418049022, guid: 327c75f8be4031f4a8c710b7512f181d, type: 3}
-  m_PrefabInstance: {fileID: 1884467772}
-  m_PrefabAsset: {fileID: 0}
---- !u!70 &1884467774
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1884467773}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.013903799, y: 0.0004221185}
-  m_Size: {x: 1.5088818, y: 0.6855059}
-  m_Direction: 1
 --- !u!1 &1908127891
 GameObject:
   m_ObjectHideFlags: 0
@@ -1129,11 +1082,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 609451618655380634, guid: e11b6a51130779b46b5270eccccd82f9, type: 3}
+      propertyPath: m_Name
+      value: FirstFloorUpStair
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677726682173329092, guid: e11b6a51130779b46b5270eccccd82f9, type: 3}
+      propertyPath: TargetScene
+      value: SecondFloor
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677726682173329092, guid: e11b6a51130779b46b5270eccccd82f9, type: 3}
+      propertyPath: TargetPortal
+      value: SecondFloorDownStair
+      objectReference: {fileID: 0}
     - target: {fileID: 6212983733154531950, guid: e11b6a51130779b46b5270eccccd82f9, type: 3}
       propertyPath: m_Name
       value: FirstFloorUpStair
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -9028592549315114680, guid: e11b6a51130779b46b5270eccccd82f9, type: 3}
+    - {fileID: 8067182432622289794, guid: e11b6a51130779b46b5270eccccd82f9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1399,8 +1366,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1805267343201094931, guid: bf1cb0877843a514d933694dcc0f1b33, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -1.257843
+      objectReference: {fileID: 0}
+    - target: {fileID: 1805267343201094931, guid: bf1cb0877843a514d933694dcc0f1b33, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1.8580399
+      value: 1.8580704
       objectReference: {fileID: 0}
     - target: {fileID: 2376900981803214114, guid: bf1cb0877843a514d933694dcc0f1b33, type: 3}
       propertyPath: m_fontStyle

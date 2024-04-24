@@ -17,7 +17,11 @@ namespace Utils
     public static class MonoBehaviourExtension {
         public static void GetAndCheckComponent<T>(this MonoBehaviour mono, out T result) where T : Component {
             if (!mono.TryGetComponent(out result))
-                throw LackingPropertyException.NoComponent(result.ToString(), mono.gameObject.name);
+                throw LackingPropertyException.NoComponent(result.ToString(), mono.name);
+        }
+
+        public static void CheckComponent<T>(this MonoBehaviour mono, T component) where T : Component {
+            if ( component==null ) throw LackingPropertyException.NoComponent(component.ToString(), mono.name);
         }
     }
 

@@ -1,5 +1,6 @@
 using UnityEngine;
 using Utils;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// HeroController should be responsible for hero's movement,
@@ -11,11 +12,11 @@ public class HeroController : SingletonMono<HeroController>
     private class HeroMoveController : Move2DController {
         public HeroMoveController(GameObject gameObject, float velocityFactor)
         : base(gameObject, velocityFactor) {}
-        public Control control;
-        public void SetControl(Control control) => this.control = control;
+        public InputAction move;
+        public void SetMoveInput(InputAction move) => this.move = move;
         protected override void SetVelocity()
         {
-            m_velocity = control.gameplay.Move.ReadValue<Vector2>();
+            m_velocity = move.ReadValue<Vector2>();
         }
     }
     private HeroMoveController m_heroMoveController;
@@ -25,10 +26,21 @@ public class HeroController : SingletonMono<HeroController>
     public float LookDirection => m_heroMoveController.LookDirection;
     public Vector2 Velocity => m_heroMoveController.Velocity;
 
+    // Interact Controller
+    private HeroInteractController m_heroInteractController;
+    [SerializeField]
+    private LayerMask m_interactLayer;
+    [SerializeField]
+    private Collider2D m_interactCollider;
 
+
+    [SerializeField]
+    private Control control;
     // reference to components
+    [SerializeField]
     private Animator m_animator;
-    private Collider2D m_collider2d;
+    [SerializeField]
+    private Collider2D m_physicsCollider;
 
     private bool m_canMove = true;
     public bool CanMove {
@@ -45,23 +57,22 @@ public class HeroController : SingletonMono<HeroController>
     protected override void Awake() {
         base.Awake();
         m_heroMoveController = new(gameObject, m_velocityFactor);
+        m_heroInteractController = new(
+            gameObject,
+            m_interactLayer,
+            m_interactCollider
+        );
         this.GetAndCheckComponent(out m_animator);
-        this.GetAndCheckComponent(out m_collider2d);
+        this.CheckComponent(m_physicsCollider);
+        this.CheckComponent(m_interactCollider);
     }
 
     private void Start() {
-        m_heroMoveController.SetControl(GameManager.Instance.Control);
-        #if SCRIPT_TEST
-        m_control.gameplay.Test.performed += OnTest;
-        #endif
+        control = GameManager.Instance.Control;
+        m_heroMoveController.SetMoveInput(control.gameplay.Move);
+        m_heroInteractController.SetInputAction(control.gameplay.SelectNext);
+        m_heroInteractController.CheckAllContacted();
     }
-
-    #if SCRIPT_TEST
-    private void OnTest(InputAction.CallbackContext context)
-    {
-        Debug.Log("Test!");
-    }
-    #endif
 
     private void Update() {
         GetStatusParameters();
@@ -74,9 +85,7 @@ public class HeroController : SingletonMono<HeroController>
 
     // Get input and set status parameters
     private void GetStatusParameters() {
-        if (!m_canMove) {
-            return;
-        }
+        if (!m_canMove) return;
         m_heroMoveController.SetState();
     }
 
@@ -91,7 +100,7 @@ public class HeroController : SingletonMono<HeroController>
     /// <param name="offsetY">The height that Hero looks climbed</param>
     /// <param name="position">The position of the Climbable</param>
     public void ClimbUp(float offsetY, Vector3 position = default) {
-        m_collider2d.offset += new Vector2(0, -offsetY);
+        m_physicsCollider.offset += new Vector2(0, -offsetY);
         if (position == default) transform.position += new Vector3(0, offsetY, 0);
         else {
             transform.position = position + new Vector3(0, offsetY, 0);
@@ -101,7 +110,7 @@ public class HeroController : SingletonMono<HeroController>
     }
 
     public void ClimbDown(float offsetY) {
-        m_collider2d.offset += new Vector2(0, offsetY);
+        m_physicsCollider.offset += new Vector2(0, offsetY);
         transform.position += new Vector3(0, -offsetY, 0);
         m_climbed = false;
         GetComponent<SpriteRenderer>().sortingOrder = 0;
