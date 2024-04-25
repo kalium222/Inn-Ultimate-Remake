@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Codice.CM.Client.Differences.Graphic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,20 +11,20 @@ using UnityEngine.InputSystem;
 /// interactionlayer. Also, the player can
 /// press a key to switch the selected object.
 /// </summary>
-public class HeroInteractController : CommonBehaviourBase {
+public class InteractController : CommonBehaviourBase {
     private readonly LayerMask m_interactLayer;
     private readonly Collider2D m_interactCollider2D;
     private readonly List<Collider2D> m_reachableList = new();
+    public int ReachableCount => m_reachableList.Count;
     private int m_selectedIndex = -1;
-    public Collider2D Selected {
+    #nullable enable
+    public Collider2D? Selected {
         get {
-            if (m_reachableList.Count==0) {
-                // TODO: throw a proper exception
-                throw new Exception("can not reach anything");
-            }
-            return m_reachableList[m_selectedIndex%m_reachableList.Count];
+            if (ReachableCount==0) return null;
+            else return m_reachableList[m_selectedIndex%ReachableCount];
         }
     }
+    #nullable disable
 
     public event Action OnReachableChanged;
 
@@ -37,23 +36,11 @@ public class HeroInteractController : CommonBehaviourBase {
     /// interactable items stay in</param>
     /// <param name="interactCollider2D">the range that the entity
     /// can reach</param>
-    public HeroInteractController(GameObject gameObject, 
+    public InteractController(GameObject gameObject, 
             LayerMask interactLayer, Collider2D interactCollider2D)
     : base(gameObject) {
         m_interactLayer = interactLayer;
         m_interactCollider2D = interactCollider2D;
-    }
-
-    public void CheckAllContacted() {
-        ContactFilter2D filter2D = new()
-        {
-            layerMask = m_interactLayer
-        };
-        m_interactCollider2D.OverlapCollider(filter2D, m_reachableList);
-
-        #if SCRIPT_TEST
-        LogAllReachable();
-        #endif
     }
 
     /// <summary>
@@ -103,5 +90,9 @@ public class HeroInteractController : CommonBehaviourBase {
 public interface IHighlightable {
     public void EnableHighlight();
     public void DisableHighlight();
+}
+
+public interface IInteractable {
+    public void Interact();
 }
 

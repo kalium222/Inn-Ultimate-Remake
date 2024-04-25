@@ -17,9 +17,13 @@ public class HeroController : SingletonMono<HeroController>
     public Vector2 Velocity => m_heroMoveController.Velocity;
 
     // Interact Controller
-    private HeroInteractController m_heroInteractController;
+    private InteractController m_heroInteractController;
     [SerializeField]
     private LayerMask m_interactLayer;
+    /// <summary>
+    /// Should be assigned as the interactlayer
+    /// in the Unity editor
+    /// </summary>
     [SerializeField]
     private Collider2D m_interactCollider;
 
@@ -46,21 +50,20 @@ public class HeroController : SingletonMono<HeroController>
 
     protected override void Awake() {
         base.Awake();
+        this.GetAndCheckComponent(out m_animator);
+        this.CheckComponent(m_physicsCollider);
+        this.CheckComponent(m_interactCollider);
         m_heroMoveController = new(gameObject, m_velocityFactor);
         m_heroInteractController = new(
             gameObject,
             m_interactLayer,
             m_interactCollider
         );
-        this.GetAndCheckComponent(out m_animator);
-        this.CheckComponent(m_physicsCollider);
-        this.CheckComponent(m_interactCollider);
     }
 
     private void Start() {
         control = GameManager.Instance.Control;
         control.gameplay.SelectNext.performed += m_heroInteractController.OnNextSelected;
-        m_heroInteractController.CheckAllContacted();
     }
 
     private void Update() {
@@ -82,6 +85,14 @@ public class HeroController : SingletonMono<HeroController>
     private void SetAnimation() {
         m_animator.SetFloat("lookDirection", m_heroMoveController.LookDirection);
         m_animator.SetFloat("speed", m_heroMoveController.Velocity.SqrMagnitude());
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        m_heroInteractController.OnReachItem(other);
+    }
+
+    private void OnTriggerExit2D(Collider2D other) {
+        m_heroInteractController.OnLeaveItem(other);
     }
 
     /// <summary>
