@@ -12,8 +12,6 @@ using UnityEngine.InputSystem;
 /// press a key to switch the selected object.
 /// </summary>
 public class InteractController : CommonBehaviourBase {
-    private readonly LayerMask m_interactLayer;
-    private readonly Collider2D m_interactCollider2D;
     private readonly List<Collider2D> m_reachableList = new();
     public int ReachableCount => m_reachableList.Count;
     private int m_selectedIndex = -1;
@@ -26,7 +24,7 @@ public class InteractController : CommonBehaviourBase {
     }
     #nullable disable
 
-    public event Action OnReachableChanged;
+    public event Action OnSelectedChange;
 
     /// <summary>
     /// Constructor.
@@ -36,12 +34,8 @@ public class InteractController : CommonBehaviourBase {
     /// interactable items stay in</param>
     /// <param name="interactCollider2D">the range that the entity
     /// can reach</param>
-    public InteractController(GameObject gameObject, 
-            LayerMask interactLayer, Collider2D interactCollider2D)
-    : base(gameObject) {
-        m_interactLayer = interactLayer;
-        m_interactCollider2D = interactCollider2D;
-    }
+    public InteractController(GameObject gameObject)
+    : base(gameObject) {}
 
     /// <summary>
     /// Should be called in OnColliderEnter()
@@ -54,6 +48,8 @@ public class InteractController : CommonBehaviourBase {
             m_selectedIndex = (m_reachableList.Count - 1) % m_reachableList.Count;
         }
         // TODO: highlight things
+        OnSelectedChange?.Invoke();
+
         #if SCRIPT_TEST
         Debug.Log("reach " + other.name);
         #endif
@@ -67,16 +63,23 @@ public class InteractController : CommonBehaviourBase {
     public void OnLeaveItem(Collider2D other) {
         m_reachableList.Remove(other);
         // TODO: highlight things
+        OnSelectedChange?.Invoke();
+
         #if SCRIPT_TEST
         Debug.Log("leave " + other.name);
         #endif
     }
 
     public void OnNextSelected(InputAction.CallbackContext _) {
-        m_selectedIndex = (m_selectedIndex + 1) % m_reachableList.Count;
-        #if SCRIPT_TEST
-        Debug.Log("select " + Selected.name);
-        #endif
+        m_selectedIndex++;
+        OnSelectedChange?.Invoke();
+
+#if SCRIPT_TEST
+        string name;
+        if (Selected) name = Selected.name;
+        else name = "nothing";
+        Debug.Log("select " + name);
+#endif
     }
 
     #if SCRIPT_TEST

@@ -54,11 +54,7 @@ public class HeroController : SingletonMono<HeroController>
         this.CheckComponent(m_physicsCollider);
         this.CheckComponent(m_interactCollider);
         m_heroMoveController = new(gameObject, m_velocityFactor);
-        m_heroInteractController = new(
-            gameObject,
-            m_interactLayer,
-            m_interactCollider
-        );
+        m_heroInteractController = new(gameObject);
     }
 
     private void Start() {
