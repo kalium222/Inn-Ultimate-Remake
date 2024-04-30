@@ -1,13 +1,11 @@
 using UnityEngine;
 using Utils;
-using UnityEngine.InputSystem;
 
 /// <summary>
 /// HeroController should be responsible for hero's movement,
 /// interaction, and attack, etc
 /// </summary>
-public class HeroController : SingletonMono<HeroController>
-{
+public class HeroController : SingletonMono<HeroController> {
     // Move Controller
     private Move2DController m_heroMoveController;
     // the speed factor of the hero, handle in inspector

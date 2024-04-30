@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// TODO: make this replace the original one
 public class HeroInteract : MonoBehaviour {
     private InteractController m_heroInteractController;
     [SerializeField]

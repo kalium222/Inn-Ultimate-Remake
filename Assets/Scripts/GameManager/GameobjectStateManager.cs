@@ -1,8 +1,9 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
+// TODO: so ugly. refactor this
 
 // Manage the state of gameobjects that should be saved and loaded
 // when scene is changed or game is saved and loaded
@@ -28,11 +29,17 @@ public class GameObjectStateManager : MonoBehaviour
 
     // When loading scene, save all gameobject states
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
+#if SCRIPT_TEST
+        Debug.Log(gameObject.name + " Invoke OnSave!");
+#endif
         OnSave?.Invoke();
     }
 
     // When last scene is unloaded, load all gameobject states
     private void OnSceneUnloaded(Scene scene) {
+#if SCRIPT_TEST
+        Debug.Log(gameObject.name + " Invoke OnLoad!");
+#endif
         OnLoad?.Invoke();
     }
 

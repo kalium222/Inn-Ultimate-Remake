@@ -15,14 +15,15 @@ public class InteractController : CommonBehaviourBase {
     private readonly List<Collider2D> m_reachableList = new();
     public int ReachableCount => m_reachableList.Count;
     private int m_selectedIndex = -1;
-    #nullable enable
+#nullable enable
     public Collider2D? Selected {
-        get {
+        get 
+        {
             if (ReachableCount==0) return null;
             else return m_reachableList[m_selectedIndex%ReachableCount];
         }
     }
-    #nullable disable
+#nullable disable
 
     public event Action OnSelectedChange;
 
@@ -50,9 +51,9 @@ public class InteractController : CommonBehaviourBase {
         // TODO: highlight things
         OnSelectedChange?.Invoke();
 
-        #if SCRIPT_TEST
+#if SCRIPT_TEST
         Debug.Log("reach " + other.name);
-        #endif
+#endif
     }
 
     /// <summary>
@@ -65,9 +66,9 @@ public class InteractController : CommonBehaviourBase {
         // TODO: highlight things
         OnSelectedChange?.Invoke();
 
-        #if SCRIPT_TEST
+#if SCRIPT_TEST
         Debug.Log("leave " + other.name);
-        #endif
+#endif
     }
 
     public void OnNextSelected(InputAction.CallbackContext _) {
@@ -82,12 +83,12 @@ public class InteractController : CommonBehaviourBase {
 #endif
     }
 
-    #if SCRIPT_TEST
+#if SCRIPT_TEST
     private void LogAllReachable() {
         foreach (var collider in m_reachableList)
             Debug.Log(collider.name);
     }
-    #endif
+#endif
 }
 
 public interface IHighlightable {
