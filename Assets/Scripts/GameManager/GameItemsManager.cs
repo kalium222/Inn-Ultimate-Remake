@@ -45,5 +45,14 @@ public class GameItemsManager {
     // save and load data
     public static event Action OnSaveGameItemData;
     public static event Action OnLoadGameItemData;
+
+    public void SaveItemData(GameItemData data) {
+        // TODO:
+    }
+
+    public void LoadItemData(out GameItemData data) {
+        // TODO:
+        data = null;
+    }
 }
 
