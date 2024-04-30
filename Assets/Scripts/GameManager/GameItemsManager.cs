@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,7 +12,7 @@ using UnityEngine.SceneManagement;
 /// First all the existing derived items laod the data from ItemManager,
 /// then ItemManager instantiate the rest items.
 /// </summary>
-public class ItemData {
+public class GameItemData {
     // HACK: : better uid?
     /// <summary>
     /// use name as uid
@@ -23,23 +24,26 @@ public class ItemData {
 /// <summary>
 /// Position and Scene
 /// </summary>
-public class CollectableItemData : ItemData {
+public class CollectableItemData : GameItemData {
     public Transform transform;
     public Scene scene;
 }
 
-public class ContainerItemData : ItemData {
+public class ContainerItemData : GameItemData {
     public bool isOpen = false;
     public int capacity = 1;
     public int remain;
 }
 
-public class ItemsManager {
-    private readonly List<ItemData> ItemDataTable = new();
-}
+public class GameItemsManager {
 
-public interface IItemDataLoad {
-    public ItemData GetItemDate();
-    public void SetItemData(ItemData itemdata);
+    // TODO: choose a proper container to hold the data
+    // data? gameobject itself?
+    private readonly List<GameItemData> ItemDataTable = new();
+
+    // events when items should do something to 
+    // save and load data
+    public static event Action OnSaveGameItemData;
+    public static event Action OnLoadGameItemData;
 }
 
