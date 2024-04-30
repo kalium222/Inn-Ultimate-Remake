@@ -7,12 +7,12 @@ using Utils;
 /// </summary>
 public class HeroController : SingletonMono<HeroController> {
     // Move Controller
-    private Move2DController m_heroMoveController;
+    private Move2D m_heroMove;
     // the speed factor of the hero, handle in inspector
     [SerializeField]
     private float m_velocityFactor = 1.5f;
-    public float LookDirection => m_heroMoveController.LookDirection;
-    public Vector2 Velocity => m_heroMoveController.Velocity;
+    public float LookDirection => m_heroMove.LookDirection;
+    public Vector2 Velocity => m_heroMove.Velocity;
     private Control control;
 
     // reference to components
@@ -37,7 +37,7 @@ public class HeroController : SingletonMono<HeroController> {
         base.Awake();
         this.GetAndCheckComponent(out m_animator);
         this.CheckComponent(m_physicsCollider);
-        m_heroMoveController = new(gameObject, m_velocityFactor);
+        m_heroMove = new(gameObject, m_velocityFactor);
     }
 
     private void Start() {
@@ -50,19 +50,19 @@ public class HeroController : SingletonMono<HeroController> {
     }
 
     private void FixedUpdate() {
-        m_heroMoveController.Move();
+        m_heroMove.Move();
     }
 
     // Get input and set status parameters
     private void GetStatusParameters() {
         if (!m_canMove) return;
-        m_heroMoveController.SetVelocity(control.gameplay.Move.ReadValue<Vector2>());
-        m_heroMoveController.SetLookDirection();
+        m_heroMove.SetVelocity(control.gameplay.Move.ReadValue<Vector2>());
+        m_heroMove.SetLookDirection();
     }
 
     private void SetAnimation() {
-        m_animator.SetFloat("lookDirection", m_heroMoveController.LookDirection);
-        m_animator.SetFloat("speed", m_heroMoveController.Velocity.SqrMagnitude());
+        m_animator.SetFloat("lookDirection", m_heroMove.LookDirection);
+        m_animator.SetFloat("speed", m_heroMove.Velocity.SqrMagnitude());
     }
 
     /// <summary>

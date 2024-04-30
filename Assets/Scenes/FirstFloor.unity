@@ -782,6 +782,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6234153954420447126, guid: 327c75f8be4031f4a8c710b7512f181d, type: 3}
+      propertyPath: m_Name
+      value: HeroInteractController
+      objectReference: {fileID: 0}
     - target: {fileID: 8133916159418049022, guid: 327c75f8be4031f4a8c710b7512f181d, type: 3}
       propertyPath: m_Name
       value: Hero

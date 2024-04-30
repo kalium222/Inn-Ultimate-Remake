@@ -11,7 +11,7 @@ using UnityEngine.InputSystem;
 /// interactionlayer. Also, the player can
 /// press a key to switch the selected object.
 /// </summary>
-public class InteractController : CommonBehaviourBase {
+public class Interact : CommonBehaviourBase {
     private readonly List<Collider2D> m_reachableList = new();
     public int ReachableCount => m_reachableList.Count;
     private int m_selectedIndex = -1;
@@ -35,7 +35,7 @@ public class InteractController : CommonBehaviourBase {
     /// interactable items stay in</param>
     /// <param name="interactCollider2D">the range that the entity
     /// can reach</param>
-    public InteractController(GameObject gameObject)
+    public Interact(GameObject gameObject)
     : base(gameObject) {}
 
     /// <summary>

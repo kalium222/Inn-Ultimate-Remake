@@ -1,8 +1,8 @@
 using UnityEngine;
 using Utils;
 
-public class Move2DController : CommonBehaviourBase { 
-    public Move2DController(GameObject gameObject, float velocityFactor = 1f) : base(gameObject) {
+public class Move2D : CommonBehaviourBase { 
+    public Move2D(GameObject gameObject, float velocityFactor = 1f) : base(gameObject) {
         gameObject.GetAndCheckComponent(out m_rigidbody2D);
         m_velocityFactor = velocityFactor;
     }

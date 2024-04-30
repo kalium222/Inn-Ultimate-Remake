@@ -1,26 +1,26 @@
 using UnityEngine;
 
 // TODO: make this replace the original one
-public class HeroInteract : MonoBehaviour {
-    private InteractController m_heroInteractController;
+public class HeroInteractController : MonoBehaviour {
+    private Interact m_heroInteract;
     [SerializeField]
     private Control control;
 
     private void Awake() {
-        m_heroInteractController = new(gameObject);
+        m_heroInteract = new(gameObject);
     }
 
     private void Start() {
         control = GameManager.Instance.Control;
-        control.gameplay.SelectNext.performed += m_heroInteractController.OnNextSelected;
+        control.gameplay.SelectNext.performed += m_heroInteract.OnNextSelected;
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        m_heroInteractController.OnReachItem(other);
+        m_heroInteract.OnReachItem(other);
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        m_heroInteractController.OnLeaveItem(other);
+        m_heroInteract.OnLeaveItem(other);
     }
 
 }
