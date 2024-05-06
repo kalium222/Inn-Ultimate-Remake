@@ -2,7 +2,7 @@ using UnityEngine;
 
 // TODO: make this replace the original one
 public class HeroInteractController : MonoBehaviour {
-    private Interact m_heroInteract;
+    private Interact2D m_heroInteract;
     [SerializeField]
     private Control control;
 
@@ -13,6 +13,7 @@ public class HeroInteractController : MonoBehaviour {
     private void Start() {
         control = GameManager.Instance.Control;
         control.gameplay.SelectNext.performed += m_heroInteract.OnNextSelected;
+        control.gameplay.Interact.performed += m_heroInteract.OnTriggerInteract;
     }
 
     private void OnTriggerEnter2D(Collider2D other) {

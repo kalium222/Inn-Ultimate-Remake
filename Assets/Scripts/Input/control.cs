@@ -53,6 +53,15 @@ public partial class @Control: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""efefaec7-9317-4043-8274-e948d31b52aa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -185,6 +194,17 @@ public partial class @Control: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""SelectNext"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""487d4f1e-50f8-4627-94a2-563235e58bdd"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -351,6 +371,7 @@ public partial class @Control: IInputActionCollection2, IDisposable
         m_gameplay_Move = m_gameplay.FindAction("Move", throwIfNotFound: true);
         m_gameplay_Test = m_gameplay.FindAction("Test", throwIfNotFound: true);
         m_gameplay_SelectNext = m_gameplay.FindAction("SelectNext", throwIfNotFound: true);
+        m_gameplay_Interact = m_gameplay.FindAction("Interact", throwIfNotFound: true);
         // menus
         m_menus = asset.FindActionMap("menus", throwIfNotFound: true);
         m_menus_Newaction = m_menus.FindAction("New action", throwIfNotFound: true);
@@ -422,6 +443,7 @@ public partial class @Control: IInputActionCollection2, IDisposable
     private readonly InputAction m_gameplay_Move;
     private readonly InputAction m_gameplay_Test;
     private readonly InputAction m_gameplay_SelectNext;
+    private readonly InputAction m_gameplay_Interact;
     public struct GameplayActions
     {
         private @Control m_Wrapper;
@@ -429,6 +451,7 @@ public partial class @Control: IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_gameplay_Move;
         public InputAction @Test => m_Wrapper.m_gameplay_Test;
         public InputAction @SelectNext => m_Wrapper.m_gameplay_SelectNext;
+        public InputAction @Interact => m_Wrapper.m_gameplay_Interact;
         public InputActionMap Get() { return m_Wrapper.m_gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -447,6 +470,9 @@ public partial class @Control: IInputActionCollection2, IDisposable
             @SelectNext.started += instance.OnSelectNext;
             @SelectNext.performed += instance.OnSelectNext;
             @SelectNext.canceled += instance.OnSelectNext;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -460,6 +486,9 @@ public partial class @Control: IInputActionCollection2, IDisposable
             @SelectNext.started -= instance.OnSelectNext;
             @SelectNext.performed -= instance.OnSelectNext;
             @SelectNext.canceled -= instance.OnSelectNext;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -600,6 +629,7 @@ public partial class @Control: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnTest(InputAction.CallbackContext context);
         void OnSelectNext(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
     public interface IMenusActions
     {

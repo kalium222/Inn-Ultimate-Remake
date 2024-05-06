@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 4461643088477884745}
   - component: {fileID: 5892845853280134141}
   m_Layer: 6
-  m_Name: HeroInteractHandler
+  m_Name: HeroInteractController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -288,8 +288,6 @@ GameObject:
   - component: {fileID: -7882813028887510013}
   - component: {fileID: 7726328142801523629}
   - component: {fileID: 9119418255512310154}
-  - component: {fileID: 1951949347}
-  - component: {fileID: 3000129894369967752}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Untagged
@@ -465,39 +463,3 @@ MonoBehaviour:
   m_velocityFactor: 1.5
   m_animator: {fileID: 6621933424163817578}
   m_physicsCollider: {fileID: -7882813028887510013}
---- !u!114 &1951949347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8133916159418049022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b241bd2d431c6ec45ad0adadc7c353c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactRadius: 0.4
-  switchObjectKey: 107
-  interactKey: 102
-  useKey: 106
-  nextItemKey: 101
-  previousItemKey: 113
-  interactionLayer:
-    serializedVersion: 2
-    m_Bits: 64
---- !u!114 &3000129894369967752
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8133916159418049022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b20cbf510c861c4d8802375ae900c1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MeleeAttack: {fileID: 2832116296981846259, guid: 4b565bdf929998d4b93be8244041aeda, type: 3}
-  isAttacking: 0
-  attackRadius: 0.35
