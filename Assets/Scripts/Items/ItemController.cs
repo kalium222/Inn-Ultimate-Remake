@@ -2,7 +2,7 @@ using UnityEngine;
 using Utils;
 
 public class ItemController : MonoBehaviour, IInteractable {
-    private Highlight m_highlight;
+    private HighlightBehaviour m_highlight;
 
     protected virtual void Awake() {
         this.GetAndCheckComponent(out SpriteRenderer spriteRenderer);

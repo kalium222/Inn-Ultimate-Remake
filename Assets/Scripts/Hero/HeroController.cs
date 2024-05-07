@@ -7,7 +7,7 @@ using Utils;
 /// </summary>
 public class HeroController : SingletonMono<HeroController> {
     // Move Controller
-    private Move2D m_heroMove;
+    private MoveBehaviour m_heroMove;
     // the speed factor of the hero, handle in inspector
     [SerializeField]
     private float m_velocityFactor = 1.5f;

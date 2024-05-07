@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class Highlight : CommonBehaviourBase {
+public class HighlightBehaviour : CommonBehaviourBase {
     private SpriteRenderer m_spriteRenderer;
     private const float k_originalAlpha = 1f;
     private const float k_fadeFactor = 0.8f;
     public bool isHighlighted { get; set; }
 
-    public Highlight(GameObject gameObject, SpriteRenderer spriteRenderer)
+    public HighlightBehaviour(GameObject gameObject, SpriteRenderer spriteRenderer)
     : base(gameObject) {
         isHighlighted = false;
         m_spriteRenderer = spriteRenderer;
