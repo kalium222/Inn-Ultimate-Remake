@@ -4,7 +4,6 @@ using Utils;
 public class ItemController : MonoBehaviour, IInteractable {
     private HighlightBehaviour m_highlight;
     public void OnRefreshHighlight(GameObject other) {
-        // TODO:
         if (gameObject==other)
             m_highlight.EnableHighlight();
         else 
@@ -16,9 +15,8 @@ public class ItemController : MonoBehaviour, IInteractable {
         m_highlight = new(gameObject, spriteRenderer);
     }
 
-    public void Interact() {
-        // TODO:
-#if SCRIPT_TEST
+    public virtual void Interact() {
+#if SCRIPT_TEST_HIGHLIGHT
         Debug.Log("Interact with " + name);
 #endif
     }
