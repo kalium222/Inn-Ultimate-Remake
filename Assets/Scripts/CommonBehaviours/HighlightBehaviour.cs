@@ -16,7 +16,7 @@ public class HighlightBehaviour : CommonBehaviourBase {
         Color highlightColor = m_spriteRenderer.color;
         highlightColor.a = k_originalAlpha * k_fadeFactor;
         m_spriteRenderer.color = highlightColor;
-#if SCRIPT_TEST
+#if SCRIPT_TEST_HIGHLIGHT
         Debug.Log("Enable highlight " + gameObject.name);
 #endif
     }
@@ -25,7 +25,7 @@ public class HighlightBehaviour : CommonBehaviourBase {
         Color originalColor = m_spriteRenderer.color;
         originalColor.a = k_originalAlpha;
         m_spriteRenderer.color = originalColor;
-#if SCRIPT_TEST
+#if SCRIPT_TEST_HIGHLIGHT
         Debug.Log("Disable highlight " + gameObject.name);
 #endif
     }

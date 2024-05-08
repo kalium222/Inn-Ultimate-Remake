@@ -16,7 +16,7 @@ public class ItemController : MonoBehaviour, IInteractable {
     }
 
     public virtual void Interact() {
-#if SCRIPT_TEST_HIGHLIGHT
+#if SCRIPT_TEST
         Debug.Log("Interact with " + name);
 #endif
     }
