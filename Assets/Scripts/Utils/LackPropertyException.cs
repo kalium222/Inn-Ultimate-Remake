@@ -3,61 +3,58 @@ using UnityEngine;
 
 namespace Utils
 {
-    public class LackingPropertyException : Exception
+    public class LackPropertyException : Exception
     {
-        public LackingPropertyException(string message = "")
+        public LackPropertyException(string message = "")
         : base(message) {}
 
-        public static LackingPropertyException NoComponent
+        public static LackPropertyException NoComponent
         (string component, string gameobject) {
-            return new LackingPropertyException(
+            return new LackPropertyException(
                 component + " is not found on " + gameobject + " !"
             );
-        }
-
-        public static void CheckProperty(UnityEngine.Object property) {
-            if (!property) {
-                // TODO:
-            }
         }
     }
 
     public static class MonoBehaviourExtension {
 
-        public static void GetAndCheckComponent<T>
+        public static void GetAndCheckObject<T>
         (this MonoBehaviour mono, out T result)
-        where T : Component {
+        where T : UnityEngine.Object {
             if (!mono.TryGetComponent(out result)) {
-                throw LackingPropertyException.NoComponent(
+                throw LackPropertyException.NoComponent(
                     result.ToString(),
                     mono.name
                 );
             }
         }
 
-        public static void CheckComponent<T>
+        public static void CheckObject<T>
         (this MonoBehaviour mono, T component)
-        where T : Component {
+        where T : UnityEngine.Object {
             if ( component==null ) {
-                throw LackingPropertyException.NoComponent(
+                throw LackPropertyException.NoComponent(
                     component.ToString(),
                     mono.name
                 );
             }
         }
+
     }
 
     public static class GameObjectExtension {
-        public static void GetAndCheckComponent<T>
+
+        public static void GetAndCheckObject<T>
         (this GameObject gameObject, out T result)
-        where T : Component {
+        where T : UnityEngine.Object {
             if (!gameObject.TryGetComponent(out result)) {
-                throw LackingPropertyException.NoComponent(
+                throw LackPropertyException.NoComponent(
                     result.ToString(), 
                     gameObject.name
                 );
             }
         }
+
     }
 }
 

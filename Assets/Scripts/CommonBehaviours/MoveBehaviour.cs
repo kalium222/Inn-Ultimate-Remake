@@ -3,7 +3,7 @@ using Utils;
 
 public class MoveBehaviour : CommonBehaviourBase { 
     public MoveBehaviour(GameObject gameObject, float velocityFactor = 1f) : base(gameObject) {
-        gameObject.GetAndCheckComponent(out m_rigidbody2D);
+        gameObject.GetAndCheckObject(out m_rigidbody2D);
         m_velocityFactor = velocityFactor;
     }
 

@@ -35,8 +35,8 @@ public class HeroController : SingletonMono<HeroController> {
 
     protected override void Awake() {
         base.Awake();
-        this.GetAndCheckComponent(out m_animator);
-        this.CheckComponent(m_physicsCollider);
+        this.GetAndCheckObject(out m_animator);
+        this.CheckObject(m_physicsCollider);
         m_heroMove = new(gameObject, m_velocityFactor);
     }
 

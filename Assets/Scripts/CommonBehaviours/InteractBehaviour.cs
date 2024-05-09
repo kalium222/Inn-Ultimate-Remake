@@ -53,7 +53,7 @@ public class InteractBehaviour : CommonBehaviourBase {
         bool res = Selected.TryGetComponent<ItemController>
             (out ItemController itemController);
         if (!res) {
-            throw Utils.LackingPropertyException.NoComponent(
+            throw Utils.LackPropertyException.NoComponent(
                 "ItemController", 
                 Selected.name
             );

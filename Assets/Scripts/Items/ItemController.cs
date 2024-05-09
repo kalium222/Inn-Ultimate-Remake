@@ -11,7 +11,7 @@ public class ItemController : MonoBehaviour, IInteractable {
     }
 
     protected virtual void Awake() {
-        this.GetAndCheckComponent(out SpriteRenderer spriteRenderer);
+        this.GetAndCheckObject(out SpriteRenderer spriteRenderer);
         m_highlight = new(gameObject, spriteRenderer);
     }
 
