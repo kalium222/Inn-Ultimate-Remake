@@ -14,6 +14,12 @@ namespace Utils
                 component + " is not found on " + gameobject + " !"
             );
         }
+
+        public static void CheckProperty(UnityEngine.Object property) {
+            if (!property) {
+                // TODO:
+            }
+        }
     }
 
     public static class MonoBehaviourExtension {

@@ -21,6 +21,7 @@ public abstract class TempSingletonMono<T> : StaticInstanceMono<T>
     }
 }
 
+
 public abstract class SingletonMono<T> : TempSingletonMono<T>
                                         where T : MonoBehaviour {
     protected override void Awake() {

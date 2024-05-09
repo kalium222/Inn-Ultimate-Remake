@@ -26,7 +26,7 @@
 ### 操作
 
 - 二维平面的移动
-- 爬上某些东西，如桌椅（隐藏）
+- 爬上某些东西，如桌椅（隐藏，optional）
 - 拾起与放下物品
     - 简单地按某个键 / 拓宽其意义，用动作表示，如单手、双手等
     - 是否需要背包？与桶联动？
@@ -36,6 +36,7 @@
 
 ### UI
 
+TODO:  
 低像素。最好没有。
 
 ## AI
@@ -76,10 +77,14 @@ Then, you can make different conditions or as a result, different end.
 
 ### 物品
 
-- some collectable items which you can pick them up
-- something you can open and get something, such as refrigerator. 
-- something have several different states, such as food which can
-    be raw and cooked.
+- Basic items.  
+    some collectable items which you can pick them up
+- Scene items.  
+    something in the game scene you can interact with but cannot pick up.
+    For instance, you can open a refrigerator and get some food which is
+    a kind of basic items.
+- Multi-states items.  
+    food can be raw or cooked. Refrigerator can be opened or closed.
 - something you can change other things' state. For example, you can 
     cook a raw chichen at kitchen, Han can turn something into silver
 - lots of things can be turned into silver, and this can have different
@@ -90,8 +95,14 @@ Then, you can make different conditions or as a result, different end.
     weapons, which can be used to attack monsters.
 - you can step on something to reach higher things, such as chairs and
     tables.
-- you can change the map of doors and rooms through a bookshelf in the 
+- bookshelf rooms mapping mechanism.  
+    you can change the map of doors and rooms through a bookshelf in the 
     study.
+- multifunctional items.
+    - bucket(optional).  
+        1. fill with water.
+        2. put it on the head(optional),
+        3. inventory(optional).
 - (optional) you can turn on and off the light, so that you can discover
     the ghost monsters.
 - (optional) you can see the control guide in the television in your room
